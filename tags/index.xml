@@ -2,166 +2,166 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on taka👨🏻‍💻</title>
-    <link>https://blog.takakd.com/tags/</link>
+    <link>https://takakd.github.io/tags/</link>
     <description>Recent content in Tags on taka👨🏻‍💻</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
     <lastBuildDate>Wed, 15 Apr 2020 00:02:15 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.takakd.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://takakd.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>document</title>
-      <link>https://blog.takakd.com/tags/document/</link>
+      <link>https://takakd.github.io/tags/document/</link>
       <pubDate>Wed, 15 Apr 2020 00:02:15 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/document/</guid>
+      <guid>https://takakd.github.io/tags/document/</guid>
       <description></description>
     </item>
     
     <item>
       <title>java</title>
-      <link>https://blog.takakd.com/tags/java/</link>
+      <link>https://takakd.github.io/tags/java/</link>
       <pubDate>Wed, 15 Apr 2020 00:02:15 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/java/</guid>
+      <guid>https://takakd.github.io/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>https://blog.takakd.com/tags/golang/</link>
+      <link>https://takakd.github.io/tags/golang/</link>
       <pubDate>Mon, 13 Apr 2020 23:50:06 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/golang/</guid>
+      <guid>https://takakd.github.io/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AIZU ONLINE JUDGE</title>
-      <link>https://blog.takakd.com/tags/aizu-online-judge/</link>
+      <link>https://takakd.github.io/tags/aizu-online-judge/</link>
       <pubDate>Sat, 07 Mar 2020 20:01:02 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/aizu-online-judge/</guid>
+      <guid>https://takakd.github.io/tags/aizu-online-judge/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vim</title>
-      <link>https://blog.takakd.com/tags/vim/</link>
+      <link>https://takakd.github.io/tags/vim/</link>
       <pubDate>Tue, 18 Feb 2020 12:17:30 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/vim/</guid>
+      <guid>https://takakd.github.io/tags/vim/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sqlite</title>
-      <link>https://blog.takakd.com/tags/sqlite/</link>
+      <link>https://takakd.github.io/tags/sqlite/</link>
       <pubDate>Fri, 31 Jan 2020 02:18:21 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/sqlite/</guid>
+      <guid>https://takakd.github.io/tags/sqlite/</guid>
       <description></description>
     </item>
     
     <item>
       <title>shell</title>
-      <link>https://blog.takakd.com/tags/shell/</link>
+      <link>https://takakd.github.io/tags/shell/</link>
       <pubDate>Sun, 19 Jan 2020 09:19:45 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/shell/</guid>
+      <guid>https://takakd.github.io/tags/shell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Salesforce</title>
-      <link>https://blog.takakd.com/tags/salesforce/</link>
+      <link>https://takakd.github.io/tags/salesforce/</link>
       <pubDate>Wed, 25 Dec 2019 20:44:07 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/salesforce/</guid>
+      <guid>https://takakd.github.io/tags/salesforce/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://blog.takakd.com/tags/hugo/</link>
+      <link>https://takakd.github.io/tags/hugo/</link>
       <pubDate>Sat, 17 Aug 2019 22:40:00 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/hugo/</guid>
+      <guid>https://takakd.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://blog.takakd.com/tags/python/</link>
+      <link>https://takakd.github.io/tags/python/</link>
       <pubDate>Fri, 19 Apr 2019 00:13:00 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/python/</guid>
+      <guid>https://takakd.github.io/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MovableType</title>
-      <link>https://blog.takakd.com/tags/movabletype/</link>
+      <link>https://takakd.github.io/tags/movabletype/</link>
       <pubDate>Sat, 02 Mar 2019 13:39:00 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/movabletype/</guid>
+      <guid>https://takakd.github.io/tags/movabletype/</guid>
       <description></description>
     </item>
     
     <item>
       <title>API</title>
-      <link>https://blog.takakd.com/tags/api/</link>
+      <link>https://takakd.github.io/tags/api/</link>
       <pubDate>Mon, 24 Dec 2018 14:22:06 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/api/</guid>
+      <guid>https://takakd.github.io/tags/api/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Heroku</title>
-      <link>https://blog.takakd.com/tags/heroku/</link>
+      <link>https://takakd.github.io/tags/heroku/</link>
       <pubDate>Thu, 18 Oct 2018 14:00:00 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/heroku/</guid>
+      <guid>https://takakd.github.io/tags/heroku/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AWS</title>
-      <link>https://blog.takakd.com/tags/aws/</link>
+      <link>https://takakd.github.io/tags/aws/</link>
       <pubDate>Sat, 24 Feb 2018 12:52:48 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/aws/</guid>
+      <guid>https://takakd.github.io/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JavaScript</title>
-      <link>https://blog.takakd.com/tags/javascript/</link>
+      <link>https://takakd.github.io/tags/javascript/</link>
       <pubDate>Sat, 13 Jan 2018 00:44:25 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/javascript/</guid>
+      <guid>https://takakd.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IDE</title>
-      <link>https://blog.takakd.com/tags/ide/</link>
+      <link>https://takakd.github.io/tags/ide/</link>
       <pubDate>Thu, 07 Dec 2017 09:22:27 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/ide/</guid>
+      <guid>https://takakd.github.io/tags/ide/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Server</title>
-      <link>https://blog.takakd.com/tags/server/</link>
+      <link>https://takakd.github.io/tags/server/</link>
       <pubDate>Fri, 24 Nov 2017 02:35:40 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/tags/server/</guid>
+      <guid>https://takakd.github.io/tags/server/</guid>
       <description></description>
     </item>
     

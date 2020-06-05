@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MovableType on taka👨🏻‍💻</title>
-    <link>https://blog.takakd.com/tags/movabletype/</link>
+    <link>https://takakd.github.io/tags/movabletype/</link>
     <description>Recent content in MovableType on taka👨🏻‍💻</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
     <lastBuildDate>Sat, 02 Mar 2019 13:39:00 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.takakd.com/tags/movabletype/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://takakd.github.io/tags/movabletype/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MTVarでsetvarを使うときの注意点</title>
-      <link>https://blog.takakd.com/articles/20190302133900/</link>
+      <link>https://takakd.github.io/articles/20190302133900/</link>
       <pubDate>Sat, 02 Mar 2019 13:39:00 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/articles/20190302133900/</guid>
+      <guid>https://takakd.github.io/articles/20190302133900/</guid>
       <description>MovableTypeのテンプレートタグMTVarで、setvarモディファイアを使ったときに詰まったメモです。 環境 MovableType 6.3.3 MTAppjQuery 1.11.3（remove_hostモディファイア利用のため） setvarの順序 EntryのURLから、ドメイン部分を除いて変数に入れようとMTVarを書きました。 しかし、変数の値にドメイン部分が残ったまま。 &amp;lt;MTEntryPermalink setvar=&amp;quot;tmp_url&amp;quot; remove_host=&amp;quot;1&amp;quot;/&amp;gt; &amp;lt;MTIgnore&amp;gt;tmp_urlはhttp://〜/hoge/fugaのまま&amp;lt;/MTIgnore&amp;gt; &amp;lt;MTVar name=&amp;quot;tmp_url&amp;quot;/&amp;gt; setvarの順序を入れ替えるとOK。 先にremove_hostを書く必要がありました。 &amp;lt;MTEntryPermalink remove_host=&amp;quot;1&amp;quot; setvar=&amp;quot;tmp_url&amp;quot;/&amp;gt; &amp;lt;MTIgnore&amp;gt;tmp_urlは/hoge/fuga&amp;lt;/MTIgnore&amp;gt; &amp;lt;MTVar name=&amp;quot;tmp_url&amp;quot;/&amp;gt; 少し冗長でも、SetVarBlockに統一したほうが迷わなくて良いかも知れません。 &amp;lt;MTSetVarBlock name=&amp;quot;tmp_url&amp;quot;&amp;gt;&amp;lt;MTEntryPermalink remove_host=&amp;quot;1&amp;quot;/&amp;gt;&amp;lt;/MTSetVarBlock&amp;gt;</description>
     </item>
     

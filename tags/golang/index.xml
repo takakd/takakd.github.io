@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>golang on taka👨🏻‍💻</title>
-    <link>https://blog.takakd.com/tags/golang/</link>
+    <link>https://takakd.github.io/tags/golang/</link>
     <description>Recent content in golang on taka👨🏻‍💻</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
     <lastBuildDate>Mon, 13 Apr 2020 23:50:06 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.takakd.com/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://takakd.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Interfaceポインタの型エラー - golang</title>
-      <link>https://blog.takakd.com/articles/20200413235004/</link>
+      <link>https://takakd.github.io/articles/20200413235004/</link>
       <pubDate>Mon, 13 Apr 2020 23:50:06 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/articles/20200413235004/</guid>
+      <guid>https://takakd.github.io/articles/20200413235004/</guid>
       <description>Iocコンテナを作ろうとして次のようなコードを書くとエラーが出ました。 原因はinterfaceのポインタの型エラー。 // interface type IFace interface { hello() string } // concrete type type Concrete struct { } func NewConcrete() *Concrete { return &amp;amp;Concrete{} } // - implementation func (c *Concrete) hello() string { return &amp;quot;Hi&amp;quot; } // ioc type Ioc struct { } func NewIoc() *Ioc { return &amp;amp;Ioc{} } // NG: this method raises error // これは次のようなエラーがでる // cannot use NewConcrete() (type *Concrete) as type *IFace in return argument: // *IFace is pointer to interface, not interface func (i *Ioc) IFace() *IFace { return NewConcrete() } // こちらはOK func (i *Ioc) IFace() IFace { return NewConcrete() } func main() { i := NewIoc() ic := i.IFace() // ... } いくつ書き換えるとOK。 しかし綺麗ではない。 // value receiverにする func (c Concrete) hello() string { return &amp;quot;Hi&amp;quot; } ... // 型を明示的に指定していれるとOK func (i *Ioc) IFace() *IFace { var vif IFace var pif *IFace vif = *NewConcrete() pif = &amp;amp;vif return pif } structと同様に、ポインタを返したほうがコピーされる時のコストが低くなるかと思いきや、そもそもinterfaceはポインタ2個分なのでそれほどコストがかからない。 https://groups.google.com/forum/#!topic/golang-nuts/N9f70MZUulk ちゃんとA Tour Of Goにも書いてますね…… https://tour.golang.org/methods/11 参考 https://groups.google.com/forum/#!topic/golang-nuts/N9f70MZUulk https://play.golang.org/p/5YquxHKRWL</description>
     </item>
     
     <item>
       <title>error table [name] has no column [column]</title>
-      <link>https://blog.takakd.com/articles/20200131021820/</link>
+      <link>https://takakd.github.io/articles/20200131021820/</link>
       <pubDate>Fri, 31 Jan 2020 02:18:21 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/articles/20200131021820/</guid>
+      <guid>https://takakd.github.io/articles/20200131021820/</guid>
       <description>GoでsqliteにデータをInsertしようとしてエラー。 $ error table Balance has no column named price Insertしているコードを見ても問題はない。 カラムを確認すると…… 2個目のカラムがおかしい。 $ sqlite3 ./some_db_file_name.sql $ PRAGMA table_info(Balance); 0|time|DATETIME|1||1 1|rate|FLOAT|0||0 2|half|FLOAT price FLOAT|0||0 3|total|FLOAT|0||0 CREATE TABLEを確認するとtypoでした。 c := fmt.Sprintf(` CREATE TABLE IF NOT EXISTS %s ( time DATETIME PRIMARY KEY NOT NULL, rate FLOAT, half FLOAT price FLOAT, total FLOAT)`, Balance) DbConnection.Exec(c)</description>
     </item>
     

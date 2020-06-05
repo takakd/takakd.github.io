@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>IDE on taka👨🏻‍💻</title>
-    <link>https://blog.takakd.com/tags/ide/</link>
+    <link>https://takakd.github.io/tags/ide/</link>
     <description>Recent content in IDE on taka👨🏻‍💻</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
     <lastBuildDate>Thu, 07 Dec 2017 09:22:27 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.takakd.com/tags/ide/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://takakd.github.io/tags/ide/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>IntelliJのTypeScriptで.jsファイルのCan&#39;t resolveを解消</title>
-      <link>https://blog.takakd.com/articles/20171207092227/</link>
+      <link>https://takakd.github.io/articles/20171207092227/</link>
       <pubDate>Thu, 07 Dec 2017 09:22:27 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/articles/20171207092227/</guid>
+      <guid>https://takakd.github.io/articles/20171207092227/</guid>
       <description>WebStormのAngularプロジェクトをIntelliJに移動した時、Javascriptをimportしているところで&amp;quot;Can&amp;rsquo;t resolve&amp;quot;のエラー。 原因は、IntelliJの単純な設定不足でしたが、どなたかの参考になれば幸いとメモ。 前提 IntelliJ 2016.2 WebStorm 2017.2 ともにAngular, TypeScriptのPluginをインストール済み IntelliJの設定変更 TypeScriptで.jsファイルをimportする場合、TypeScriptのコンパイルオプションに&amp;ldquo;allowJs&amp;rdquo;が必要になります。 tsconfig.jsonのcompilerOptionsにallowJsを書いているものの、IntelliJに上手く反映されない。 なんでだろうかと調べてみると、原因は単純で、IntelliJプロジェクトの設定不足で、プロジェクトがtsconf</description>
     </item>
     

@@ -1,22 +1,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>taka👨🏻‍💻</title>
-    <link>https://blog.takakd.com/</link>
+    <link>https://takakd.github.io/</link>
     <description>Recent content on taka👨🏻‍💻</description>
     <generator>Hugo - gohugo.io</generator>
     <language>en</language>
     <contact></contact>
     <copyright>&copy; taka 2018</copyright>
     
-        <atom:link href="https://blog.takakd.com/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://takakd.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>_Index</title>
-      <link>https://blog.takakd.com/articles/</link>
+      <title>Articles</title>
+      <link>https://takakd.github.io/articles/</link>
       <pubDate>Thu, 01 Nov 2018 22:29:39 +0900</pubDate>
       <author>taka</author>
-      <guid>https://blog.takakd.com/articles/</guid>
+      <guid>https://takakd.github.io/articles/</guid>
       <description></description>
       
       <content></content>
@@ -25,10 +25,10 @@
     
     <item>
       <title>About</title>
-      <link>https://blog.takakd.com/about/</link>
+      <link>https://takakd.github.io/about/</link>
       <pubDate>Mon, 23 Oct 2017 09:18:00 +0900</pubDate>
       <author>taka</author>
-      <guid>https://blog.takakd.com/about/</guid>
+      <guid>https://takakd.github.io/about/</guid>
       <description></description>
       
       <content>&lt;h2 id=&#34;このサイトについて&#34;&gt;このサイトについて&lt;/h2&gt;

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sqlite on taka👨🏻‍💻</title>
-    <link>https://blog.takakd.com/tags/sqlite/</link>
+    <link>https://takakd.github.io/tags/sqlite/</link>
     <description>Recent content in sqlite on taka👨🏻‍💻</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
     <lastBuildDate>Fri, 31 Jan 2020 02:18:21 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.takakd.com/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://takakd.github.io/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>error table [name] has no column [column]</title>
-      <link>https://blog.takakd.com/articles/20200131021820/</link>
+      <link>https://takakd.github.io/articles/20200131021820/</link>
       <pubDate>Fri, 31 Jan 2020 02:18:21 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/articles/20200131021820/</guid>
+      <guid>https://takakd.github.io/articles/20200131021820/</guid>
       <description>GoでsqliteにデータをInsertしようとしてエラー。 $ error table Balance has no column named price Insertしているコードを見ても問題はない。 カラムを確認すると…… 2個目のカラムがおかしい。 $ sqlite3 ./some_db_file_name.sql $ PRAGMA table_info(Balance); 0|time|DATETIME|1||1 1|rate|FLOAT|0||0 2|half|FLOAT price FLOAT|0||0 3|total|FLOAT|0||0 CREATE TABLEを確認するとtypoでした。 c := fmt.Sprintf(` CREATE TABLE IF NOT EXISTS %s ( time DATETIME PRIMARY KEY NOT NULL, rate FLOAT, half FLOAT price FLOAT, total FLOAT)`, Balance) DbConnection.Exec(c)</description>
     </item>
     

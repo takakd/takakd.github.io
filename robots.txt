@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: https://blog.takakd.com/sitemap.xml
+Sitemap: https://takakd.github.io/sitemap.xml

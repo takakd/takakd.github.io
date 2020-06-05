@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Salesforce on taka👨🏻‍💻</title>
-    <link>https://blog.takakd.com/tags/salesforce/</link>
+    <link>https://takakd.github.io/tags/salesforce/</link>
     <description>Recent content in Salesforce on taka👨🏻‍💻</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
     <lastBuildDate>Wed, 25 Dec 2019 20:44:07 +0900</lastBuildDate>
     
-	<atom:link href="https://blog.takakd.com/tags/salesforce/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://takakd.github.io/tags/salesforce/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>添付ファイルがあるオブジェクト名を取得</title>
-      <link>https://blog.takakd.com/articles/20191225204407/</link>
+      <link>https://takakd.github.io/articles/20191225204407/</link>
       <pubDate>Wed, 25 Dec 2019 20:44:07 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/articles/20191225204407/</guid>
+      <guid>https://takakd.github.io/articles/20191225204407/</guid>
       <description>Salesforceのオブジェクトの内、添付ファイルがついているオブジェクト名を取得するコードです。 開発者コンソールの[Open Execute Anonymous Window]から実行できます。 // 添付ファイルがついているレコードID取得 List&amp;lt;Attachment&amp;gt; atts = [SELECT ParentId From Attachment]; Set&amp;lt;Id&amp;gt; idSet = new Set&amp;lt;Id&amp;gt;(); for (Attachment att : atts) { idSet.add(att.ParentId); } // レコードIDからオブジェクト名取得 Set&amp;lt;String&amp;gt; objSet = new Set&amp;lt;String&amp;gt;(); for (Id rid : idSet) { Schema.SObjectType name = rid.getSObjectType(); objSet.add(String.valueOf(name)); } // ログで確認 System.debug(objSet); メリークリスマス。</description>
     </item>
     
     <item>
       <title>SalesForce CLIでApexを取得</title>
-      <link>https://blog.takakd.com/articles/20181015013500/</link>
+      <link>https://takakd.github.io/articles/20181015013500/</link>
       <pubDate>Wed, 17 Oct 2018 01:08:00 +0900</pubDate>
       
-      <guid>https://blog.takakd.com/articles/20181015013500/</guid>
+      <guid>https://takakd.github.io/articles/20181015013500/</guid>
       <description>MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&amp;quot;A JavaScript error occurred in the main process&amp;rdquo; 試行錯誤すれば解消できるかもしれませんが、無理やり利用を続けるのも不毛そう。 素直に公式のSalesfoce CLIで取得しました。 手順 1. Salesforce CLIをインストール npmでインストールしました。 $ node --version v9.1.0 $ npm install -g sfdx-cli Salesforce CLIのインストール 2. Apex取得 SandboxからApexClassをすべて取得。 # 1. Sandboxにログイン # ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用） # ... -rでSandboxのログインURLを指定 # ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定 $ sfdx force:auth:web:login -a myprj-sand -r https://test.salesforce.com # ... ブラウザが起動して、Salesforceのログイン画面表示 # ... ログインする Successfully authorized &amp;lt;mail address&amp;gt;</description>
     </item>
     

@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>MTVarでsetvarを使うときの注意点 | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="MovableTypeのテンプレートタグMTVarで、setvarモディファイアを使ったときに詰まったメモです。 環境 MovableType 6.3.3 MTAppjQuery 1.11.3（remove_hostモディファイア利用のた" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,58 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">MTVarでsetvarを使うときの注意点</h1>
+    <h2 class="cs-subtitle pt-2">2019-03-02</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/movabletype">#MovableType</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>MovableTypeのテンプレートタグMTVarで、setvarモディファイアを使ったときに詰まったメモです。</p>
+<h2 id="環境">環境</h2>
+<ul>
+<li>MovableType 6.3.3</li>
+<li>MTAppjQuery 1.11.3（remove_hostモディファイア利用のため）</li>
+</ul>
+<h2 id="setvarの順序">setvarの順序</h2>
+<p>EntryのURLから、ドメイン部分を除いて変数に入れようとMTVarを書きました。<br>
+しかし、変数の値にドメイン部分が残ったまま。</p>
+<pre><code>&lt;MTEntryPermalink setvar=&quot;tmp_url&quot; remove_host=&quot;1&quot;/&gt;
+
+&lt;MTIgnore&gt;tmp_urlはhttp://〜/hoge/fugaのまま&lt;/MTIgnore&gt;
+&lt;MTVar name=&quot;tmp_url&quot;/&gt;
+</code></pre>
+<p>setvarの順序を入れ替えるとOK。
+先にremove_hostを書く必要がありました。</p>
+<pre><code>&lt;MTEntryPermalink remove_host=&quot;1&quot; setvar=&quot;tmp_url&quot;/&gt;
+
+&lt;MTIgnore&gt;tmp_urlは/hoge/fuga&lt;/MTIgnore&gt;
+&lt;MTVar name=&quot;tmp_url&quot;/&gt;
+</code></pre>
+<p>少し冗長でも、SetVarBlockに統一したほうが迷わなくて良いかも知れません。</p>
+<pre><code>&lt;MTSetVarBlock name=&quot;tmp_url&quot;&gt;&lt;MTEntryPermalink remove_host=&quot;1&quot;/&gt;&lt;/MTSetVarBlock&gt;
+</code></pre>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

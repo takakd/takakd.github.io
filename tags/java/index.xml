@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java on taka👨🏻‍💻</title>
+    <link>https://blog.takakd.com/tags/java/</link>
+    <description>Recent content in java on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Wed, 15 Apr 2020 00:02:15 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.takakd.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Javadocの@see</title>
+      <link>https://blog.takakd.com/articles/20200415000215/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:15 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200415000215/</guid>
+      <description>こんなコメントを書いておりました。 class Hoge { /** * return greeting message string. * * @see https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html * @return greeting message string */ public String hello() { return &amp;quot;Hi&amp;quot;; } } @seeの使い方を間違ってます。 正しくは次のようにhtmlタグが必要。 /** * @see &amp;lt;a href=&amp;quot;https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI&amp;quot;&amp;gt;javadoc&amp;lt;/a&amp;gt; */ @seeというアノテーションの使い勝手がいいので、wikiやらメモでも「確認すること」の意味で、@see http://〜なんて書いてました。 そしていつの間にかコードにも…… 参考 Form 2.の箇所: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on taka👨🏻‍💻</title>
+    <link>https://blog.takakd.com/tags/shell/</link>
+    <description>Recent content in shell on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Sun, 19 Jan 2020 09:19:45 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.takakd.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>シェルでzip圧縮</title>
+      <link>https://blog.takakd.com/articles/20200119091945/</link>
+      <pubDate>Sun, 19 Jan 2020 09:19:45 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200119091945/</guid>
+      <description>shellでzip圧縮するコマンドです。 環境 Mac 10.14.6 GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin18) zip # -------------------------------------- # filename.txtをsth.zipに圧縮 # -Xで.DS_Storeなどの特殊ファイルを無視して圧縮 $ zip -X ./sth.zip ./filename.txt # -------------------------------------- # ディレクトリをzipに圧縮 # これだと空になってしまう $ zip ./sth.zip ./some_directory # -rを指定するか $ zip -r ./sth.zip ./some_directory # ファイルを与える $ zip ./sth.zip ./some_directory/* # -------------------------------------- # zipの中身を解凍せずに確認 $ zip -Z ./sth.zip 参考 http://totech.hateblo.jp/entry/2015/03/04/093757</description>
+    </item>
+    
+    <item>
+      <title>階乗の桁数を出力するシェルコマンド</title>
+      <link>https://blog.takakd.com/articles/20191227203724/</link>
+      <pubDate>Fri, 27 Dec 2019 20:37:24 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20191227203724/</guid>
+      <description>2のX乗の桁数を出力するコマンドです。 # 1. arithmetic expressionsで計算 # 2. wcで結果の桁数をカウント $ echo -n $((2 ** 32)) | wc -c</description>
+    </item>
+    
+  </channel>
+</rss>

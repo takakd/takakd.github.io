@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>_Index on taka👨🏻‍💻</title>
+    <link>https://blog.takakd.com/articles/</link>
+    <description>Recent content in _Index on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Thu, 01 Nov 2018 22:29:39 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.takakd.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Javadocの@see</title>
+      <link>https://blog.takakd.com/articles/20200415000215/</link>
+      <pubDate>Wed, 15 Apr 2020 00:02:15 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200415000215/</guid>
+      <description>こんなコメントを書いておりました。 class Hoge { /** * return greeting message string. * * @see https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html * @return greeting message string */ public String hello() { return &amp;quot;Hi&amp;quot;; } } @seeの使い方を間違ってます。 正しくは次のようにhtmlタグが必要。 /** * @see &amp;lt;a href=&amp;quot;https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI&amp;quot;&amp;gt;javadoc&amp;lt;/a&amp;gt; */ @seeというアノテーションの使い勝手がいいので、wikiやらメモでも「確認すること」の意味で、@see http://〜なんて書いてました。 そしていつの間にかコードにも…… 参考 Form 2.の箇所: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI</description>
+    </item>
+    
+    <item>
+      <title>Interfaceポインタの型エラー - golang</title>
+      <link>https://blog.takakd.com/articles/20200413235004/</link>
+      <pubDate>Mon, 13 Apr 2020 23:50:06 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200413235004/</guid>
+      <description>Iocコンテナを作ろうとして次のようなコードを書くとエラーが出ました。 原因はinterfaceのポインタの型エラー。 // interface type IFace interface { hello() string } // concrete type type Concrete struct { } func NewConcrete() *Concrete { return &amp;amp;Concrete{} } // - implementation func (c *Concrete) hello() string { return &amp;quot;Hi&amp;quot; } // ioc type Ioc struct { } func NewIoc() *Ioc { return &amp;amp;Ioc{} } // NG: this method raises error // これは次のようなエラーがでる // cannot use NewConcrete() (type *Concrete) as type *IFace in return argument: // *IFace is pointer to interface, not interface func (i *Ioc) IFace() *IFace { return NewConcrete() } // こちらはOK func (i *Ioc) IFace() IFace { return NewConcrete() } func main() { i := NewIoc() ic := i.IFace() // ... } いくつ書き換えるとOK。 しかし綺麗ではない。 // value receiverにする func (c Concrete) hello() string { return &amp;quot;Hi&amp;quot; } ... // 型を明示的に指定していれるとOK func (i *Ioc) IFace() *IFace { var vif IFace var pif *IFace vif = *NewConcrete() pif = &amp;amp;vif return pif } structと同様に、ポインタを返したほうがコピーされる時のコストが低くなるかと思いきや、そもそもinterfaceはポインタ2個分なのでそれほどコストがかからない。 https://groups.google.com/forum/#!topic/golang-nuts/N9f70MZUulk ちゃんとA Tour Of Goにも書いてますね…… https://tour.golang.org/methods/11 参考 https://groups.google.com/forum/#!topic/golang-nuts/N9f70MZUulk https://play.golang.org/p/5YquxHKRWL</description>
+    </item>
+    
+    <item>
+      <title>Reconstruction of a Tree</title>
+      <link>https://blog.takakd.com/articles/20200307195400/</link>
+      <pubDate>Sat, 07 Mar 2020 20:01:02 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200307195400/</guid>
+      <description>Reconstruction of a Tree Preorderだけだと構造が決まらないので、Inorderと合わせて木構造を決定する。 Inorderの値の中のPreorder値の左右が、木の左右に対応する。 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;strings&amp;quot; ) func scanInput() (n int, pre []int, in []int) { fmt.Scanf(&amp;quot;%d&amp;quot;, &amp;amp;n) pre = make([]int, n) in = make([]int, n) for i := 0; i &amp;lt; n; i++ { fmt.Scanf(&amp;quot;%d&amp;quot;, &amp;amp;pre[i]) } for i := 0; i &amp;lt; n; i++ { fmt.Scanf(&amp;quot;%d&amp;quot;, &amp;amp;in[i]) } return } func printSlice(slice []int) { fmt.Println(strings.Trim(strings.Join(strings.Fields(fmt.Sprint(slice)), &amp;quot; &amp;quot;), &amp;quot;[]&amp;quot;)) } func main() { n, pre, in := scanInput() post := make([]int, 0, n) parent := 0 walk(0, len(pre)-1, &amp;amp;parent, pre, in, &amp;amp;post) printSlice(post) } func walk(left, right int, parent *int, pre, in []int, post *[]int) { if left &amp;gt; right { return } dlm := pre[*parent] *parent++ var idx int for i, v := range in { if v == dlm { idx = i break } } walk(left, idx-1, parent, pre, in, post) walk(idx+1, right, parent, pre, in, post) *post = append(*post, dlm) } 配列の結果をポインタで引き回しているけど、引数で返したほうがよいのかな。 参考 https://stackoverflow.com/questions/8307478/how-to-find-out-element-position-in-slice</description>
+    </item>
+    
+    <item>
+      <title>Insertion Sort</title>
+      <link>https://blog.takakd.com/articles/20200306012400/</link>
+      <pubDate>Sat, 07 Mar 2020 01:24:02 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200306012400/</guid>
+      <description>もう一回おさらいということで プログラミングコンテスト攻略のためのアルゴリズムとデータ構造を購入しました。 AIZU ONLINE JUDGEのInsertion Sortです。 package main import ( &amp;quot;fmt&amp;quot; &amp;quot;strings&amp;quot; ) func scanInput() (n int, slice []int) { fmt.Scanf(&amp;quot;%d&amp;quot;, &amp;amp;n) slice = make([]int, n) for i := 0; i &amp;lt; n; i++ { fmt.Scanf(&amp;quot;%d&amp;quot;, &amp;amp;slice[i]) } return } func printSlice(slice []int) { fmt.Println(strings.Trim(strings.Join(strings.Fields(fmt.Sprint(slice)), &amp;quot; &amp;quot;), &amp;quot;[]&amp;quot;)) } func main() { _, slice := scanInput() printSlice(slice) solve(slice) } func solve(nums []int) { l := len(nums) for i := 1; i &amp;lt; l; i++ { v := nums[i] j := i - 1 for j &amp;gt;= 0 &amp;amp;&amp;amp; nums[j] &amp;gt; v { nums[j+1] = nums[j] j-- } nums[j+1] = v printSlice(nums) } } ロジックよりも、入力を受け取る実装で戸惑いました。 プログラミングパズルは言語の筋トレにもなっていいですね。 参考 https://stackoverflow.com/questions/37532255/one-liner-to-transform-int-into-string</description>
+    </item>
+    
+    <item>
+      <title>vimで複数行の文字列を1行のCSVにする</title>
+      <link>https://blog.takakd.com/articles/20200218121730/</link>
+      <pubDate>Tue, 18 Feb 2020 12:17:30 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200218121730/</guid>
+      <description>vimで複数行の文字列を1行のCSVにする方法です。 エディタで簡単なSQLのIN句を作成するときによく使います。 元のデータ 1134 1373 3985 4588 Ctrl + Vで先頭に&#39;を入れる。 &#39;1134 &#39;1373 &#39;3985 &#39;4588 Ctrl + Vの後、$,Aして、&#39;,を入れる。 &#39;1134&#39;, &#39;1373&#39;, &#39;3985&#39;, &#39;4588&#39;, 全行をjで選択してJで1行へ。 &#39;1134&#39;, &#39;1373&#39;, &#39;3985&#39;, &#39;4588&#39;, 末尾の&#39;,を削除して、前後に()を入れて完成。 (&#39;1134&#39;, &#39;1373&#39;, &#39;3985&#39;, &#39;4588&#39;) スクリプトやコマンドを組み合わせてワンラインで書けそうな気もしますが、ややこしくなりそうなので、いつもこのようなコマンドを実行して整形しています。</description>
+    </item>
+    
+    <item>
+      <title>error table [name] has no column [column]</title>
+      <link>https://blog.takakd.com/articles/20200131021820/</link>
+      <pubDate>Fri, 31 Jan 2020 02:18:21 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200131021820/</guid>
+      <description>GoでsqliteにデータをInsertしようとしてエラー。 $ error table Balance has no column named price Insertしているコードを見ても問題はない。 カラムを確認すると…… 2個目のカラムがおかしい。 $ sqlite3 ./some_db_file_name.sql $ PRAGMA table_info(Balance); 0|time|DATETIME|1||1 1|rate|FLOAT|0||0 2|half|FLOAT price FLOAT|0||0 3|total|FLOAT|0||0 CREATE TABLEを確認するとtypoでした。 c := fmt.Sprintf(` CREATE TABLE IF NOT EXISTS %s ( time DATETIME PRIMARY KEY NOT NULL, rate FLOAT, half FLOAT price FLOAT, total FLOAT)`, Balance) DbConnection.Exec(c)</description>
+    </item>
+    
+    <item>
+      <title>シェルでzip圧縮</title>
+      <link>https://blog.takakd.com/articles/20200119091945/</link>
+      <pubDate>Sun, 19 Jan 2020 09:19:45 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200119091945/</guid>
+      <description>shellでzip圧縮するコマンドです。 環境 Mac 10.14.6 GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin18) zip # -------------------------------------- # filename.txtをsth.zipに圧縮 # -Xで.DS_Storeなどの特殊ファイルを無視して圧縮 $ zip -X ./sth.zip ./filename.txt # -------------------------------------- # ディレクトリをzipに圧縮 # これだと空になってしまう $ zip ./sth.zip ./some_directory # -rを指定するか $ zip -r ./sth.zip ./some_directory # ファイルを与える $ zip ./sth.zip ./some_directory/* # -------------------------------------- # zipの中身を解凍せずに確認 $ zip -Z ./sth.zip 参考 http://totech.hateblo.jp/entry/2015/03/04/093757</description>
+    </item>
+    
+    <item>
+      <title>階乗の桁数を出力するシェルコマンド</title>
+      <link>https://blog.takakd.com/articles/20191227203724/</link>
+      <pubDate>Fri, 27 Dec 2019 20:37:24 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20191227203724/</guid>
+      <description>2のX乗の桁数を出力するコマンドです。 # 1. arithmetic expressionsで計算 # 2. wcで結果の桁数をカウント $ echo -n $((2 ** 32)) | wc -c</description>
+    </item>
+    
+    <item>
+      <title>添付ファイルがあるオブジェクト名を取得</title>
+      <link>https://blog.takakd.com/articles/20191225204407/</link>
+      <pubDate>Wed, 25 Dec 2019 20:44:07 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20191225204407/</guid>
+      <description>Salesforceのオブジェクトの内、添付ファイルがついているオブジェクト名を取得するコードです。 開発者コンソールの[Open Execute Anonymous Window]から実行できます。 // 添付ファイルがついているレコードID取得 List&amp;lt;Attachment&amp;gt; atts = [SELECT ParentId From Attachment]; Set&amp;lt;Id&amp;gt; idSet = new Set&amp;lt;Id&amp;gt;(); for (Attachment att : atts) { idSet.add(att.ParentId); } // レコードIDからオブジェクト名取得 Set&amp;lt;String&amp;gt; objSet = new Set&amp;lt;String&amp;gt;(); for (Id rid : idSet) { Schema.SObjectType name = rid.getSObjectType(); objSet.add(String.valueOf(name)); } // ログで確認 System.debug(objSet); メリークリスマス。</description>
+    </item>
+    
+    <item>
+      <title>Netlify &#43; HugoでTOCSS: failedが出た時の対応</title>
+      <link>https://blog.takakd.com/articles/20190817222000/</link>
+      <pubDate>Sat, 17 Aug 2019 22:40:00 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20190817222000/</guid>
+      <description>久しぶりにブログ更新するぞとGitHubにpushするとnetlifyのビルドエラーが発生。 その解決方法です。 対応 Netlifyの[Deploy Settings]にある[Build image selection]で、Ubuntu Trusty 14.04をUbuntu Xenial 16.04 (default)に変更する。 エラー内容 pushすると、error: failed to transform resource: TOCSS:...が発生。Sassのコンパイルに失敗しているようです。 10:07:48 PM: export GIMME_ENV=&#39;/opt/buildhome/.gimme_cache/env/go1.10.linux.amd64.env&#39;; 10:07:48 PM: go version go1.10 linux/amd64 10:07:48 PM: Installing missing commands 10:07:48 PM: Verify run directory 10:07:48 PM: Executing user command: hugo --gc --minify 10:07:48 PM: Building sites … 10:07:48 PM: ERROR 2019/08/17 13:07:48 error: failed to transform resource: TOCSS: failed to transform &amp;quot;assets/style.scss&amp;quot; (text/x-scss): this feature is not available in your current Hugo version 10:07:48 PM: Total in 87 ms 10:07:48 PM: Error: Error building site: logged 1 error(s) 10:07:48 PM: Skipping functions preparation step: no functions directory set 10:07:48 PM: Caching artifacts 10:07:48 PM: Started saving pip cache 10:07:48 PM: Finished saving pip cache Sassコンパイル可能なHugoは、Extendedバージョンと呼ばれるものなのですが、Netlifyでは2019/3/15まで暫定対応だったとのこと。 NetlifyでHugoのextendedバージョンが</description>
+    </item>
+    
+    <item>
+      <title>Python3 &#43; virtualenv</title>
+      <link>https://blog.takakd.com/articles/20190419001300/</link>
+      <pubDate>Fri, 19 Apr 2019 00:13:00 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20190419001300/</guid>
+      <description>MacにPython3とvirtualenvを設定する手順です。 環境 macOS 10.14.4 インストール 1. Python3をインストール https://www.python.org/ からMac OS X用のインストーラをダウンロードして、インストール実行。 2. virtualenvをインストール # インストール $ pip3 install --user virtualenv # 完了 Installing collected packages: virtualenv The script virtualenv is installed in &#39;/Users/takakd/Library/Python/3.7/bin&#39; which is not on PATH. Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location. Successfully installed virtualenv-16.4.3 3. インストール先ディレクトリをPATHに追加 # ~/.bash_profile PATH=&amp;quot;/Users/takakd/Library/Python/3.7/bin:${PATH}&amp;quot; 参考: virtualenv virtualenvの使用 個別の仮想環境を作る。 # 環境の情報を保持するディレクトリを作成 mkdir -p ~/virtualenv/env1 # - そのままだとMac標準のpython2.7の環境となってしまうため、-pで3.7を指定 virtualenv -p python3.7 ~/virtualenv/env1 # 仮想環境に入る = 有効化 source ~/virtualenv/env1/bin/activate # 仮想環境から出る = 無効化 deactivate 補足 pythonの細かいバージョンの変更をしたい場合は、pyenvで可能なようです。</description>
+    </item>
+    
+    <item>
+      <title>MTVarでsetvarを使うときの注意点</title>
+      <link>https://blog.takakd.com/articles/20190302133900/</link>
+      <pubDate>Sat, 02 Mar 2019 13:39:00 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20190302133900/</guid>
+      <description>MovableTypeのテンプレートタグMTVarで、setvarモディファイアを使ったときに詰まったメモです。 環境 MovableType 6.3.3 MTAppjQuery 1.11.3（remove_hostモディファイア利用のため） setvarの順序 EntryのURLから、ドメイン部分を除いて変数に入れようとMTVarを書きました。 しかし、変数の値にドメイン部分が残ったまま。 &amp;lt;MTEntryPermalink setvar=&amp;quot;tmp_url&amp;quot; remove_host=&amp;quot;1&amp;quot;/&amp;gt; &amp;lt;MTIgnore&amp;gt;tmp_urlはhttp://〜/hoge/fugaのまま&amp;lt;/MTIgnore&amp;gt; &amp;lt;MTVar name=&amp;quot;tmp_url&amp;quot;/&amp;gt; setvarの順序を入れ替えるとOK。 先にremove_hostを書く必要がありました。 &amp;lt;MTEntryPermalink remove_host=&amp;quot;1&amp;quot; setvar=&amp;quot;tmp_url&amp;quot;/&amp;gt; &amp;lt;MTIgnore&amp;gt;tmp_urlは/hoge/fuga&amp;lt;/MTIgnore&amp;gt; &amp;lt;MTVar name=&amp;quot;tmp_url&amp;quot;/&amp;gt; 少し冗長でも、SetVarBlockに統一したほうが迷わなくて良いかも知れません。 &amp;lt;MTSetVarBlock name=&amp;quot;tmp_url&amp;quot;&amp;gt;&amp;lt;MTEntryPermalink remove_host=&amp;quot;1&amp;quot;/&amp;gt;&amp;lt;/MTSetVarBlock&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>ZaimのAPIで履歴を取得</title>
+      <link>https://blog.takakd.com/articles/20181224142205/</link>
+      <pubDate>Mon, 24 Dec 2018 14:22:06 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20181224142205/</guid>
+      <description>普段、家計簿をZaimで管理しています。 時々、「そういえば今月は、食費をどの程度使っているかな？」と確認するのですが、そのたびにスマホでアプリ起動というのがどうもにも面倒に感じておりました。 そこで、GoogleHomeで「今月いくら？ → 100円です。」みたいなことをできたら面白いだろうと思い、まずはZaimのAPIを調べました。 簡単ですが利用までの手順を紹介します。 Zaim API Zaimのデータを取得するためのREST APIです。 Zaimでアカウントを作成した後、Zaim developersにログインすると、APIのリファレンスを参照できます。 APIでデータ取得までのステップ 設定も含め、次のステップでデータを取得できます。 Zaim developersでアプリケーション登録して、コンシューマID・シークレットを取得。 コンシューマID・シークレットでOAuth1.0a認証実行して、ユーザーのトークン・シークレ</description>
+    </item>
+    
+    <item>
+      <title>Heroku RedisをHerokuAppで複数利用</title>
+      <link>https://blog.takakd.com/articles/20181018234800/</link>
+      <pubDate>Thu, 18 Oct 2018 14:00:00 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20181018234800/</guid>
+      <description>Laravelで実装したWebアプリで、Heroku Redisを複数利用する時に悩んだ話です。 Heroku Redisを1Appに複数設置すると、2個目以降の接続情報の環境変数が変化します。 例えば、1個目はREDIS_URL、2個目はHEROKU_REDIS_IVORY_URL。 単純にAppを作った時は問題ないのですが、パイプラインを使用していてちょっと困ったことに。 Develop、StagingやProductionで環境変数名がずれてしまいました。 アプリコード内でif-elseしなければいけないかと考えましたが、その必要はなく単純に、管理用の環境変数で解決できました。 Config Vars Name Value REDIS_URL [Heroku Redisが値を設定] HEROKU_REDIS_IVORY_URL [Heroku Redisが値を設定] MY_ENV_REDIS_A REDIS_URL MY_ENV_REDIS_B HEROKU_REDIS_IVORY_URL &amp;lt;Laravel Root&amp;gt;/config/database.php &#39;redis&#39; =&amp;gt; [ // ... // A用のRedis &#39;default&#39; =&amp;gt; [ &#39;host&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_A&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_HOST), &#39;port&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_A&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PORT), &#39;password&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_A&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PASS), &#39;database&#39; =&amp;gt; 0, ], // B用のRedis &#39;redisA&#39; =&amp;gt; [ &#39;host&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_B&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_HOST), &#39;port&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_B&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PORT), &#39;password&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_B&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PASS), &#39;database&#39; =&amp;gt; 0, ],</description>
+    </item>
+    
+    <item>
+      <title>SalesForce CLIでApexを取得</title>
+      <link>https://blog.takakd.com/articles/20181015013500/</link>
+      <pubDate>Wed, 17 Oct 2018 01:08:00 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20181015013500/</guid>
+      <description>MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&amp;quot;A JavaScript error occurred in the main process&amp;rdquo; 試行錯誤すれば解消できるかもしれませんが、無理やり利用を続けるのも不毛そう。 素直に公式のSalesfoce CLIで取得しました。 手順 1. Salesforce CLIをインストール npmでインストールしました。 $ node --version v9.1.0 $ npm install -g sfdx-cli Salesforce CLIのインストール 2. Apex取得 SandboxからApexClassをすべて取得。 # 1. Sandboxにログイン # ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用） # ... -rでSandboxのログインURLを指定 # ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定 $ sfdx force:auth:web:login -a myprj-sand -r https://test.salesforce.com # ... ブラウザが起動して、Salesforceのログイン画面表示 # ... ログインする Successfully authorized &amp;lt;mail address&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>HTML FormでS3にPOST</title>
+      <link>https://blog.takakd.com/articles/20180224125248/</link>
+      <pubDate>Sat, 24 Feb 2018 12:52:48 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20180224125248/</guid>
+      <description>AWSのリファレンスを参考に、FormでS3バケットへのPOSTを試してみました。 準備 FormでS3にPOSTするためには、各フィールドに送信するファイルに合わせ、POST Policy、Signature、アクセスID、その他ファイルに関する情報を設定する必要があります。 （POST Policy：POSTする時につける設定情報、Signatureはそれをシークレットキーでhashしたもの） バケットポリシー フィールドにアクセスIDを設定しますが、このアクセスIDに対応するIAMユーザーは、POST先のバケットに対する操作権限が必要です。 基本的なAWSのIAMユーザーの考えですね。 次のようにバケットポリシーを設定します。 { &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;, &amp;quot;Statement&amp;quot;: [ { &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Principal&amp;quot;: { &amp;quot;AWS&amp;quot;: &amp;quot;arn:aws:iam::&amp;lt;12桁の数字&amp;gt;:user/&amp;lt;IAMユーザー名&amp;gt;&amp;quot; }, &amp;quot;Action&amp;quot;: &amp;quot;s3:*&amp;quot;, &amp;quot;Resource&amp;quot;: [ &amp;quot;arn:aw</description>
+    </item>
+    
+    <item>
+      <title>AWSでVPC &#43; 踏み台EC2 &#43; NAT Gatewayの設定</title>
+      <link>https://blog.takakd.com/articles/20180209233744/</link>
+      <pubDate>Fri, 09 Feb 2018 23:37:44 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20180209233744/</guid>
+      <description>VPCの勉強のため、よくある構成で設定を試しました。 構成 VPC test-vpc1(172.31.0.0/16) Private Subnet test-subnet-private(172.31.0.0/24) Public subnet test-subnet-public(172.31.1.0/24) 踏み台EC2 インスタンスタイプ: t2.micro セキュリティグループ タイプ ポート ソース or 送信先 インバウンド 22 ソース: 任意の場所 アウトバウンド すべて 送信先: 任意の場所 EC2 インスタンスタイプ: t2.micro セキュリティグループ タイプ ポート ソース or 送信先 インバウンド 22 ソース: 踏み台EC2(172.31.1.92/32) アウトバウンド すべて 送信先: 任意の場所 NAT Gateway Public subnetに配置 設定手順 1. VPC作成 一から作ってみようと、デフォルトVPCを使用せず新規にVPCを作成。 設定内容 2. Subnet作成 Public subnet Private Subnet 3. 各ルートテーブル作成 Private用ルートテーブル Public用ルートテーブル 4. Subnetにアタッチ 作成したルートテーブルをSubnetに関連付けます。 Public用ルートテーブルの例 Public、Privateともに設定した後の状態。 5. インターネットゲ</description>
+    </item>
+    
+    <item>
+      <title>jQueryでDOM要素の検索速度を比較</title>
+      <link>https://blog.takakd.com/articles/20171217011236/</link>
+      <pubDate>Sat, 13 Jan 2018 00:44:25 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20171217011236/</guid>
+      <description>jQueryでDOM要素を検索するとき、HTML構造にあわせてセレクタやjQueryメソッドを使用します。 セレクタの記述パターンはいくつかありますが、それぞれどのくらい速度差があるのか気になり比較しました。 各パターンと結果は次の通り。 no type time[msec] 1 .class &amp;gt; .class 0.00542 2 .class .class 0.00368 3 .class &amp;lt;div&amp;gt; &amp;lt;span&amp;gt; 0.00416 4 .class &amp;gt; &amp;lt;div&amp;gt; &amp;gt; &amp;lt;span&amp;gt; 0.00364 5 .class 0.00182 6 #id 0.00052 7 $parents, $find 0.00948 8 $parents.$find(chain method) 0.00856 9 .class &amp;gt; .class $parents 0.00726 10 .class $parents 0.00176 11 &amp;lt;div&amp;gt; &amp;lt;span&amp;gt; $parents 0.00684 12 &amp;lt;div&amp;gt; &amp;gt; &amp;lt;span&amp;gt; $parents 0.00672 デモページ 環境: chrome 63 コード: github 想定通りと言いますか、一意に決まるid指定（6.）が一番ですね。 1.と2.で、1.が遅いのは意外でした。条件が厳しくなっているから検索コストがかかってるのかな。 7.と8.を比較すると、メソッドチェーンの効果が現れています。可読性落ちなければ積極的に利用したほうがよさそうです。 9.〜12.を見ると、10.のクラス指定以外についてはあまり大きな変化がない。 引数で渡しているjQueryオブジェクトの条件がそもそものコスト</description>
+    </item>
+    
+    <item>
+      <title>IntelliJのTypeScriptで.jsファイルのCan&#39;t resolveを解消</title>
+      <link>https://blog.takakd.com/articles/20171207092227/</link>
+      <pubDate>Thu, 07 Dec 2017 09:22:27 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20171207092227/</guid>
+      <description>WebStormのAngularプロジェクトをIntelliJに移動した時、Javascriptをimportしているところで&amp;quot;Can&amp;rsquo;t resolve&amp;quot;のエラー。 原因は、IntelliJの単純な設定不足でしたが、どなたかの参考になれば幸いとメモ。 前提 IntelliJ 2016.2 WebStorm 2017.2 ともにAngular, TypeScriptのPluginをインストール済み IntelliJの設定変更 TypeScriptで.jsファイルをimportする場合、TypeScriptのコンパイルオプションに&amp;ldquo;allowJs&amp;rdquo;が必要になります。 tsconfig.jsonのcompilerOptionsにallowJsを書いているものの、IntelliJに上手く反映されない。 なんでだろうかと調べてみると、原因は単純で、IntelliJプロジェクトの設定不足で、プロジェクトがtsconf</description>
+    </item>
+    
+    <item>
+      <title>Apache2.4で一部のディレクトリのみBasic認証</title>
+      <link>https://blog.takakd.com/articles/20171124023540/</link>
+      <pubDate>Fri, 24 Nov 2017 02:35:40 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20171124023540/</guid>
+      <description>一部のディレクトリのみBasic認証したいケースがあり、.htaccessで設定しました。 前提 Apache 2.4 .htaccess使用可能 .htaccess 次の通り。 &amp;lt;Files ~ &amp;quot;^\.(htpasswd|htaccess)$&amp;quot;&amp;gt; Require all denied &amp;lt;/Files&amp;gt; &amp;lt;Files ~ &amp;quot;^(?!\.htpasswd|\.htaccess).*&amp;quot;&amp;gt; Require all denied # このURLは認証をかけたい SetEnvIf Request_URI &amp;quot;/api/something.*&amp;quot; urlEndpoint &amp;lt;RequireAll&amp;gt; AuthType Basic AuthName &amp;quot;id, pass.&amp;quot; AuthUserFile /some/directory/.htpasswd AuthGroupfile /dev/null Require all granted &amp;lt;RequireAny&amp;gt; # Basic認証必要 &amp;lt;RequireAll&amp;gt; Require valid-user Require env urlEndpoint &amp;lt;/RequireAll&amp;gt; # それ以外は通常アクセス可能 &amp;lt;RequireAll&amp;gt; Require all granted Require not env urlEndpoint &amp;lt;/RequireAll&amp;gt; &amp;lt;/RequireAny&amp;gt; &amp;lt;/RequireAll&amp;gt; &amp;lt;/Files&amp;gt; Apache2.2, 2.4環境を行き来すると、間違ってallow, denyで設定を書いてしまったり。 気をつけないと。</description>
+    </item>
+    
+    <item>
+      <title>HugoでJSONを出力</title>
+      <link>https://blog.takakd.com/articles/20171107023559/</link>
+      <pubDate>Tue, 07 Nov 2017 02:35:59 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20171107023559/</guid>
+      <description>サイトの記事データをJSONで出力したい。手作業は大変。CMSを設置するのも億劫。 ということで、Hugoで出力するようにしました。 サンプルコード 前提 macOS Sierra HomebrewでHugoインストール済み やりたいこと MarkDownで書いた記事データをJSONで出力する。 Hugoにした理由 他の静的サイトジェネレータをいくつか試したのですが、次のような印象でした。 Middleman うまくテンプレートでJSON出力できなかった。 Jekyll ページ一覧をJSON出力する際、list.jsonという出力ファイル名を作れなかった。 Hexo こちらも、ページ一覧をJSON出力する際、list.jsonというファイル名を作れなかった。 メモを破棄したため正直なところ空覚えなのと、あまり深く確認せず試していたので、間違っているかもしれません。 予めご容赦ください。 手順 手順は次のとおりです。 config.tomlでJSONを出力するように設定。 出力したい</description>
+    </item>
+    
+    <item>
+      <title>AWS CLIのインストール</title>
+      <link>https://blog.takakd.com/articles/20171025023301/</link>
+      <pubDate>Wed, 25 Oct 2017 02:33:01 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20171025023301/</guid>
+      <description>AWSマネジメントコンソールを使う機会が増えてきました。 軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストール。 環境 macOS Sierra python 2.7.13 pip 9.0.1 手順 AWS CLIのインストール 認証情報設定 AWS CLI実行確認 1. AWS CLIのインストール ターミナルを起動して、pipでインストール。 参考: Install $ pip install awscli --upgrade --user ... ずらずらとログ出力される。 ... ... # 完了後、awsを実行。 $ aws # usageが出たらOK。 usage: aws [options] &amp;lt;command&amp;gt; &amp;lt;subcommand&amp;gt; [&amp;lt;subcommand&amp;gt; ...] [parameters] To see help text, you can run: aws help aws &amp;lt;command&amp;gt; help aws &amp;lt;command&amp;gt; &amp;lt;subcommand&amp;gt; help aws: error: too few arguments 2. 認証情報の設定 認証情報は実行時のコマンドライン引数や環境変数でも指定できますが、毎度指定するのも手間なので設定ファイルの方法を選択しました。 参考: Configuration and Credential Files# ファイルの置き場所を作って $ mkdir ~/.aws # 認証ファイル作成 touch ~/.aws/credentials # 環境設定ファイルも作成 touch ~/.aws/config 各ファイルの内容は次の通り。 ~/.aws/credentials [default] aws_access_key_id=&amp;lt;アクセスキーID</description>
+    </item>
+    
+  </channel>
+</rss>

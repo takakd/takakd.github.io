@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>Heroku RedisをHerokuAppで複数利用 | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="Laravelで実装したWebアプリで、Heroku Redisを複数利用する時に悩んだ話です。 Heroku Redisを1Appに複数設置すると、2個目以降の接続情報の環境変数が変化します。 例えば、1個目はREDIS_URL、2個目" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,89 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">Heroku RedisをHerokuAppで複数利用</h1>
+    <h2 class="cs-subtitle pt-2">2018-10-18</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/heroku">#Heroku</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>Laravelで実装したWebアプリで、Heroku Redisを複数利用する時に悩んだ話です。</p>
+<p>Heroku Redisを1Appに複数設置すると、2個目以降の接続情報の環境変数が変化します。<br>
+例えば、1個目は<code>REDIS_URL</code>、2個目は<code>HEROKU_REDIS_IVORY_URL</code>。</p>
+<p>単純にAppを作った時は問題ないのですが、パイプラインを使用していてちょっと困ったことに。<br>
+Develop、StagingやProductionで環境変数名がずれてしまいました。</p>
+<p>アプリコード内でif-elseしなければいけないかと考えましたが、その必要はなく単純に、管理用の環境変数で解決できました。</p>
+<p><strong>Config Vars</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REDIS_URL</td>
+<td>[Heroku Redisが値を設定]</td>
+</tr>
+<tr>
+<td>HEROKU_REDIS_IVORY_URL</td>
+<td>[Heroku Redisが値を設定]</td>
+</tr>
+<tr>
+<td>MY_ENV_REDIS_A</td>
+<td>REDIS_URL</td>
+</tr>
+<tr>
+<td>MY_ENV_REDIS_B</td>
+<td>HEROKU_REDIS_IVORY_URL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&lt;Laravel Root&gt;/config/database.php</strong></p>
+<pre><code class="language-php">  'redis' =&gt; [
+
+    // ...
+
+    // A用のRedis
+    'default' =&gt; [
+      'host' =&gt; parse_url(env(env('MY_ENV_REDIS_A', ''), ''), PHP_URL_HOST),
+      'port' =&gt; parse_url(env(env('MY_ENV_REDIS_A', ''), ''), PHP_URL_PORT),
+      'password' =&gt; parse_url(env(env('MY_ENV_REDIS_A', ''), ''), PHP_URL_PASS),
+      'database' =&gt; 0,
+    ],
+
+    // B用のRedis
+    'redisA' =&gt; [
+      'host' =&gt; parse_url(env(env('MY_ENV_REDIS_B', ''), ''), PHP_URL_HOST),
+      'port' =&gt; parse_url(env(env('MY_ENV_REDIS_B', ''), ''), PHP_URL_PORT),
+      'password' =&gt; parse_url(env(env('MY_ENV_REDIS_B', ''), ''), PHP_URL_PASS),
+      'database' =&gt; 0,
+    ],
+
+</code></pre>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

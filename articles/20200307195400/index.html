@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>Reconstruction of a Tree | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="Reconstruction of a Tree Preorderだけだと構造が決まらないので、Inorderと合わせて木構造を決定する。 Inorderの値の中のPreorder値の左右が、木の左右に対応する。 package main" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,96 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">Reconstruction of a Tree</h1>
+    <h2 class="cs-subtitle pt-2">2020-03-07</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/aizu-online-judge">#AIZU ONLINE JUDGE</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p><a href="https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_7_D">Reconstruction of a Tree</a></p>
+<p>Preorderだけだと構造が決まらないので、Inorderと合わせて木構造を決定する。<br>
+Inorderの値の中のPreorder値の左右が、木の左右に対応する。</p>
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;strings&quot;
+)
+
+func scanInput() (n int, pre []int, in []int) {
+    fmt.Scanf(&quot;%d&quot;, &amp;n)
+    pre = make([]int, n)
+    in = make([]int, n)
+    for i := 0; i &lt; n; i++ {
+        fmt.Scanf(&quot;%d&quot;, &amp;pre[i])
+    }
+    for i := 0; i &lt; n; i++ {
+        fmt.Scanf(&quot;%d&quot;, &amp;in[i])
+    }
+    return
+}
+
+func printSlice(slice []int) {
+    fmt.Println(strings.Trim(strings.Join(strings.Fields(fmt.Sprint(slice)), &quot; &quot;), &quot;[]&quot;))
+}
+
+func main() {
+    n, pre, in := scanInput()
+    post := make([]int, 0, n)
+    parent := 0
+
+    walk(0, len(pre)-1, &amp;parent, pre, in, &amp;post)
+
+    printSlice(post)
+}
+
+func walk(left, right int, parent *int, pre, in []int, post *[]int) {
+    if left &gt; right {
+        return
+    }
+
+    dlm := pre[*parent]
+    *parent++
+
+    var idx int
+    for i, v := range in {
+        if v == dlm {
+            idx = i
+            break
+        }
+    }
+
+    walk(left, idx-1, parent, pre, in, post)
+    walk(idx+1, right, parent, pre, in, post)
+
+    *post = append(*post, dlm)
+}
+</code></pre>
+<p>配列の結果をポインタで引き回しているけど、引数で返したほうがよいのかな。</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://stackoverflow.com/questions/8307478/how-to-find-out-element-position-in-slice">https://stackoverflow.com/questions/8307478/how-to-find-out-element-position-in-slice</a></p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

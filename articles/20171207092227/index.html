@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>IntelliJのTypeScriptで.jsファイルのCan&#39;t resolveを解消 | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="WebStormのAngularプロジェクトをIntelliJに移動した時、Javascriptをimportしているところで&quot;Can&rsquo;t resolve&quot;のエラー。 原因は、IntelliJの単純な設定不足" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,54 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">IntelliJのTypeScriptで.jsファイルのCan&#39;t resolveを解消</h1>
+    <h2 class="cs-subtitle pt-2">2017-12-07</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/ide">#IDE</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>WebStormのAngularプロジェクトをIntelliJに移動した時、Javascriptをimportしているところで&quot;Can&rsquo;t resolve&quot;のエラー。<br>
+原因は、IntelliJの単純な設定不足でしたが、どなたかの参考になれば幸いとメモ。</p>
+<h2 id="前提">前提</h2>
+<ul>
+<li>IntelliJ 2016.2</li>
+<li>WebStorm 2017.2</li>
+<li>ともにAngular, TypeScriptのPluginをインストール済み</li>
+</ul>
+<h2 id="intellijの設定変更">IntelliJの設定変更</h2>
+<p>TypeScriptで.jsファイルをimportする場合、TypeScriptのコンパイルオプションに<a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">&ldquo;allowJs&rdquo;</a>が必要になります。<br>
+tsconfig.jsonの<code>compilerOptions</code>に<code>allowJs</code>を書いているものの、IntelliJに上手く反映されない。<br>
+なんでだろうかと調べてみると、原因は単純で、IntelliJプロジェクトの設定不足で、プロジェクトがtsconfig.jsonを参照できていないからでした。</p>
+<p>次のように設定を変更して解消。</p>
+<p><img src="/assets/images/2017/12/20171124pref.png" alt="Image"></p>
+<h3 id="設定前後の様子">設定前後の様子</h3>
+<p>設定前はエラーで赤字。</p>
+<p><img src="/assets/images/2017/12/20171124b.png" alt="Image"></p>
+<p>設定後は正常に解決。</p>
+<p><img src="/assets/images/2017/12/20171124a.png" alt="Image"></p>
+<p>設定まわりは問題がでたら都度調べていますが、解決しないとムズムズと歯がゆい。</p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

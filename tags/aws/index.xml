@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AWS on taka👨🏻‍💻</title>
+    <link>https://blog.takakd.com/tags/aws/</link>
+    <description>Recent content in AWS on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Sat, 24 Feb 2018 12:52:48 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.takakd.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HTML FormでS3にPOST</title>
+      <link>https://blog.takakd.com/articles/20180224125248/</link>
+      <pubDate>Sat, 24 Feb 2018 12:52:48 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20180224125248/</guid>
+      <description>AWSのリファレンスを参考に、FormでS3バケットへのPOSTを試してみました。 準備 FormでS3にPOSTするためには、各フィールドに送信するファイルに合わせ、POST Policy、Signature、アクセスID、その他ファイルに関する情報を設定する必要があります。 （POST Policy：POSTする時につける設定情報、Signatureはそれをシークレットキーでhashしたもの） バケットポリシー フィールドにアクセスIDを設定しますが、このアクセスIDに対応するIAMユーザーは、POST先のバケットに対する操作権限が必要です。 基本的なAWSのIAMユーザーの考えですね。 次のようにバケットポリシーを設定します。 { &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;, &amp;quot;Statement&amp;quot;: [ { &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Principal&amp;quot;: { &amp;quot;AWS&amp;quot;: &amp;quot;arn:aws:iam::&amp;lt;12桁の数字&amp;gt;:user/&amp;lt;IAMユーザー名&amp;gt;&amp;quot; }, &amp;quot;Action&amp;quot;: &amp;quot;s3:*&amp;quot;, &amp;quot;Resource&amp;quot;: [ &amp;quot;arn:aw</description>
+    </item>
+    
+    <item>
+      <title>AWSでVPC &#43; 踏み台EC2 &#43; NAT Gatewayの設定</title>
+      <link>https://blog.takakd.com/articles/20180209233744/</link>
+      <pubDate>Fri, 09 Feb 2018 23:37:44 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20180209233744/</guid>
+      <description>VPCの勉強のため、よくある構成で設定を試しました。 構成 VPC test-vpc1(172.31.0.0/16) Private Subnet test-subnet-private(172.31.0.0/24) Public subnet test-subnet-public(172.31.1.0/24) 踏み台EC2 インスタンスタイプ: t2.micro セキュリティグループ タイプ ポート ソース or 送信先 インバウンド 22 ソース: 任意の場所 アウトバウンド すべて 送信先: 任意の場所 EC2 インスタンスタイプ: t2.micro セキュリティグループ タイプ ポート ソース or 送信先 インバウンド 22 ソース: 踏み台EC2(172.31.1.92/32) アウトバウンド すべて 送信先: 任意の場所 NAT Gateway Public subnetに配置 設定手順 1. VPC作成 一から作ってみようと、デフォルトVPCを使用せず新規にVPCを作成。 設定内容 2. Subnet作成 Public subnet Private Subnet 3. 各ルートテーブル作成 Private用ルートテーブル Public用ルートテーブル 4. Subnetにアタッチ 作成したルートテーブルをSubnetに関連付けます。 Public用ルートテーブルの例 Public、Privateともに設定した後の状態。 5. インターネットゲ</description>
+    </item>
+    
+    <item>
+      <title>AWS CLIのインストール</title>
+      <link>https://blog.takakd.com/articles/20171025023301/</link>
+      <pubDate>Wed, 25 Oct 2017 02:33:01 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20171025023301/</guid>
+      <description>AWSマネジメントコンソールを使う機会が増えてきました。 軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストール。 環境 macOS Sierra python 2.7.13 pip 9.0.1 手順 AWS CLIのインストール 認証情報設定 AWS CLI実行確認 1. AWS CLIのインストール ターミナルを起動して、pipでインストール。 参考: Install $ pip install awscli --upgrade --user ... ずらずらとログ出力される。 ... ... # 完了後、awsを実行。 $ aws # usageが出たらOK。 usage: aws [options] &amp;lt;command&amp;gt; &amp;lt;subcommand&amp;gt; [&amp;lt;subcommand&amp;gt; ...] [parameters] To see help text, you can run: aws help aws &amp;lt;command&amp;gt; help aws &amp;lt;command&amp;gt; &amp;lt;subcommand&amp;gt; help aws: error: too few arguments 2. 認証情報の設定 認証情報は実行時のコマンドライン引数や環境変数でも指定できますが、毎度指定するのも手間なので設定ファイルの方法を選択しました。 参考: Configuration and Credential Files# ファイルの置き場所を作って $ mkdir ~/.aws # 認証ファイル作成 touch ~/.aws/credentials # 環境設定ファイルも作成 touch ~/.aws/config 各ファイルの内容は次の通り。 ~/.aws/credentials [default] aws_access_key_id=&amp;lt;アクセスキーID</description>
+    </item>
+    
+  </channel>
+</rss>

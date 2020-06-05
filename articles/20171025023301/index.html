@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>AWS CLIのインストール | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="AWSマネジメントコンソールを使う機会が増えてきました。 軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストール。 環境 macOS Sierra python 2.7.13 pip" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,104 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">AWS CLIのインストール</h1>
+    <h2 class="cs-subtitle pt-2">2017-10-25</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/aws">#AWS</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>AWSマネジメントコンソールを使う機会が増えてきました。<br>
+軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストール。</p>
+<h2 id="環境">環境</h2>
+<ul>
+<li>macOS Sierra</li>
+<li>python 2.7.13</li>
+<li>pip 9.0.1</li>
+</ul>
+<h2 id="手順">手順</h2>
+<ol>
+<li>AWS CLIのインストール</li>
+<li>認証情報設定</li>
+<li>AWS CLI実行確認</li>
+</ol>
+<h3 id="1-aws-cliのインストール">1. AWS CLIのインストール</h3>
+<p>ターミナルを起動して、pipでインストール。<br>
+<a href="http://docs.aws.amazon.com/ja_jp/general/latest/gr/rande.html">参考: Install</a></p>
+<pre><code class="language-shell">$ pip install awscli --upgrade --user
+...
+ずらずらとログ出力される。
+...
+...
+
+# 完了後、awsを実行。
+$ aws
+# usageが出たらOK。
+usage: aws [options] &lt;command&gt; &lt;subcommand&gt; [&lt;subcommand&gt; ...] [parameters]
+To see help text, you can run:
+
+aws help
+aws &lt;command&gt; help
+aws &lt;command&gt; &lt;subcommand&gt; help
+aws: error: too few arguments
+</code></pre>
+<h3 id="2-認証情報の設定">2. 認証情報の設定</h3>
+<p>認証情報は実行時のコマンドライン引数や環境変数でも指定できますが、毎度指定するのも手間なので設定ファイルの方法を選択しました。
+<!-- raw HTML omitted -->参考: Configuration and Credential Files<!-- raw HTML omitted --></p>
+<pre><code class="language-shell"># ファイルの置き場所を作って
+$ mkdir ~/.aws
+
+# 認証ファイル作成
+touch ~/.aws/credentials
+
+# 環境設定ファイルも作成
+touch ~/.aws/config
+</code></pre>
+<p>各ファイルの内容は次の通り。</p>
+<p><strong>~/.aws/credentials</strong></p>
+<pre><code class="language-ini">[default]
+aws_access_key_id=&lt;アクセスキーID&gt;
+aws_secret_access_key=&lt;アクセスキーID作成時に表示できたシークレットキー&gt;
+</code></pre>
+<p>アクセスキーIDは下記で表示されているもの。</p>
+<p><strong>~/.aws/config</strong></p>
+<pre><code class="language-ini">[default]
+region=ap-northeast-1
+output=json
+</code></pre>
+<p>初期設定リージョンは東京にしました。
+<!-- raw HTML omitted -->リージョン名(サービス名の箇所)<!-- raw HTML omitted --></p>
+<p>これでインストール完了。</p>
+<h3 id="3-aws-cli実行確認">3. AWS CLI実行確認</h3>
+<p>試しにS3バケット一覧をAWS CLI経由で取得してみます。</p>
+<pre><code class="language-shell">$ aws s3 ls
+...
+S3のバケット一覧が出るはず。
+...
+...
+</code></pre>
+<p>機会見ていろいろなコマンドを試していこう。</p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vim on taka👨🏻‍💻</title>
+    <link>https://blog.takakd.com/tags/vim/</link>
+    <description>Recent content in vim on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Tue, 18 Feb 2020 12:17:30 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.takakd.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vimで複数行の文字列を1行のCSVにする</title>
+      <link>https://blog.takakd.com/articles/20200218121730/</link>
+      <pubDate>Tue, 18 Feb 2020 12:17:30 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20200218121730/</guid>
+      <description>vimで複数行の文字列を1行のCSVにする方法です。 エディタで簡単なSQLのIN句を作成するときによく使います。 元のデータ 1134 1373 3985 4588 Ctrl + Vで先頭に&#39;を入れる。 &#39;1134 &#39;1373 &#39;3985 &#39;4588 Ctrl + Vの後、$,Aして、&#39;,を入れる。 &#39;1134&#39;, &#39;1373&#39;, &#39;3985&#39;, &#39;4588&#39;, 全行をjで選択してJで1行へ。 &#39;1134&#39;, &#39;1373&#39;, &#39;3985&#39;, &#39;4588&#39;, 末尾の&#39;,を削除して、前後に()を入れて完成。 (&#39;1134&#39;, &#39;1373&#39;, &#39;3985&#39;, &#39;4588&#39;) スクリプトやコマンドを組み合わせてワンラインで書けそうな気もしますが、ややこしくなりそうなので、いつもこのようなコマンドを実行して整形しています。</description>
+    </item>
+    
+  </channel>
+</rss>

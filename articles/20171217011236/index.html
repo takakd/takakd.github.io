@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>jQueryでDOM要素の検索速度を比較 | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="jQueryでDOM要素を検索するとき、HTML構造にあわせてセレクタやjQueryメソッドを使用します。 セレクタの記述パターンはいくつかありますが、それぞれどのくらい速度差があるのか気になり比較しました。 各パターンと結果は次の通り。" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,120 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">jQueryでDOM要素の検索速度を比較</h1>
+    <h2 class="cs-subtitle pt-2">2018-01-13</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/javascript">#JavaScript</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>jQueryでDOM要素を検索するとき、HTML構造にあわせてセレクタやjQueryメソッドを使用します。<br>
+セレクタの記述パターンはいくつかありますが、それぞれどのくらい速度差があるのか気になり比較しました。</p>
+<p>各パターンと結果は次の通り。</p>
+<table>
+<thead>
+<tr>
+<th>no</th>
+<th>type</th>
+<th>time[msec]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>.class &gt; .class</td>
+<td>0.00542</td>
+</tr>
+<tr>
+<td>2</td>
+<td>.class .class</td>
+<td>0.00368</td>
+</tr>
+<tr>
+<td>3</td>
+<td>.class &lt;div&gt; &lt;span&gt;</td>
+<td>0.00416</td>
+</tr>
+<tr>
+<td>4</td>
+<td>.class &gt; &lt;div&gt; &gt; &lt;span&gt;</td>
+<td>0.00364</td>
+</tr>
+<tr>
+<td>5</td>
+<td>.class</td>
+<td>0.00182</td>
+</tr>
+<tr>
+<td>6</td>
+<td>#id</td>
+<td>0.00052</td>
+</tr>
+<tr>
+<td>7</td>
+<td>$parents, $find</td>
+<td>0.00948</td>
+</tr>
+<tr>
+<td>8</td>
+<td>$parents.$find(chain method)</td>
+<td>0.00856</td>
+</tr>
+<tr>
+<td>9</td>
+<td>.class &gt; .class $parents</td>
+<td>0.00726</td>
+</tr>
+<tr>
+<td>10</td>
+<td>.class $parents</td>
+<td>0.00176</td>
+</tr>
+<tr>
+<td>11</td>
+<td>&lt;div&gt; &lt;span&gt; $parents</td>
+<td>0.00684</td>
+</tr>
+<tr>
+<td>12</td>
+<td>&lt;div&gt; &gt; &lt;span&gt; $parents</td>
+<td>0.00672</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://takakd.github.io/demo-page/jquery1/">デモページ</a></p>
+<ul>
+<li>環境: chrome 63</li>
+<li>コード: <!-- raw HTML omitted -->github<!-- raw HTML omitted --></li>
+</ul>
+<p>想定通りと言いますか、一意に決まるid指定（6.）が一番ですね。</p>
+<p>1.と2.で、1.が遅いのは意外でした。条件が厳しくなっているから検索コストがかかってるのかな。</p>
+<p>7.と8.を比較すると、メソッドチェーンの効果が現れています。可読性落ちなければ積極的に利用したほうがよさそうです。</p>
+<p>9.〜12.を見ると、10.のクラス指定以外についてはあまり大きな変化がない。<br>
+引数で渡しているjQueryオブジェクトの条件がそもそものコストになるようです。</p>
+<p>全てにidを振ればよいですが、保守を考えると作業負担が大きそう。<br>
+基本は5.や6.を使用して、jQueryオブジェクトで絞り込む時は10.にしようと思います。</p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

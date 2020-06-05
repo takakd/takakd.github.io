@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on taka👨🏻‍💻</title>
+    <link>https://blog.takakd.com/tags/python/</link>
+    <description>Recent content in Python on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Fri, 19 Apr 2019 00:13:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.takakd.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python3 &#43; virtualenv</title>
+      <link>https://blog.takakd.com/articles/20190419001300/</link>
+      <pubDate>Fri, 19 Apr 2019 00:13:00 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20190419001300/</guid>
+      <description>MacにPython3とvirtualenvを設定する手順です。 環境 macOS 10.14.4 インストール 1. Python3をインストール https://www.python.org/ からMac OS X用のインストーラをダウンロードして、インストール実行。 2. virtualenvをインストール # インストール $ pip3 install --user virtualenv # 完了 Installing collected packages: virtualenv The script virtualenv is installed in &#39;/Users/takakd/Library/Python/3.7/bin&#39; which is not on PATH. Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location. Successfully installed virtualenv-16.4.3 3. インストール先ディレクトリをPATHに追加 # ~/.bash_profile PATH=&amp;quot;/Users/takakd/Library/Python/3.7/bin:${PATH}&amp;quot; 参考: virtualenv virtualenvの使用 個別の仮想環境を作る。 # 環境の情報を保持するディレクトリを作成 mkdir -p ~/virtualenv/env1 # - そのままだとMac標準のpython2.7の環境となってしまうため、-pで3.7を指定 virtualenv -p python3.7 ~/virtualenv/env1 # 仮想環境に入る = 有効化 source ~/virtualenv/env1/bin/activate # 仮想環境から出る = 無効化 deactivate 補足 pythonの細かいバージョンの変更をしたい場合は、pyenvで可能なようです。</description>
+    </item>
+    
+  </channel>
+</rss>

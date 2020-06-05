@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>vimで複数行の文字列を1行のCSVにする | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="vimで複数行の文字列を1行のCSVにする方法です。 エディタで簡単なSQLのIN句を作成するときによく使います。 元のデータ 1134 1373 3985 4588 Ctrl &#43; Vで先頭に&#39;を入れる。 &#39;1134 &#39;1373 &#39;3985" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,61 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">vimで複数行の文字列を1行のCSVにする</h1>
+    <h2 class="cs-subtitle pt-2">2020-02-18</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/vim">#vim</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>vimで複数行の文字列を1行のCSVにする方法です。<br>
+エディタで簡単なSQLのIN句を作成するときによく使います。</p>
+<p><strong>元のデータ</strong></p>
+<pre><code>1134
+1373
+3985
+4588
+</code></pre>
+<p><code>Ctrl + V</code>で先頭に<code>'</code>を入れる。</p>
+<pre><code>'1134
+'1373
+'3985
+'4588
+</code></pre>
+<p><code>Ctrl + V</code>の後、<code>$,A</code>して、<code>',</code>を入れる。</p>
+<pre><code>'1134',
+'1373',
+'3985',
+'4588',
+</code></pre>
+<p>全行を<code>j</code>で選択して<code>J</code>で1行へ。</p>
+<pre><code>'1134', '1373', '3985', '4588', 
+</code></pre>
+<p>末尾の<code>',</code>を削除して、前後に<code>()</code>を入れて完成。</p>
+<pre><code>('1134', '1373', '3985', '4588')
+</code></pre>
+<p>スクリプトやコマンドを組み合わせてワンラインで書けそうな気もしますが、ややこしくなりそうなので、いつもこのようなコマンドを実行して整形しています。</p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heroku on taka👨🏻‍💻</title>
+    <link>https://blog.takakd.com/tags/heroku/</link>
+    <description>Recent content in Heroku on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Thu, 18 Oct 2018 14:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://blog.takakd.com/tags/heroku/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Heroku RedisをHerokuAppで複数利用</title>
+      <link>https://blog.takakd.com/articles/20181018234800/</link>
+      <pubDate>Thu, 18 Oct 2018 14:00:00 +0900</pubDate>
+      
+      <guid>https://blog.takakd.com/articles/20181018234800/</guid>
+      <description>Laravelで実装したWebアプリで、Heroku Redisを複数利用する時に悩んだ話です。 Heroku Redisを1Appに複数設置すると、2個目以降の接続情報の環境変数が変化します。 例えば、1個目はREDIS_URL、2個目はHEROKU_REDIS_IVORY_URL。 単純にAppを作った時は問題ないのですが、パイプラインを使用していてちょっと困ったことに。 Develop、StagingやProductionで環境変数名がずれてしまいました。 アプリコード内でif-elseしなければいけないかと考えましたが、その必要はなく単純に、管理用の環境変数で解決できました。 Config Vars Name Value REDIS_URL [Heroku Redisが値を設定] HEROKU_REDIS_IVORY_URL [Heroku Redisが値を設定] MY_ENV_REDIS_A REDIS_URL MY_ENV_REDIS_B HEROKU_REDIS_IVORY_URL &amp;lt;Laravel Root&amp;gt;/config/database.php &#39;redis&#39; =&amp;gt; [ // ... // A用のRedis &#39;default&#39; =&amp;gt; [ &#39;host&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_A&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_HOST), &#39;port&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_A&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PORT), &#39;password&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_A&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PASS), &#39;database&#39; =&amp;gt; 0, ], // B用のRedis &#39;redisA&#39; =&amp;gt; [ &#39;host&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_B&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_HOST), &#39;port&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_B&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PORT), &#39;password&#39; =&amp;gt; parse_url(env(env(&#39;MY_ENV_REDIS_B&#39;, &#39;&#39;), &#39;&#39;), PHP_URL_PASS), &#39;database&#39; =&amp;gt; 0, ],</description>
+    </item>
+    
+  </channel>
+</rss>

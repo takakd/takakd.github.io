@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>HugoでJSONを出力 | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="サイトの記事データをJSONで出力したい。手作業は大変。CMSを設置するのも億劫。 ということで、Hugoで出力するようにしました。 サンプルコード 前提 macOS Sierra HomebrewでHugoインストー" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,162 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">HugoでJSONを出力</h1>
+    <h2 class="cs-subtitle pt-2">2017-11-07</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/hugo">#Hugo</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>サイトの記事データをJSONで出力したい。手作業は大変。CMSを設置するのも億劫。
+ということで、Hugoで出力するようにしました。</p>
+<p><a href="https://github.com/takakd/sample-hugo-json">サンプルコード</a></p>
+<h2 id="前提">前提</h2>
+<ul>
+<li>macOS Sierra</li>
+<li>HomebrewでHugo<a href="https://gohugo.io/getting-started/quick-start/">インストール</a>済み</li>
+</ul>
+<h2 id="やりたいこと">やりたいこと</h2>
+<p>MarkDownで書いた記事データをJSONで出力する。</p>
+<h2 id="hugoにした理由">Hugoにした理由</h2>
+<p>他の静的サイトジェネレータをいくつか試したのですが、次のような印象でした。</p>
+<dl>
+<dt>Middleman</dt>
+<dd>うまくテンプレートでJSON出力できなかった。</dd>
+<dt>Jekyll</dt>
+<dd>ページ一覧をJSON出力する際、list.jsonという出力ファイル名を作れなかった。</dd>
+<dt>Hexo</dt>
+<dd>こちらも、ページ一覧をJSON出力する際、list.jsonというファイル名を作れなかった。</dd>
+</dl>
+<p>メモを破棄したため正直なところ空覚えなのと、あまり深く確認せず試していたので、間違っているかもしれません。
+予めご容赦ください。</p>
+<h2 id="手順">手順</h2>
+<p>手順は次のとおりです。</p>
+<ol>
+<li>config.tomlでJSONを出力するように設定。</li>
+<li>出力したい内容となるようにJSON出力用テンプレートを調整。</li>
+<li>hugoで出力。</li>
+</ol>
+<h3 id="1-configtomlでjsonを出力するように設定">1. config.tomlでJSONを出力するように設定</h3>
+<p>記事データをすべてJSON出力したいので、sectionページタイプの出力フォーマットにJSONを追加します。</p>
+<p><strong>config.toml</strong></p>
+<pre><code class="language-ini">baseURL = &quot;http://example.org/&quot;
+languageCode = &quot;en-us&quot;
+title = &quot;My New Hugo Site&quot;
+
+[outputs]
+section = [&quot;JSON&quot;, &quot;HTML&quot;]
+</code></pre>
+<h3 id="2-出力したい内容となるようにjson出力用テンプレートを調整">2. 出力したい内容となるようにJSON出力用テンプレートを調整</h3>
+<p>JSON出力用テンプレートを作成します。
+postsディレクトリ下に記事データを入れるようにしたので、テンプレートはposts/list.jsonとして作成します。</p>
+<p><strong>posts/list.json</strong></p>
+<pre><code class="language-golang">{% raw %}
+{
+  &quot;posts&quot;: [
+    {{ $list := .Data.Pages -}}
+    {{ $len := (len $list) -}}
+    {{ if lt 0 $len -}}
+      {{ range first 1 $list -}}
+      {
+        &quot;id&quot; : {{ .Date.Format &quot;20060102150405&quot; | jsonify }},
+        &quot;date&quot; : {{ if .Date }}{{ .Date.Format &quot;2006.01.02&quot; | jsonify }}{{else}}&quot;&quot;{{end}},
+        &quot;title&quot; : {{ .Title | jsonify }},
+        &quot;summary&quot; : {{ .Summary | jsonify }},
+        &quot;body&quot; : {{ .Content | jsonify }},
+        &quot;tags&quot; : {{ if .Params.tags }}{{ .Params.tags | jsonify }}{{ else }}[]{{ end }},
+        &quot;some-ex-param&quot; : {{ if .Params.someexparam }}{{ .Params.someexparam | jsonify }}{{ else }}false{{ end }}
+      }
+      {{- end -}}
+    {{- end -}}
+    {{- if lt 1 $len -}}
+      {{- range after 1 $list -}}
+      ,{
+        &quot;id&quot; : {{ .Date.Format &quot;20060102150405&quot; | jsonify }},
+        &quot;date&quot; : {{ if .Date }}{{ .Date.Format &quot;2006.01.02&quot; | jsonify }}{{else}}&quot;&quot;{{end}},
+        &quot;title&quot; : {{ .Title | jsonify }},
+        &quot;summary&quot; : {{ .Summary | jsonify }},
+        &quot;body&quot; : {{ .Content | jsonify }},
+        &quot;tags&quot; : {{ if .Params.tags }}{{ .Params.tags | jsonify }}{{ else }}[]{{ end }},
+        &quot;some-ex-param&quot; : {{ if .Params.sameexparam }}{{ .Params.sameexparam | jsonify }}{{ else }}false{{ end }}
+      }
+      {{- end -}}
+    {{- end }}
+  ]
+}
+{% endraw %}
+</code></pre>
+<h3 id="3-hugoで出力">3. hugoで出力</h3>
+<pre><code class="language-shell"># 実行
+$ hugo
+</code></pre>
+<p>次のようなファイルができていれば完成です。</p>
+<p><strong>index.json</strong></p>
+<pre><code class="language-json">{
+  &quot;posts&quot;: [
+    {
+      &quot;id&quot;: &quot;20171004010101&quot;,
+      &quot;date&quot;: &quot;2017.10.04&quot;,
+      &quot;title&quot; : &quot;Post4&quot;,
+      &quot;summary&quot;: &quot;etc4 etc4\u0026hellip;&quot;,
+      &quot;body&quot;: &quot;\u003cp\u003eetc4 etc4\u0026hellip;\u003c/p\u003e\n&quot;,
+      &quot;tags&quot;: [],
+      &quot;some-ex-param&quot;: &quot;test4&quot;
+    }, {
+      &quot;id&quot;: &quot;20171003010101&quot;,
+      &quot;date&quot;: &quot;2017.10.03&quot;,
+      &quot;title&quot;: &quot;Post3&quot;,
+      &quot;summary&quot; : &quot;etc3 etc3\u0026hellip;&quot;,
+      &quot;body&quot;: &quot;\u003cp\u003eetc3 etc3\u0026hellip;\u003c/p\u003e\n&quot;,
+      &quot;tags&quot;: [],
+      &quot;some-ex-param&quot;: false
+    }, {
+      &quot;id&quot;: &quot;20171002010101&quot;,
+      &quot;date&quot;: &quot;2017.10.02&quot;,
+      &quot;title&quot;: &quot;Post2&quot;,
+      &quot;summary&quot; : &quot;etc2 etc2\u0026hellip;&quot;,
+      &quot;body&quot;: &quot;\u003cp\u003eetc2 etc2\u0026hellip;\u003c/p\u003e\n&quot;,
+      &quot;tags&quot;: [],
+      &quot;some-ex-param&quot;: false
+    }, {
+      &quot;id&quot;: &quot;20171001010101&quot;,
+      &quot;date&quot;: &quot;2017.10.01&quot;,
+      &quot;title&quot;: &quot;Post1&quot;,
+      &quot;summary&quot; : &quot;etc1 etc1\u0026hellip;&quot;,
+      &quot;body&quot;: &quot;\u003cp\u003eetc1 etc1\u0026hellip;\u003c/p\u003e\n&quot;,
+      &quot;tags&quot;: [],
+      &quot;some-ex-param&quot;: false
+    }
+  ]
+}
+</code></pre>
+<h3 id="補足">補足</h3>
+<p>Hugoは、&ldquo;list&quot;というテンプレート名を持つものを一覧ページのテンプレートと認識します。
+<a href="https://gohugo.io/templates/lists/">一覧ページのテンプレートについて</a></p>
+<p>最初、この仕様の理解ができておらず、手間取りました。
+とほほ……</p>
+<p>静的サイトジェネレータはWebサイトの作成を目的としなくても、こういったシードデータの作成にも使えて便利ですね。</p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

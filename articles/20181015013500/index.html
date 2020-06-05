@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>SalesForce CLIでApexを取得 | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&quot;A JavaScript error occurred in the main" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,89 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">SalesForce CLIでApexを取得</h1>
+    <h2 class="cs-subtitle pt-2">2018-10-17</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/salesforce">#Salesforce</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p><a href="http://mavensmate.com/">MavensMate</a>がサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。</p>
+<p>エラーは&quot;A JavaScript error occurred in the main process&rdquo;</p>
+<p>試行錯誤すれば解消できるかもしれませんが、無理やり利用を続けるのも不毛そう。<br>
+素直に公式のSalesfoce CLIで取得しました。</p>
+<h2 id="手順">手順</h2>
+<h3 id="1-salesforce-cliをインストール">1. Salesforce CLIをインストール</h3>
+<p>npmでインストールしました。</p>
+<pre><code class="language-shell">$ node --version
+v9.1.0
+$ npm install -g sfdx-cli
+</code></pre>
+<p><a href="https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm">Salesforce CLIのインストール</a></p>
+<h3 id="2-apex取得">2. Apex取得</h3>
+<p>SandboxからApexClassをすべて取得。</p>
+<pre><code class="language-shell"># 1. Sandboxにログイン
+# ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用）
+# ... -rでSandboxのログインURLを指定
+# ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定
+
+$ sfdx force:auth:web:login -a myprj-sand -r https://test.salesforce.com
+
+# ... ブラウザが起動して、Salesforceのログイン画面表示
+
+# ... ログインする
+Successfully authorized &lt;mail address&gt; with org ID &lt;object id&gt;
+You may now close the browser
+
+# ... ブラウザ閉じる
+
+
+# 2. Salesforce DX Project作成
+# ... Apex取得コマンド実行に、Projectが必要となるため作成
+$ sfdx force:project:create -n myprj
+
+
+# 3. Apex取得
+# ... Projectディレクトリに移動
+$ cd myprj
+# ... Apexクラスのソースを全て取得
+# ... -uでエイリアス指定
+# ... -mで全ApexClass取得を指定
+$ sfdx force:source:retirieve -u myprj-sand -m ApexClass
+</code></pre>
+<p><a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force.htm">CLIコマンド参考</a></p>
+<h2 id="補足">補足</h2>
+<h3 id="sfdx">SFDX</h3>
+<p>SalesforceCLIは、Salesforce Developer Experience（SFDX）という開発体制で真価を発揮するようです。</p>
+<p><a href="https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm">Salesforce Developer Experience による作業方法の変化</a></p>
+<p>使いこなすためには<a href="https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_create.htm">スクラッチ組織</a>など、学ぶことは多そう。</p>
+<h3 id="forcecode">ForceCode</h3>
+<p>ググるとVisual Studio Codeアドオンの<a href="https://marketplace.visualstudio.com/items?itemName=JohnAaronNelson.ForceCode">ForceCode</a>の利用例が多数ありました。<br>
+私の環境ではうまく機能せず断念。</p>
+<p>　</p>
+<p>開発者が多数いらっしゃる組織では、CLI利用が一般的なのでしょうか。<br>
+楽しそうでもあり、大変そうでもありそう。</p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

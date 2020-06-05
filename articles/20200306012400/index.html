@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  lang="ja" >
 
 <head>
-	<meta name="generator" content="Hugo 0.65.3" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>takakd👨🏻‍💻</title>
+  <title>Insertion Sort | taka👨🏻‍💻</title>
   
   
   
@@ -30,7 +29,7 @@
   
   
   <meta name="description"
-    content="日々の開発作業で気づいたこと、その他小ネタを書いております。" />
+    content="もう一回おさらいということで プログラミングコンテスト攻略のためのアルゴリズムとデータ構造を購入しました。 AIZU ONLINE JUDGEのInsertion Sortです。 package main import (" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -46,40 +45,84 @@
       </a></nav>
   </nav>
 </section>
-<section class="ls-Section m-0 p-0">
-  <div class="px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">Articles</h1>
-    <div class="mt-5">
+<section class="sn-Section m-0 p-0">
+  <div class="px-4 px-lg-5 pt-5 pb-5">
+    <h1 class="cs-title">Insertion Sort</h1>
+    <h2 class="cs-subtitle pt-2">2020-03-07</h2>
+    <div class="m-0 p-0">
       
       
-      <article class="mt-5">
-        <div class="cs-tags float-right">
-          
-        </div>
-        <h2 class="cs-article-title">
-          <a href="https://blog.takakd.com/articles/" class="cs-article-title-label">
-            _Index
-          </a></h2>
-        <h3 class="cs-subtitle mb-3 pt-2">2018-11-01</h3>
-        <div class="content">
-          
-          
-        </div>
-      </article>
+<a class="cs-tags ml-2" href="/tags/aizu-online-judge">#AIZU ONLINE JUDGE</a>
+
+
+
       
     </div>
+    
+    
+    
+    
+    
+    
+    <div class="content sn-Content mt-5">
+      <p>もう一回おさらいということで
+<a href="https://www.amazon.co.jp/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B3%E3%83%B3%E3%83%86%E3%82%B9%E3%83%88%E6%94%BB%E7%95%A5%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0-%E6%B8%A1%E9%83%A8-%E6%9C%89%E9%9A%86/dp/4839952957">プログラミングコンテスト攻略のためのアルゴリズムとデータ構造</a>を購入しました。</p>
+<p><a href="https://onlinejudge.u-aizu.ac.jp/home">AIZU ONLINE JUDGE</a>の<a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_A">Insertion Sort</a>です。</p>
+<pre><code class="language-golang">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;strings&quot;
+)
+
+func scanInput() (n int, slice []int) {
+    fmt.Scanf(&quot;%d&quot;, &amp;n)
+    slice = make([]int, n)
+    for i := 0; i &lt; n; i++ {
+        fmt.Scanf(&quot;%d&quot;, &amp;slice[i])
+    }
+    return
+}
+
+func printSlice(slice []int) {
+    fmt.Println(strings.Trim(strings.Join(strings.Fields(fmt.Sprint(slice)), &quot; &quot;), &quot;[]&quot;))
+}
+
+func main() {
+    _, slice := scanInput()
+
+    printSlice(slice)
+
+    solve(slice)
+}
+
+func solve(nums []int) {
+    l := len(nums)
+    for i := 1; i &lt; l; i++ {
+        v := nums[i]
+        j := i - 1
+        for j &gt;= 0 &amp;&amp; nums[j] &gt; v {
+            nums[j+1] = nums[j]
+            j--
+        }
+        nums[j+1] = v
+
+        printSlice(nums)
+    }
+}
+</code></pre>
+<p>ロジックよりも、入力を受け取る実装で戸惑いました。<br>
+プログラミングパズルは言語の筋トレにもなっていいですね。</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://stackoverflow.com/questions/37532255/one-liner-to-transform-int-into-string">https://stackoverflow.com/questions/37532255/one-liner-to-transform-int-into-string</a></p>
+
+      
+    </div>
+    
   </div>
 </section>
-<section class="pg-Section p-0 m-0">
-  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-    
-    <span aria-disabled="true" aria-hidden="true"></span>
-    
-  </div>
-</section>
+
+
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-4 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">
     <div class="d-flex align-items-center"><a class="ml-4 cs-sns-icon-link" aria-label="facebook"

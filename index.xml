@@ -12,6 +12,67 @@
     
     
     <item>
+      <title>Resume - 工藤高浩（クドウ　タカヒロ）</title>
+      <link>https://takakd.github.io/resume/</link>
+      <pubDate>Sat, 08 Aug 2020 14:36:00 +0900</pubDate>
+      <author>taka</author>
+      <guid>https://takakd.github.io/resume/</guid>
+      <description></description>
+      
+      <content>&lt;h2 id=&#34;概要&#34;&gt;概要&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;バックエンドエンジニア - ミドルレベル&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;提案時の技術検証やモック実装、設計、実装、リリース後の保守・運用を行っています。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ソフトウェア開発 4年&lt;/li&gt;
+&lt;li&gt;Web関連開発 6年&lt;/li&gt;
+&lt;li&gt;AWS, Heroku, Salesforce使用経験 4年&lt;/li&gt;
+&lt;li&gt;リーダー経験（2〜3名） 2年&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;業務経験&#34;&gt;業務経験&lt;/h2&gt;
+&lt;h3 id=&#34;2013年---現在株式会社tam東京&#34;&gt;2013年 - 現在　株式会社TAM　東京&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Web開発エンジニア&lt;/strong&gt;&lt;br&gt;
+アプリケーションの設計と実装、リリース後の保守運用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ファイナンシャルプランニングサービス会社の会員ポータル&lt;/li&gt;
+&lt;li&gt;広告宣伝アセット管理システム&lt;/li&gt;
+&lt;li&gt;航空輸送会社のキャンペーンサイト&lt;/li&gt;
+&lt;li&gt;物流業務管理システム&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2006年---2012年株式会社創研大阪&#34;&gt;2006年 - 2012年　株式会社創研　大阪&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;ソフトウェアエンジニア&lt;/strong&gt;&lt;br&gt;
+アプリケーションの設計と実装、リリース後の保守運用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;フットサルコート予約アプリケーション&lt;/li&gt;
+&lt;li&gt;配送輸送用ラベル生成Adobeイラストレータープラグイン&lt;/li&gt;
+&lt;li&gt;美容室予約アプリケーション&lt;/li&gt;
+&lt;li&gt;業務用プリント基板製造装置の操作用Windowsアプリケーション&lt;/li&gt;
+&lt;li&gt;監視カメラ管理ユニット操作用Windowsアプリケーション&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;スキル&#34;&gt;スキル&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;上級レベル：PHP, JavaScript, AWS, Heroku, Salesforce, SQL, CentOS.&lt;/li&gt;
+&lt;li&gt;中級レベル：Golang, Python, HTML5, CSS3, C++, C#, Java.&lt;/li&gt;
+&lt;li&gt;初級レベル：Ruby.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;資格&#34;&gt;資格&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS ソリューションアーキテクト - プロフェッショナル&lt;/li&gt;
+&lt;li&gt;AWS DevOps エンジニア – プロフェッショナル&lt;/li&gt;
+&lt;li&gt;AWS デベロッパー - アソシエイト&lt;/li&gt;
+&lt;li&gt;AWS SysOps アドミニストレーター - アソシエイト&lt;/li&gt;
+&lt;li&gt;AWS ソリューションアーキテクト - アソシエイト&lt;/li&gt;
+&lt;li&gt;Salesforce 認定 Platform デベロッパー&lt;/li&gt;
+&lt;li&gt;IPA システムアーキテクト&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学歴&#34;&gt;学歴&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;大阪教育大学 教育学部 教養学科 自然研究専攻 物質科学コース（2006年卒業）&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+      
+    </item>
+    
+    <item>
       <title>Articles</title>
       <link>https://takakd.github.io/articles/</link>
       <pubDate>Thu, 01 Nov 2018 22:29:39 +0900</pubDate>

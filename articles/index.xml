@@ -13,6 +13,33 @@
     
     
     <item>
+      <title>Goのパッケージ名で悩む</title>
+      <link>https://takakd.github.io/articles/20200607143024/</link>
+      <pubDate>Sun, 07 Jun 2020 14:30:24 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200607143024/</guid>
+      <description>プロジェクト内で、HTTPのユーティリティ関数をまとめるモジュールの命名に悩んでいました。 結果はproject-layoutの構成で、internalの下にhttputilを配置して解決。 悩んでいた時は回答がでず、こちらで聞いてみると、 internalを作って、その下は好きにするといい httpextとextをつける というような意見をいただきました。 個人的にはinternalを使うほうが、プロジェクト内ということがわかりやすいと考え、そちらで実装。 最初に考えていた名前は、mypackage/utils しかし、&amp;ldquo;Avoid meaningless package names.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). という記載があるので違う気がする。 次は、mypackage/http or mypackage/httputil これは、&amp;ldquo;Avoid unnecessary package name collisions.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). にひっかかるので違う気がする。 最後に、mypackage/apphttputilsにしてましたが、どうにも冗長。質問を投げてみて、</description>
+    </item>
+    
+    <item>
+      <title>npmモジュールのバージョンアップ</title>
+      <link>https://takakd.github.io/articles/20200606142418/</link>
+      <pubDate>Sat, 06 Jun 2020 14:24:18 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200606142418/</guid>
+      <description>npm-checkを使うと対話式でアップデートできるのでわかりやすい。 # Install checking module globally. $ npm install -g npm-check # Run. # -u means &amp;quot;update&amp;quot; $ npm-check -u # Select all basically. ? Choose which packages to update. (Press &amp;lt;space&amp;gt; to select) Missing. You probably want these. ❯◯ normalize.css missing 8.0.1 https://necolas.github.io/normalize.css ◯ babel-core devDep missing 6.26.3 https://babeljs.io/ ◯ browser-sync devDep missing 2.26.7 https://browsersync.io/ ◯ gulp devDep missing 4.0.2 https://gulpjs.com ◯ gulp-file-include devDep missing 2.2.2 https://github.com/haoxins/gulp-file-include#readme ◯ gulp-plumber devDep missing 1.2.1 https://github.com/floatdrop/gulp-plumber ◯ gulp-replace devDep missing 1.0.0 https://github.com/lazd/gulp-replace#readme ◯ gulp-sass devDep missing 4.1.0 https://github.com/dlmanning/gulp-sass#readme ◯ gulp-sourcemaps devDep missing 2.6.5 http://github.com/gulp-sourcemaps/gulp-sourcemaps ◯ node-sass-package-importer devDep missing 5.3.2 https://github.com/maoberlehner/node-sass-magic-importer/tree/master/packages/node-sass-p ackage-importer Major Update Potentially breaking API changes. Use caution. ◯ autoprefixer devDep missing 6.7.7 ❯ 9.8.0 https://github.com/postcss/autoprefixer#readme ◯ eslint devDep missing 3.19.0 ❯ 7.1.0 https://eslint.org ◯ eslint-config-prettier devDep missing 2.10.0 ❯ 6.11.0 https://github.com/prettier/eslint-config-prettier#readme ◯ gifsicle devDep missing 4.0.1 ❯ 5.1.0 https://github.com/imagemin/gifsicle-bin#readme ◯ gulp-babel devDep missing 7.0.1 ❯ 8.0.0 https://github.com/babel/gulp-babel#readme 知らぬ間に、GitHubで立てていたリポジトリにnpmの脆弱性通知が来ていて、アカウントが乗っ取られたのかと思いました🤣 参考 https://www.npmjs.com/package/npm-check</description>
+    </item>
+    
+    <item>
+      <title>panicのテスト</title>
+      <link>https://takakd.github.io/articles/20200528043646/</link>
+      <pubDate>Thu, 28 May 2020 04:36:46 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200528043646/</guid>
+      <description>Goでパニックが発生するかどうかのテストです。 // Testing if testFunc calls panic. // e.g. // IsTestCallPanic(func(){ // &amp;lt;place test target here.&amp;gt; // }) func IsTestCallPanic(testFunc func()) (ok bool) { defer func() { if err := recover(); err == nil { ok = false } }() ok = true testFunc() return } // Test for test. func TestIsTestCallPanic(t *testing.T) { isCalled := IsTestCallPanic(func() { var i interface{} if i == nil { panic(&amp;quot;Hi, panic.&amp;quot;) } }) if !isCalled { t.Errorf(&amp;quot;failed.&amp;quot;) } }</description>
+    </item>
+    
+    <item>
       <title>Javadocの@see</title>
       <link>https://takakd.github.io/articles/20200415000215/</link>
       <pubDate>Wed, 15 Apr 2020 00:02:15 +0900</pubDate>

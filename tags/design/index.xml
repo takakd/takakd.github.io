@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>design on taka👨🏻‍💻</title>
+    <link>https://takakd.github.io/tags/design/</link>
+    <description>Recent content in design on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Sun, 07 Jun 2020 14:30:24 +0900</lastBuildDate>
+    
+	<atom:link href="https://takakd.github.io/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Goのパッケージ名で悩む</title>
+      <link>https://takakd.github.io/articles/20200607143024/</link>
+      <pubDate>Sun, 07 Jun 2020 14:30:24 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200607143024/</guid>
+      <description>プロジェクト内で、HTTPのユーティリティ関数をまとめるモジュールの命名に悩んでいました。 結果はproject-layoutの構成で、internalの下にhttputilを配置して解決。 悩んでいた時は回答がでず、こちらで聞いてみると、 internalを作って、その下は好きにするといい httpextとextをつける というような意見をいただきました。 個人的にはinternalを使うほうが、プロジェクト内ということがわかりやすいと考え、そちらで実装。 最初に考えていた名前は、mypackage/utils しかし、&amp;ldquo;Avoid meaningless package names.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). という記載があるので違う気がする。 次は、mypackage/http or mypackage/httputil これは、&amp;ldquo;Avoid unnecessary package name collisions.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). にひっかかるので違う気がする。 最後に、mypackage/apphttputilsにしてましたが、どうにも冗長。質問を投げてみて、</description>
+    </item>
+    
+  </channel>
+</rss>

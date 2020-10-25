@@ -51,7 +51,7 @@
       <h2 class="cs-subtitle pt-2">2017-10-25</h2>
       <div class="m-0 p-0">
         
-          <a class="cs-tags" href="/tags/aws">#AWS</a>
+          <a class="cs-tags" href="/tags/aws">#aws</a>
         
       </div>
       
@@ -73,7 +73,7 @@
 <h3 id="1-aws-cliのインストール">1. AWS CLIのインストール</h3>
 <p>ターミナルを起動して、pipでインストール。<br>
 <a href="http://docs.aws.amazon.com/ja_jp/general/latest/gr/rande.html">参考: Install</a></p>
-<pre><code class="language-shell">$ pip install awscli --upgrade --user
+<pre><code class="language-sh">$ pip install awscli --upgrade --user
 ...
 ずらずらとログ出力される。
 ...
@@ -93,7 +93,7 @@ aws: error: too few arguments
 <h3 id="2-認証情報の設定">2. 認証情報の設定</h3>
 <p>認証情報は実行時のコマンドライン引数や環境変数でも指定できますが、毎度指定するのも手間なので設定ファイルの方法を選択しました。
 <!-- raw HTML omitted -->参考: Configuration and Credential Files<!-- raw HTML omitted --></p>
-<pre><code class="language-shell"># ファイルの置き場所を作って
+<pre><code class="language-sh"># ファイルの置き場所を作って
 $ mkdir ~/.aws
 
 # 認証ファイル作成
@@ -119,7 +119,7 @@ output=json
 <p>これでインストール完了。</p>
 <h3 id="3-aws-cli実行確認">3. AWS CLI実行確認</h3>
 <p>試しにS3バケット一覧をAWS CLI経由で取得してみます。</p>
-<pre><code class="language-shell">$ aws s3 ls
+<pre><code class="language-sh">$ aws s3 ls
 ...
 S3のバケット一覧が出るはず。
 ...

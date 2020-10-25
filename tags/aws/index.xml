@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>AWS on taka👨🏻‍💻</title>
+    <title>aws on taka👨🏻‍💻</title>
     <link>https://takakd.github.io/tags/aws/</link>
-    <description>Recent content in AWS on taka👨🏻‍💻</description>
+    <description>Recent content in aws on taka👨🏻‍💻</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Sat, 24 Feb 2018 12:52:48 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 06 Aug 2020 02:35:47 +0900</lastBuildDate>
     
 	<atom:link href="https://takakd.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS5資格の勉強ログ</title>
+      <link>https://takakd.github.io/articles/20200806023547/</link>
+      <pubDate>Thu, 06 Aug 2020 02:35:47 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200806023547/</guid>
+      <description>勉強を始めた時に勉強法を色々調べたのですが、勉強ログ的なものは少ないように思ったので残しておきます。どなたかの参考になれば幸いです。 背景 勉強を始めた時のスペックは次の通り。 AWS使用歴4年ぐらい。 使ったサービスは、EC2, Route53, EBS, IAM, VPC, CloudFront, S3程度。 履歴 2017/12 Passed - Cloud プラクティショナー 2018/1 Failed - ソリューションアーキテクト アソシエイト 2019/9 Passed - ソリューションアーキテクト アソシエイト 2019/10 Passed - デベロッパー アソシエイト 2019/11 Passed - SysOpsアドミニストレーター アソシエイト 2020/5 Passed - DevOpsエンジニア プロフェッショナル 2020/5 Failed - ソリューションアーキテクト プロフェッショナル 2020/6 Passed - ソリューションアーキテクト プロフェッショナル ログ 1. Cloud プラクティショナー Passed: スコア 710 この時点ではEC2, EBS, S3, Cloudfront, Route53を少し使った程度で、全サービスの基本となるVPCやIAMはだいたい50%程度の理解でした。 まずはこのビデオを見ました。70%程度は知ってい</description>
+    </item>
+    
+    <item>
+      <title>API Gateway &#43; Lambda - golang</title>
+      <link>https://takakd.github.io/articles/20200705022238/</link>
+      <pubDate>Sun, 05 Jul 2020 02:22:39 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200705022238/</guid>
+      <description>APIGateway + GoでLambdaのサンプルです。 仕様 エンドポイント: https://&amp;lt;API ID&amp;gt;.execute-api.ap-northeast-1.amazonaws.com/&amp;lt;stage&amp;gt;/&amp;lt;Resource&amp;gt; HTTPメソッド: GET パラメータ: { &amp;quot;text&amp;quot;: &amp;quot;string&amp;quot; } Lambdaハンドラ 引数をstructで定義。 package main import ( &amp;quot;context&amp;quot; &amp;quot;github.com/aws/aws-lambda-go/lambda&amp;quot; &amp;quot;github.com/pkg/errors&amp;quot; ) // Ref: https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html // Receive arguments as struct. type Event struct { Text string `json:&amp;quot;text&amp;quot;` } func (e *Event) validate() bool { valid := true if e.Text == &amp;quot;&amp;quot; { valid = false } return valid } // Response type Response struct { Message string `json:&amp;quot;message&amp;quot;` } // Lambda handler func HandleRequest(ctx context.Context, event Event) (Response, error) { resp := Response{} if !event.validate() { return resp, errors.Errorf(&amp;quot;need text.&amp;quot;) } // Something to do you want here. resp.Message = &amp;quot;ok&amp;quot; return resp, nil } // Main func main() { lambda.Start(HandleRequest) } 統合リクエスト - マッピングテンプレート structに設定する値を追加。 ここではtextを設定しています。 #set($allParams = $input.params()) { &amp;quot;text&amp;quot;: &amp;quot;$input.params(&#39;text&#39;)&amp;quot;, &amp;quot;body-json&amp;quot; : $input.json(&#39;$&#39;), ... } レスポンス 返ってくるレスポンス。 { &amp;quot;message&amp;quot;: &amp;quot;ok&amp;quot; }</description>
+    </item>
     
     <item>
       <title>HTML FormでS3にPOST</title>
@@ -18,7 +36,7 @@
       <pubDate>Sat, 24 Feb 2018 12:52:48 +0900</pubDate>
       
       <guid>https://takakd.github.io/articles/20180224125248/</guid>
-      <description>AWSのリファレンスを参考に、FormでS3バケットへのPOSTを試してみました。 準備 FormでS3にPOSTするためには、各フィールドに送信するファイルに合わせ、POST Policy、Signature、アクセスID、その他ファイルに関する情報を設定する必要があります。 （POST Policy：POSTする時につける設定情報、Signatureはそれをシークレットキーでhashしたもの） バケットポリシー フィールドにアクセスIDを設定しますが、このアクセスIDに対応するIAMユーザーは、POST先のバケットに対する操作権限が必要です。 基本的なAWSのIAMユーザーの考えですね。 次のようにバケットポリシーを設定します。 { &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;, &amp;quot;Statement&amp;quot;: [ { &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Principal&amp;quot;: { &amp;quot;AWS&amp;quot;: &amp;quot;arn:aws:iam::&amp;lt;12桁の数字&amp;gt;:user/&amp;lt;IAMユーザー名&amp;gt;&amp;quot; }, &amp;quot;Action&amp;quot;: &amp;quot;s3:*&amp;quot;, &amp;quot;Resource&amp;quot;: [ &amp;quot;arn:aw</description>
+      <description>AWSのリファレンスを参考に、FormでS3バケットへのPOSTを試してみました。 準備 FormでS3にPOSTするためには、各フィールドに送信するファイルに合わせ、POST Policy、Signature、アクセスID、その他ファイルに関する情報を設定する必要があります。 （POST Policy：POSTする時につける設定情報、Signatureはそれをシークレットキーでhashしたもの） バケットポリシー フィールドにアクセスIDを設定しますが、このアクセスIDに対応するIAMユーザーは、POST先のバケットに対する操作権限が必要です。 基本的なAWSのIAMユーザーの考えですね。 次のようにバケットポリシーを設定します。 { &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;, &amp;quot;Statement&amp;quot;: [ { &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Principal&amp;quot;: { &amp;quot;aws&amp;quot;: &amp;quot;arn:aws:iam::&amp;lt;12桁の数字&amp;gt;:user/&amp;lt;IAMユーザー名&amp;gt;&amp;quot; }, &amp;quot;Action&amp;quot;: &amp;quot;s3:*&amp;quot;, &amp;quot;Resource&amp;quot;: [ &amp;quot;arn:aw</description>
     </item>
     
     <item>

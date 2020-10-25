@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://takakd.github.io/tags/api/</loc>
+    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/golang/</loc>
+    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/slack/</loc>
+    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20201023052454/</loc>
+    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/</loc>
+    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/</loc>
+    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://takakd.github.io/page/</loc>
     <lastmod>2020-10-21T12:52:00+09:00</lastmod>
   </url>
@@ -18,8 +48,68 @@
   </url>
   
   <url>
-    <loc>https://takakd.github.io/</loc>
-    <lastmod>2020-10-21T12:52:00+09:00</lastmod>
+    <loc>https://takakd.github.io/articles/20201021052243/</loc>
+    <lastmod>2020-10-21T05:22:43+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/tips/</loc>
+    <lastmod>2020-10-21T05:22:43+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20201017051917/</loc>
+    <lastmod>2020-10-17T05:19:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/shell/</loc>
+    <lastmod>2020-10-17T05:19:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/aws/</loc>
+    <lastmod>2020-08-06T02:35:47+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200806023547/</loc>
+    <lastmod>2020-08-06T02:35:47+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200705022238/</loc>
+    <lastmod>2020-07-05T02:22:39+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200705022043/</loc>
+    <lastmod>2020-07-05T02:20:43+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200628021817/</loc>
+    <lastmod>2020-06-28T02:18:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200625021433/</loc>
+    <lastmod>2020-06-25T02:14:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200623021217/</loc>
+    <lastmod>2020-06-23T02:12:17+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200620021106/</loc>
+    <lastmod>2020-06-20T02:11:07+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/articles/20200612020628/</loc>
+    <lastmod>2020-06-12T02:06:28+09:00</lastmod>
   </url>
   
   <url>
@@ -28,17 +118,7 @@
   </url>
   
   <url>
-    <loc>https://takakd.github.io/tags/go/</loc>
-    <lastmod>2020-06-07T14:30:24+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://takakd.github.io/articles/20200607143024/</loc>
-    <lastmod>2020-06-07T14:30:24+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://takakd.github.io/tags/</loc>
     <lastmod>2020-06-07T14:30:24+09:00</lastmod>
   </url>
   
@@ -83,11 +163,6 @@
   </url>
   
   <url>
-    <loc>https://takakd.github.io/tags/golang/</loc>
-    <lastmod>2020-04-13T23:50:06+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://takakd.github.io/articles/20200413235004/</loc>
     <lastmod>2020-04-13T23:50:06+09:00</lastmod>
   </url>
@@ -125,11 +200,6 @@
   <url>
     <loc>https://takakd.github.io/tags/sqlite/</loc>
     <lastmod>2020-01-31T02:18:21+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://takakd.github.io/tags/shell/</loc>
-    <lastmod>2020-01-19T09:19:45+09:00</lastmod>
   </url>
   
   <url>
@@ -183,11 +253,6 @@
   </url>
   
   <url>
-    <loc>https://takakd.github.io/tags/api/</loc>
-    <lastmod>2018-12-24T14:22:06+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://takakd.github.io/articles/20181224142205/</loc>
     <lastmod>2018-12-24T14:22:06+09:00</lastmod>
   </url>
@@ -210,11 +275,6 @@
   <url>
     <loc>https://takakd.github.io/articles/20181015013500/</loc>
     <lastmod>2018-10-17T01:08:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://takakd.github.io/tags/aws/</loc>
-    <lastmod>2018-02-24T12:52:48+09:00</lastmod>
   </url>
   
   <url>

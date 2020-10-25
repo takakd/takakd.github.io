@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Sun, 19 Jan 2020 09:19:45 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 17 Oct 2020 05:19:17 +0900</lastBuildDate>
     
 	<atom:link href="https://takakd.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang-migrateのヘルパスクリプト - golang</title>
+      <link>https://takakd.github.io/articles/20201017051917/</link>
+      <pubDate>Sat, 17 Oct 2020 05:19:17 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201017051917/</guid>
+      <description>.sql向けgolang-migrateのヘルパスクリプトです。 機能 .envからデータソースを読み込み ディレクトリ内のSQLファイルでマイグレート SQLのみ対応 helper.sh #!/usr/bin/env bash # golang-migrate helper script # https://github.com/golang-migrate/migrate usage() { echo &amp;quot;Usage: migrate.sh COMMAND COMMAND: Input golang-migrate command and options. &#39;create&#39; is limited to SQL. e.g. migrate.sh create NAME migrate.sh up migrate.sh down 2 &amp;quot; } if [[ &amp;quot;$1&amp;quot; = &amp;quot;help&amp;quot; ]]; then usage exit 0 fi SCRIPT_DIR=$(cd $(dirname &amp;quot;$0&amp;quot;); pwd) ENV_FILE=${SCRIPT_DIR}/../configs/.env if [[ -e &amp;quot;$ENV_FILE&amp;quot; ]]; then source &amp;quot;$ENV_FILE&amp;quot; fi # Limit create to SQL if [[ &amp;quot;$1&amp;quot; = &amp;quot;create&amp;quot; ]]; then # Exclude options param=$(echo &amp;quot;$@&amp;quot; | sed -e &#39;s/create //&#39;) # Remove schema from env value dir=$(echo &amp;quot;$MIGRATION_DIR&amp;quot; | sed -e &#39;s/file:\/\///&#39;) migrate -source &amp;quot;$MIGRATION_DIR&amp;quot; -database &amp;quot;$DATABASE_URL&amp;quot; create -dir $dir -ext sql $param else migrate -source &amp;quot;$MIGRATION_DIR&amp;quot; -database &amp;quot;$DATABASE_URL&amp;quot; $@ fi .env MIGRATION_DIR=/Users/user/... DATABASE_URL=mysql:... プロジェクトに応じたヘルパスクリプトをよく作るのですが、他の現場ではどのくらい用意しているんだろう。</description>
+    </item>
+    
+    <item>
+      <title>makeコマンドに引数を渡す</title>
+      <link>https://takakd.github.io/articles/20200705022043/</link>
+      <pubDate>Sun, 05 Jul 2020 02:20:43 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200705022043/</guid>
+      <description>渡せるんですね🥺 # Makefile DEFAULT=fuga test: @echo $(DEFAULT) # shell $ make # -&amp;gt; fuga $ make DEFAULT=hoge # -&amp;gt; hoge Reference https://stackoverflow.com/questions/2826029/passing-additional-variables-from-command-line-to-make</description>
+    </item>
     
     <item>
       <title>シェルでzip圧縮</title>

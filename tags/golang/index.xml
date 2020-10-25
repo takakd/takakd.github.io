@@ -7,10 +7,109 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Mon, 13 Apr 2020 23:50:06 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2020 05:24:54 +0900</lastBuildDate>
     
 	<atom:link href="https://takakd.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SlackのEventAPIのリトライコールを防ぐ - golang</title>
+      <link>https://takakd.github.io/articles/20201023052454/</link>
+      <pubDate>Fri, 23 Oct 2020 05:24:54 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201023052454/</guid>
+      <description>エラーレスポンスを返す時でもリトライさせたくない場合は、ヘッダにX-Slack-No-Retryを指定する。 func handler(w http.ResponseWriter, r *http.Request) { // Process something... // Set &amp;quot;X-Slack-No-Retry: 1&amp;quot; if prevent retry. w.Header().Set(&amp;quot;X-Slack-No-Retry&amp;quot;, &amp;quot;1&amp;quot;) w.Header().Set(&amp;quot;Content-Type&amp;quot;, &amp;quot;application/json&amp;quot;) w.WriteHeader(http.StatusBadRequest) w.Write([]byte(&amp;quot;&amp;quot;)) } Reference https://api.slack.com/events-api#the-events-api__field-guide__error-handling__graceful-retries__turning-retries-off</description>
+    </item>
+    
+    <item>
+      <title>generate gomockでエラーが出た - golang</title>
+      <link>https://takakd.github.io/articles/20201021052243/</link>
+      <pubDate>Wed, 21 Oct 2020 05:22:43 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201021052243/</guid>
+      <description>gomockでエラー。とりあえず古いファイルを消して再実行すると解消できた。 % mockgen -source ./internal/app/usecase/xxx/repository.go -destination ./internal/app/usecase/xxx/repository_mock.go -package xxx -: found packages xxx (repository.go) and mock_updateproteinevent (repository_mock.go) in /Users/xxx/go/src/proteinreminder/internal/app/usecase/xxx 2020/10/21 04:21:56 Loading input failed: loading package failed # Delete % rm -rf ./internal/app/usecase/xxx/repository_mock.go # Run again and completed. % mockgen -source ./internal/app/usecase/xxx/repository.go -destination ./internal/app/usecase/xxx/repository_mock.go -package xxx</description>
+    </item>
+    
+    <item>
+      <title>golang-migrateのヘルパスクリプト - golang</title>
+      <link>https://takakd.github.io/articles/20201017051917/</link>
+      <pubDate>Sat, 17 Oct 2020 05:19:17 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201017051917/</guid>
+      <description>.sql向けgolang-migrateのヘルパスクリプトです。 機能 .envからデータソースを読み込み ディレクトリ内のSQLファイルでマイグレート SQLのみ対応 helper.sh #!/usr/bin/env bash # golang-migrate helper script # https://github.com/golang-migrate/migrate usage() { echo &amp;quot;Usage: migrate.sh COMMAND COMMAND: Input golang-migrate command and options. &#39;create&#39; is limited to SQL. e.g. migrate.sh create NAME migrate.sh up migrate.sh down 2 &amp;quot; } if [[ &amp;quot;$1&amp;quot; = &amp;quot;help&amp;quot; ]]; then usage exit 0 fi SCRIPT_DIR=$(cd $(dirname &amp;quot;$0&amp;quot;); pwd) ENV_FILE=${SCRIPT_DIR}/../configs/.env if [[ -e &amp;quot;$ENV_FILE&amp;quot; ]]; then source &amp;quot;$ENV_FILE&amp;quot; fi # Limit create to SQL if [[ &amp;quot;$1&amp;quot; = &amp;quot;create&amp;quot; ]]; then # Exclude options param=$(echo &amp;quot;$@&amp;quot; | sed -e &#39;s/create //&#39;) # Remove schema from env value dir=$(echo &amp;quot;$MIGRATION_DIR&amp;quot; | sed -e &#39;s/file:\/\///&#39;) migrate -source &amp;quot;$MIGRATION_DIR&amp;quot; -database &amp;quot;$DATABASE_URL&amp;quot; create -dir $dir -ext sql $param else migrate -source &amp;quot;$MIGRATION_DIR&amp;quot; -database &amp;quot;$DATABASE_URL&amp;quot; $@ fi .env MIGRATION_DIR=/Users/user/... DATABASE_URL=mysql:... プロジェクトに応じたヘルパスクリプトをよく作るのですが、他の現場ではどのくらい用意しているんだろう。</description>
+    </item>
+    
+    <item>
+      <title>API Gateway &#43; Lambda - golang</title>
+      <link>https://takakd.github.io/articles/20200705022238/</link>
+      <pubDate>Sun, 05 Jul 2020 02:22:39 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200705022238/</guid>
+      <description>APIGateway + GoでLambdaのサンプルです。 仕様 エンドポイント: https://&amp;lt;API ID&amp;gt;.execute-api.ap-northeast-1.amazonaws.com/&amp;lt;stage&amp;gt;/&amp;lt;Resource&amp;gt; HTTPメソッド: GET パラメータ: { &amp;quot;text&amp;quot;: &amp;quot;string&amp;quot; } Lambdaハンドラ 引数をstructで定義。 package main import ( &amp;quot;context&amp;quot; &amp;quot;github.com/aws/aws-lambda-go/lambda&amp;quot; &amp;quot;github.com/pkg/errors&amp;quot; ) // Ref: https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html // Receive arguments as struct. type Event struct { Text string `json:&amp;quot;text&amp;quot;` } func (e *Event) validate() bool { valid := true if e.Text == &amp;quot;&amp;quot; { valid = false } return valid } // Response type Response struct { Message string `json:&amp;quot;message&amp;quot;` } // Lambda handler func HandleRequest(ctx context.Context, event Event) (Response, error) { resp := Response{} if !event.validate() { return resp, errors.Errorf(&amp;quot;need text.&amp;quot;) } // Something to do you want here. resp.Message = &amp;quot;ok&amp;quot; return resp, nil } // Main func main() { lambda.Start(HandleRequest) } 統合リクエスト - マッピングテンプレート structに設定する値を追加。 ここではtextを設定しています。 #set($allParams = $input.params()) { &amp;quot;text&amp;quot;: &amp;quot;$input.params(&#39;text&#39;)&amp;quot;, &amp;quot;body-json&amp;quot; : $input.json(&#39;$&#39;), ... } レスポンス 返ってくるレスポンス。 { &amp;quot;message&amp;quot;: &amp;quot;ok&amp;quot; }</description>
+    </item>
+    
+    <item>
+      <title>安全なtruncate string - golang</title>
+      <link>https://takakd.github.io/articles/20200628021817/</link>
+      <pubDate>Sun, 28 Jun 2020 02:18:17 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200628021817/</guid>
+      <description>package main import ( &amp;quot;fmt&amp;quot; ) // Truncate string. func TruncateString(str string, length int) string { if length &amp;lt;= 0 { return &amp;quot;&amp;quot; } // This code cannot support Japanese // orgLen := len(str) // if orgLen &amp;lt;= length { // return str // } // return str[:length] // Support Japanese // Ref: Range loops https://blog.golang.org/strings truncated := &amp;quot;&amp;quot; count := 0 for _, char := range str { truncated += string(char) count++ if count &amp;gt;= length { break } } return truncated } // Main func main() { dataList := [][]interface{} { {&amp;quot;drink&amp;quot;, 3, &amp;quot;dri&amp;quot;}, {&amp;quot;drink&amp;quot;, 6, &amp;quot;drink&amp;quot;}, {&amp;quot;drink&amp;quot;, 0, &amp;quot;&amp;quot;}, {&amp;quot;drink&amp;quot;, -1, &amp;quot;&amp;quot;}, {&amp;quot;drink&amp;quot;, 100, &amp;quot;drink&amp;quot;}, {&amp;quot;pub&amp;quot;, 100, &amp;quot;pub&amp;quot;}, {&amp;quot;こんにちは&amp;quot;, 3, &amp;quot;こんに&amp;quot;}, } for _, dl := range dataList { r := TruncateString(dl[0].(string), dl[1].(int)) if r != dl[2].(string) { fmt.Printf(&amp;quot;ERROR: got=%s, want=%s&amp;quot;, r, dl[2].(string)) } } } https://play.golang.org/p/iakC8xxTlFI Reference: https://play.golang.org/p/EzvhWMljku 次のコードはエラーが出る。 package main import ( &amp;quot;fmt&amp;quot; ) func main() { s := &amp;quot;drink&amp;quot; r := s[:20] // error fmt.Println(r) } https://play.golang.org/p/7IfclYXADoW</description>
+    </item>
+    
+    <item>
+      <title>&#34;omitempty&#34;のメモ - golang</title>
+      <link>https://takakd.github.io/articles/20200625021433/</link>
+      <pubDate>Thu, 25 Jun 2020 02:14:34 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200625021433/</guid>
+      <description>json.Marshal はomitemptyが値型stringに設定されていれば空文字を出力する。 フィールド自体不要な場合は、ポインタ型stringにするといい。 package main import ( &amp;quot;encoding/json&amp;quot; &amp;quot;fmt&amp;quot; ) type ValueSlice struct { Values []V `json:&amp;quot;b,omitempty&amp;quot;` } type PtrSlice struct { Values []*V `json:&amp;quot;b,omitempty&amp;quot;` } type ValueStruct struct { Value V `json:&amp;quot;value,omitempty&amp;quot;` } type PtrStruct struct { Value *V `json:&amp;quot;value,omitempty&amp;quot;` } type V struct { Value string `json:&amp;quot;value&amp;quot;` } func main() { v1 := &amp;amp;ValueSlice{} v2 := &amp;amp;PtrSlice{} v3 := &amp;amp;ValueStruct{} v4 := &amp;amp;PtrStruct{} bv1, _ := json.Marshal(v1) bv2, _ := json.Marshal(v2) bv3, _ := json.Marshal(v3) bv4, _ := json.Marshal(v4) fmt.Printf(&amp;quot;bv1: %v\n&amp;quot;, string(bv1)) fmt.Printf(&amp;quot;bv2: %v\n&amp;quot;, string(bv2)) fmt.Printf(&amp;quot;bv3: %v\n&amp;quot;, string(bv3)) fmt.Printf(&amp;quot;bv4: %v\n&amp;quot;, string(bv4)) } 出力結果 bv1: {} bv2: {} bv3: {&amp;quot;value&amp;quot;:{&amp;quot;value&amp;quot;:&amp;quot;&amp;quot;}} bv4: {} https://play.golang.org/p/7XKphsEayCN</description>
+    </item>
+    
+    <item>
+      <title>ParseFormした値をstructに設定 - golang</title>
+      <link>https://takakd.github.io/articles/20200623021217/</link>
+      <pubDate>Tue, 23 Jun 2020 02:12:17 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200623021217/</guid>
+      <description>// Set FormValues to struct func SetFormValueToStruct(values url.Values, structPtr interface{}) error { // Get the pointer of struct ptr := reflect.ValueOf(structPtr) // Get the value of struct value := ptr.Elem() // Set value to struct field valueType := value.Type() for i := 0; i &amp;lt; value.NumField(); i++ { jsonTag := valueType.Field(i).Tag.Get(&amp;quot;json&amp;quot;) if value.Field(i).CanSet() == false { return errors.New(&amp;quot;cannot set value to field&amp;quot;) } value.Field(i).Set(reflect.ValueOf(values.Get(jsonTag))) } return nil } // Example func ExampleSetFormValueToStruct() { // Form values formValues := url.Values{} formValues.Set(&amp;quot;test1&amp;quot;, &amp;quot;test1_value&amp;quot;) formValues.Set(&amp;quot;test2&amp;quot;, &amp;quot;test2_value&amp;quot;) // Struct that be wanted to set form values. structPtr := &amp;amp;TestSetFormValueToStructStruct{} // Set structWithValuesPtr := apphttputil.SetFormValueToStruct(formValues, structPtr) fmt.Printf(&amp;quot;%v&amp;quot;, structWithValuesPtr) }</description>
+    </item>
+    
+    <item>
+      <title>URLクエリ文字列を生成 - golang</title>
+      <link>https://takakd.github.io/articles/20200620021106/</link>
+      <pubDate>Sat, 20 Jun 2020 02:11:07 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200620021106/</guid>
+      <description>params := url.Values{ &amp;quot;keyword&amp;quot;: {&amp;quot;some&amp;quot;}, } reqUrl := &amp;quot;https://yourendpoint.example.com?&amp;quot; + params.Encode() Reference https://golang.org/pkg/net/url/#URL.Query</description>
+    </item>
+    
+    <item>
+      <title>ユニコードキャラクタをエスケープシーケンスに変換 - golang</title>
+      <link>https://takakd.github.io/articles/20200612020628/</link>
+      <pubDate>Fri, 12 Jun 2020 02:06:28 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200612020628/</guid>
+      <description>json.Unmarshalしたデータに含まれる文字列のユニコードキャラクタをエスケープシーケンスに変換します。 // func convertJsonElement(data interface{}) interface{} { switch v := data.(type) { case map[string]interface{}: for ik, iv := range v { v[ik] = convertJsonElement(iv) } data = v case []interface{}: for ik, iv := range v { v[ik] = convertJsonElement(iv) } data = v case string: v = fmt.Sprintf(&amp;quot;%+q&amp;quot;, v) if len(v) &amp;gt; 0 { // Remove unnecessary double-quote data = v[1 : len(v)-1] } default: } return data } // func main() { jsonStr := []byte(`{&amp;quot;test&amp;quot;:&amp;quot;こんにちは&amp;quot;}`) var data interface{} json.Unmarshal(jsonStr, &amp;amp;data) convertedData := convertJsonElement(data) }</description>
+    </item>
+    
+    <item>
+      <title>パッケージ名で悩む - golang</title>
+      <link>https://takakd.github.io/articles/20200607143024/</link>
+      <pubDate>Sun, 07 Jun 2020 14:30:24 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200607143024/</guid>
+      <description>プロジェクト内で、HTTPのユーティリティ関数をまとめるモジュールの命名に悩んでいました。 結果はproject-layoutの構成で、internalの下にhttputilを配置して解決。 悩んでいた時は回答がでず、こちらで聞いてみると、 internalを作って、その下は好きにするといい httpextとextをつける というような意見をいただきました。 個人的にはinternalを使うほうが、プロジェクト内ということがわかりやすいと考え、そちらで実装。 最初に考えていた名前は、mypackage/utils しかし、&amp;ldquo;Avoid meaningless package names.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). という記載があるので違う気がする。 次は、mypackage/http or mypackage/httputil これは、&amp;ldquo;Avoid unnecessary package name collisions.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). にひっかかるので違う気がする。 最後に、mypackage/apphttputilsにしてましたが、どうにも冗長。質問を投げてみて、</description>
+    </item>
+    
+    <item>
+      <title>panicのテスト - golang</title>
+      <link>https://takakd.github.io/articles/20200528043646/</link>
+      <pubDate>Thu, 28 May 2020 04:36:46 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20200528043646/</guid>
+      <description>Goでパニックが発生するかどうかのテストです。 // Testing if testFunc calls panic. // e.g. // IsTestCallPanic(func(){ // &amp;lt;place test target here.&amp;gt; // }) func IsTestCallPanic(testFunc func()) (ok bool) { defer func() { if err := recover(); err == nil { ok = false } }() ok = true testFunc() return } // Test for test. func TestIsTestCallPanic(t *testing.T) { isCalled := IsTestCallPanic(func() { var i interface{} if i == nil { panic(&amp;quot;Hi, panic.&amp;quot;) } }) if !isCalled { t.Errorf(&amp;quot;failed.&amp;quot;) } }</description>
+    </item>
     
     <item>
       <title>Interfaceポインタの型エラー - golang</title>

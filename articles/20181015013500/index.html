@@ -63,14 +63,14 @@
 <h2 id="手順">手順</h2>
 <h3 id="1-salesforce-cliをインストール">1. Salesforce CLIをインストール</h3>
 <p>npmでインストールしました。</p>
-<pre><code class="language-shell">$ node --version
+<pre><code class="language-sh">$ node --version
 v9.1.0
 $ npm install -g sfdx-cli
 </code></pre>
 <p><a href="https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm">Salesforce CLIのインストール</a></p>
 <h3 id="2-apex取得">2. Apex取得</h3>
 <p>SandboxからApexClassをすべて取得。</p>
-<pre><code class="language-shell"># 1. Sandboxにログイン
+<pre><code class="language-sh"># 1. Sandboxにログイン
 # ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用）
 # ... -rでSandboxのログインURLを指定
 # ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定

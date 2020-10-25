@@ -57,12 +57,12 @@
       
       <div class="content sn-Content mt-5">
         <p>GoでsqliteにデータをInsertしようとしてエラー。</p>
-<pre><code class="language-shell">$ error table Balance has no column named price
+<pre><code class="language-sh">$ error table Balance has no column named price
 </code></pre>
 <p>Insertしているコードを見ても問題はない。</p>
 <p>カラムを確認すると……<br>
 2個目のカラムがおかしい。</p>
-<pre><code class="language-shell">$ sqlite3 ./some_db_file_name.sql
+<pre><code class="language-sh">$ sqlite3 ./some_db_file_name.sql
 $ PRAGMA table_info(Balance);
 0|time|DATETIME|1||1
 1|rate|FLOAT|0||0

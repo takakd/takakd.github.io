@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tips on taka👨🏻‍💻</title>
+    <link>https://takakd.github.io/tags/tips/</link>
+    <description>Recent content in tips on taka👨🏻‍💻</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>&amp;copy; taka 2018</copyright>
+    <lastBuildDate>Wed, 21 Oct 2020 05:22:43 +0900</lastBuildDate>
+    
+	<atom:link href="https://takakd.github.io/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>generate gomockでエラーが出た - golang</title>
+      <link>https://takakd.github.io/articles/20201021052243/</link>
+      <pubDate>Wed, 21 Oct 2020 05:22:43 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201021052243/</guid>
+      <description>gomockでエラー。とりあえず古いファイルを消して再実行すると解消できた。 % mockgen -source ./internal/app/usecase/xxx/repository.go -destination ./internal/app/usecase/xxx/repository_mock.go -package xxx -: found packages xxx (repository.go) and mock_updateproteinevent (repository_mock.go) in /Users/xxx/go/src/proteinreminder/internal/app/usecase/xxx 2020/10/21 04:21:56 Loading input failed: loading package failed # Delete % rm -rf ./internal/app/usecase/xxx/repository_mock.go # Run again and completed. % mockgen -source ./internal/app/usecase/xxx/repository.go -destination ./internal/app/usecase/xxx/repository_mock.go -package xxx</description>
+    </item>
+    
+  </channel>
+</rss>

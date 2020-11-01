@@ -7,10 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Thu, 01 Nov 2018 22:29:39 +0900</lastBuildDate>
-    
-	<atom:link href="https://takakd.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 01 Nov 2018 22:29:39 +0900</lastBuildDate><atom:link href="https://takakd.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>API Gateway統合レスポンスのヘッダーのマッピングで固定値を設定</title>
+      <link>https://takakd.github.io/articles/20201102010035/</link>
+      <pubDate>Mon, 02 Nov 2020 01:00:36 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201102010035/</guid>
+      <description>CloudFormation(.yaml)で、API Gatewayの統合レスポンスのヘッダーのマッピングで固定値を指定したい場合は、次のように書くとよい。 SomeMethod: Type: AWS::ApiGateway::Method Properties: HttpMethod: POST ... Integration: Type: AWS IntegrationHttpMethod: POST ... IntegrationResponses: - StatusCode: 200 SelectionPattern: &amp;quot;status:200&amp;quot; ResponseParameters: # OK method.response.header.X-STATIC-HEADER: &amp;quot;&#39;1&#39;&amp;quot; # NG method.response.header.X-STATIC-HEADER: 1 # NG method.response.header.X-STATIC-HEADER: &amp;quot;1&amp;quot; Reference https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration-integrationresponse.html#cfn-apigateway-method-integration-integrationresponse-responseparameters</description>
+    </item>
     
     <item>
       <title>SlackのEventAPIのリトライコールを防ぐ - golang</title>
@@ -270,7 +275,7 @@
       <pubDate>Wed, 17 Oct 2018 01:08:00 +0900</pubDate>
       
       <guid>https://takakd.github.io/articles/20181015013500/</guid>
-      <description>MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&amp;quot;A JavaScript error occurred in the main process&amp;rdquo; 試行錯誤すれば解消できるかもしれませんが、無理やり利用を続けるのも不毛そう。 素直に公式のSalesfoce CLIで取得しました。 手順 1. Salesforce CLIをインストール npmでインストールしました。 $ node --version v9.1.0 $ npm install -g sfdx-cli Salesforce CLIのインストール 2. Apex取得 SandboxからApexClassをすべて取得。 # 1. Sandboxにログイン # ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用） # ... -rでSandboxのログインURLを指定 # ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定 $ sfdx force:auth:web:login -a myprj-sand -r https://test.salesforce.com # ... ブラウザが起動して、Salesforceのログイン画面表示 # ... ログインする Successfully authorized &amp;lt;mail address&amp;gt;</description>
+      <description>MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&amp;quot;A JavaScript error occurred in the main process&amp;quot; 試行錯誤すれば解消できるかもしれませんが、無理やり利用を続けるのも不毛そう。 素直に公式のSalesfoce CLIで取得しました。 手順 1. Salesforce CLIをインストール npmでインストールしました。 $ node --version v9.1.0 $ npm install -g sfdx-cli Salesforce CLIのインストール 2. Apex取得 SandboxからApexClassをすべて取得。 # 1. Sandboxにログイン # ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用） # ... -rでSandboxのログインURLを指定 # ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定 $ sfdx force:auth:web:login -a myprj-sand -r https://test.salesforce.com # ... ブラウザが起動して、Salesforceのログイン画面表示 # ... ログインする Successfully authorized &amp;lt;mail address&amp;gt;</description>
     </item>
     
     <item>

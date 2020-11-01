@@ -7,10 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Thu, 06 Aug 2020 02:35:47 +0900</lastBuildDate>
-    
-	<atom:link href="https://takakd.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 02 Nov 2020 01:00:36 +0900</lastBuildDate><atom:link href="https://takakd.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>API Gateway統合レスポンスのヘッダーのマッピングで固定値を設定</title>
+      <link>https://takakd.github.io/articles/20201102010035/</link>
+      <pubDate>Mon, 02 Nov 2020 01:00:36 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201102010035/</guid>
+      <description>CloudFormation(.yaml)で、API Gatewayの統合レスポンスのヘッダーのマッピングで固定値を指定したい場合は、次のように書くとよい。 SomeMethod: Type: AWS::ApiGateway::Method Properties: HttpMethod: POST ... Integration: Type: AWS IntegrationHttpMethod: POST ... IntegrationResponses: - StatusCode: 200 SelectionPattern: &amp;quot;status:200&amp;quot; ResponseParameters: # OK method.response.header.X-STATIC-HEADER: &amp;quot;&#39;1&#39;&amp;quot; # NG method.response.header.X-STATIC-HEADER: 1 # NG method.response.header.X-STATIC-HEADER: &amp;quot;1&amp;quot; Reference https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-method-integration-integrationresponse.html#cfn-apigateway-method-integration-integrationresponse-responseparameters</description>
+    </item>
     
     <item>
       <title>AWS5資格の勉強ログ</title>

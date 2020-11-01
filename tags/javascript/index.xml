@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Sat, 13 Jan 2018 00:44:25 +0900</lastBuildDate>
-    
-	<atom:link href="https://takakd.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 13 Jan 2018 00:44:25 +0900</lastBuildDate><atom:link href="https://takakd.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>jQueryでDOM要素の検索速度を比較</title>
       <link>https://takakd.github.io/articles/20171217011236/</link>

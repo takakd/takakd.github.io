@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Fri, 23 Oct 2020 05:24:54 +0900</lastBuildDate>
-    
-	<atom:link href="https://takakd.github.io/tags/api/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 23 Oct 2020 05:24:54 +0900</lastBuildDate><atom:link href="https://takakd.github.io/tags/api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SlackのEventAPIのリトライコールを防ぐ - golang</title>
       <link>https://takakd.github.io/articles/20201023052454/</link>

@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://takakd.github.io/articles/20201102010035/</loc>
+    <lastmod>2020-11-02T01:00:36+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/aws/</loc>
+    <lastmod>2020-11-02T01:00:36+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/tags/</loc>
+    <lastmod>2020-11-02T01:00:36+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://takakd.github.io/</loc>
+    <lastmod>2020-11-02T01:00:36+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://takakd.github.io/tags/api/</loc>
     <lastmod>2020-10-23T05:24:54+09:00</lastmod>
   </url>
@@ -19,16 +39,6 @@
   
   <url>
     <loc>https://takakd.github.io/articles/20201023052454/</loc>
-    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://takakd.github.io/tags/</loc>
-    <lastmod>2020-10-23T05:24:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://takakd.github.io/</loc>
     <lastmod>2020-10-23T05:24:54+09:00</lastmod>
   </url>
   
@@ -65,11 +75,6 @@
   <url>
     <loc>https://takakd.github.io/tags/shell/</loc>
     <lastmod>2020-10-17T05:19:17+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://takakd.github.io/tags/aws/</loc>
-    <lastmod>2020-08-06T02:35:47+09:00</lastmod>
   </url>
   
   <url>

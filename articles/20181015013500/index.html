@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&quot;A JavaScript error occurred in the main" />
@@ -63,43 +56,41 @@
 <h2 id="手順">手順</h2>
 <h3 id="1-salesforce-cliをインストール">1. Salesforce CLIをインストール</h3>
 <p>npmでインストールしました。</p>
-<pre><code class="language-sh">$ node --version
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ node --version
 v9.1.0
 $ npm install -g sfdx-cli
-</code></pre>
-<p><a href="https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm">Salesforce CLIのインストール</a></p>
+</code></pre></div><p><a href="https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm">Salesforce CLIのインストール</a></p>
 <h3 id="2-apex取得">2. Apex取得</h3>
 <p>SandboxからApexClassをすべて取得。</p>
-<pre><code class="language-sh"># 1. Sandboxにログイン
-# ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用）
-# ... -rでSandboxのログインURLを指定
-# ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 1. Sandboxにログイン</span>
+<span style="color:#75715e"># ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用）</span>
+<span style="color:#75715e"># ... -rでSandboxのログインURLを指定</span>
+<span style="color:#75715e"># ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定</span>
 
 $ sfdx force:auth:web:login -a myprj-sand -r https://test.salesforce.com
 
-# ... ブラウザが起動して、Salesforceのログイン画面表示
+<span style="color:#75715e"># ... ブラウザが起動して、Salesforceのログイン画面表示</span>
 
-# ... ログインする
+<span style="color:#75715e"># ... ログインする</span>
 Successfully authorized &lt;mail address&gt; with org ID &lt;object id&gt;
 You may now close the browser
 
-# ... ブラウザ閉じる
+<span style="color:#75715e"># ... ブラウザ閉じる</span>
 
 
-# 2. Salesforce DX Project作成
-# ... Apex取得コマンド実行に、Projectが必要となるため作成
+<span style="color:#75715e"># 2. Salesforce DX Project作成</span>
+<span style="color:#75715e"># ... Apex取得コマンド実行に、Projectが必要となるため作成</span>
 $ sfdx force:project:create -n myprj
 
 
-# 3. Apex取得
-# ... Projectディレクトリに移動
+<span style="color:#75715e"># 3. Apex取得</span>
+<span style="color:#75715e"># ... Projectディレクトリに移動</span>
 $ cd myprj
-# ... Apexクラスのソースを全て取得
-# ... -uでエイリアス指定
-# ... -mで全ApexClass取得を指定
+<span style="color:#75715e"># ... Apexクラスのソースを全て取得</span>
+<span style="color:#75715e"># ... -uでエイリアス指定</span>
+<span style="color:#75715e"># ... -mで全ApexClass取得を指定</span>
 $ sfdx force:source:retirieve -u myprj-sand -m ApexClass
-</code></pre>
-<p><a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force.htm">CLIコマンド参考</a></p>
+</code></pre></div><p><a href="https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force.htm">CLIコマンド参考</a></p>
 <h2 id="補足">補足</h2>
 <h3 id="sfdx">SFDX</h3>
 <p>SalesforceCLIは、Salesforce Developer Experience（SFDX）という開発体制で真価を発揮するようです。</p>
@@ -152,14 +143,6 @@ $ sfdx force:source:retirieve -u myprj-sand -m ApexClass
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

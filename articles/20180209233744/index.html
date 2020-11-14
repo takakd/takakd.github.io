@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="VPCの勉強のため、よくある構成で設定を試しました。 構成 VPC test-vpc1(172.31.0.0/16) Private Subnet test-subnet-private(172.31.0.0/24) Public" />
@@ -198,43 +191,42 @@
 <dt>経路</dt>
 <dd>PC -&gt; (SSH) -&gt; 踏み台EC2 -&gt; (SSH) -&gt; Private EC2 -&gt; (NAT Gateway) -&gt; インターネット</dd>
 </dl>
-<pre><code class="language-sh"># 踏み台EC2にSSH接続
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 踏み台EC2にSSH接続</span>
 ssh -i public-ec2.pem ec2-user@&lt;踏み台EC2 Public IP&gt;
-Last login: Sat Jan 27 03:52:17 2018 from &lt;Your IP&gt;
+Last login: Sat Jan <span style="color:#ae81ff">27</span> 03:52:17 <span style="color:#ae81ff">2018</span> from &lt;Your IP&gt;
 
-       __|  __|_  )
-       _|  (     /   Amazon Linux AMI
-      ___|\___|___|
-
-https://aws.amazon.com/amazon-linux-ami/2017.09-release-notes/
-1 package(s) needed for security, out of 1 available
-Run &quot;sudo yum update&quot; to apply all updates.
-
-# ifconfig.coで自身のIP確認。
-[ec2-user@--- ~]$ curl ifconfig.co
-# &lt;踏み台EC2 Public IP&gt;が表示されればOK。
-
-# 踏み台EC2からPrivate subnet内のEC2に接続。
-[ec2-user@--- ~]$ ssh -i public-ec2.pem ec2-user@&lt;Private EC2のPrivate IP&gt;
-Last login: Sat Jan 27 03:53:05 2018 from &lt;踏み台EC2のPrivate IP&gt;
-
-       __|  __|_  )
-       _|  (     /   Amazon Linux AMI
-      ___|\___|___|
+       __|  __|_  <span style="color:#f92672">)</span>
+       _|  <span style="color:#f92672">(</span>     /   Amazon Linux AMI
+      ___|<span style="color:#ae81ff">\_</span>__|___|
 
 https://aws.amazon.com/amazon-linux-ami/2017.09-release-notes/
-1 package(s) needed for security, out of 1 available
-Run &quot;sudo yum update&quot; to apply all updates.
+<span style="color:#ae81ff">1</span> package<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span> needed <span style="color:#66d9ef">for</span> security, out of <span style="color:#ae81ff">1</span> available
+Run <span style="color:#e6db74">&#34;sudo yum update&#34;</span> to apply all updates.
 
-# IP確認
-[ec2-user@--- ~]$ curl ifconfig.co
+<span style="color:#75715e"># ifconfig.coで自身のIP確認。</span>
+<span style="color:#f92672">[</span>ec2-user@--- ~<span style="color:#f92672">]</span>$ curl ifconfig.co
+<span style="color:#75715e"># &lt;踏み台EC2 Public IP&gt;が表示されればOK。</span>
 
-# &lt;NAT GatewayのIP&gt;が表示されればOK。
-[ec2-user@--- ~]$ exit
+<span style="color:#75715e"># 踏み台EC2からPrivate subnet内のEC2に接続。</span>
+<span style="color:#f92672">[</span>ec2-user@--- ~<span style="color:#f92672">]</span>$ ssh -i public-ec2.pem ec2-user@&lt;Private EC2のPrivate IP&gt;
+Last login: Sat Jan <span style="color:#ae81ff">27</span> 03:53:05 <span style="color:#ae81ff">2018</span> from &lt;踏み台EC2のPrivate IP&gt;
+
+       __|  __|_  <span style="color:#f92672">)</span>
+       _|  <span style="color:#f92672">(</span>     /   Amazon Linux AMI
+      ___|<span style="color:#ae81ff">\_</span>__|___|
+
+https://aws.amazon.com/amazon-linux-ami/2017.09-release-notes/
+<span style="color:#ae81ff">1</span> package<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span> needed <span style="color:#66d9ef">for</span> security, out of <span style="color:#ae81ff">1</span> available
+Run <span style="color:#e6db74">&#34;sudo yum update&#34;</span> to apply all updates.
+
+<span style="color:#75715e"># IP確認</span>
+<span style="color:#f92672">[</span>ec2-user@--- ~<span style="color:#f92672">]</span>$ curl ifconfig.co
+
+<span style="color:#75715e"># &lt;NAT GatewayのIP&gt;が表示されればOK。</span>
+<span style="color:#f92672">[</span>ec2-user@--- ~<span style="color:#f92672">]</span>$ exit
 logout
 Connection to &lt;Private EC2のPrivate IP&gt; closed.
-</code></pre>
-<p><a href="https://aws.amazon.com/jp/aws-jp-introduction/">VPCの資料</a>を読んでいる時、ルーターはどこに配置される？カスタムルートテーブルは何にアタッチする？など、あまりイメージが付きませんでしたが、実際に設定してみると理解が深まりました。</p>
+</code></pre></div><p><a href="https://aws.amazon.com/jp/aws-jp-introduction/">VPCの資料</a>を読んでいる時、ルーターはどこに配置される？カスタムルートテーブルは何にアタッチする？など、あまりイメージが付きませんでしたが、実際に設定してみると理解が深まりました。</p>
 <p>やっぱり一度手を動かしてみると違いますね。</p>
 
         
@@ -277,14 +269,6 @@ Connection to &lt;Private EC2のPrivate IP&gt; closed.
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

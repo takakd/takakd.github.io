@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="AWSマネジメントコンソールを使う機会が増えてきました。 軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストール。 環境 macOS Sierra python 2.7.13 pip" />
@@ -73,59 +66,54 @@
 <h3 id="1-aws-cliのインストール">1. AWS CLIのインストール</h3>
 <p>ターミナルを起動して、pipでインストール。<br>
 <a href="http://docs.aws.amazon.com/ja_jp/general/latest/gr/rande.html">参考: Install</a></p>
-<pre><code class="language-sh">$ pip install awscli --upgrade --user
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ pip install awscli --upgrade --user
 ...
 ずらずらとログ出力される。
 ...
 ...
 
-# 完了後、awsを実行。
+<span style="color:#75715e"># 完了後、awsを実行。</span>
 $ aws
-# usageが出たらOK。
-usage: aws [options] &lt;command&gt; &lt;subcommand&gt; [&lt;subcommand&gt; ...] [parameters]
+<span style="color:#75715e"># usageが出たらOK。</span>
+usage: aws <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> &lt;command&gt; &lt;subcommand&gt; <span style="color:#f92672">[</span>&lt;subcommand&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>parameters<span style="color:#f92672">]</span>
 To see help text, you can run:
 
 aws help
 aws &lt;command&gt; help
 aws &lt;command&gt; &lt;subcommand&gt; help
 aws: error: too few arguments
-</code></pre>
-<h3 id="2-認証情報の設定">2. 認証情報の設定</h3>
+</code></pre></div><h3 id="2-認証情報の設定">2. 認証情報の設定</h3>
 <p>認証情報は実行時のコマンドライン引数や環境変数でも指定できますが、毎度指定するのも手間なので設定ファイルの方法を選択しました。
 <!-- raw HTML omitted -->参考: Configuration and Credential Files<!-- raw HTML omitted --></p>
-<pre><code class="language-sh"># ファイルの置き場所を作って
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># ファイルの置き場所を作って</span>
 $ mkdir ~/.aws
 
-# 認証ファイル作成
+<span style="color:#75715e"># 認証ファイル作成</span>
 touch ~/.aws/credentials
 
-# 環境設定ファイルも作成
+<span style="color:#75715e"># 環境設定ファイルも作成</span>
 touch ~/.aws/config
-</code></pre>
-<p>各ファイルの内容は次の通り。</p>
+</code></pre></div><p>各ファイルの内容は次の通り。</p>
 <p><strong>~/.aws/credentials</strong></p>
-<pre><code class="language-ini">[default]
-aws_access_key_id=&lt;アクセスキーID&gt;
-aws_secret_access_key=&lt;アクセスキーID作成時に表示できたシークレットキー&gt;
-</code></pre>
-<p>アクセスキーIDは下記で表示されているもの。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[default]</span>
+<span style="color:#a6e22e">aws_access_key_id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&lt;アクセスキーID&gt;</span>
+<span style="color:#a6e22e">aws_secret_access_key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&lt;アクセスキーID作成時に表示できたシークレットキー&gt;</span>
+</code></pre></div><p>アクセスキーIDは下記で表示されているもの。</p>
 <p><strong>~/.aws/config</strong></p>
-<pre><code class="language-ini">[default]
-region=ap-northeast-1
-output=json
-</code></pre>
-<p>初期設定リージョンは東京にしました。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[default]</span>
+<span style="color:#a6e22e">region</span><span style="color:#f92672">=</span><span style="color:#e6db74">ap-northeast-1</span>
+<span style="color:#a6e22e">output</span><span style="color:#f92672">=</span><span style="color:#e6db74">json</span>
+</code></pre></div><p>初期設定リージョンは東京にしました。
 <!-- raw HTML omitted -->リージョン名(サービス名の箇所)<!-- raw HTML omitted --></p>
 <p>これでインストール完了。</p>
 <h3 id="3-aws-cli実行確認">3. AWS CLI実行確認</h3>
 <p>試しにS3バケット一覧をAWS CLI経由で取得してみます。</p>
-<pre><code class="language-sh">$ aws s3 ls
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ aws s3 ls
 ...
 S3のバケット一覧が出るはず。
 ...
 ...
-</code></pre>
-<p>機会見ていろいろなコマンドを試していこう。</p>
+</code></pre></div><p>機会見ていろいろなコマンドを試していこう。</p>
 
         
       </div>
@@ -167,14 +155,6 @@ S3のバケット一覧が出るはず。
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

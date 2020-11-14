@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="こんなコメントを書いておりました。 class Hoge { /** * return greeting message string. * * @see" />
@@ -57,25 +50,23 @@
       
       <div class="content sn-Content mt-5">
         <p>こんなコメントを書いておりました。</p>
-<pre><code class="language-Java">class Hoge {
-    /**
-     * return greeting message string.
-     *
-     * @see https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html
-     * @return greeting message string
-     */
-    public String hello() {
-        return &quot;Hi&quot;;
-    }
-}
-</code></pre>
-<p><code>@see</code>の使い方を間違ってます。<br>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Hoge</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * return greeting message string.
+</span><span style="color:#75715e">     *
+</span><span style="color:#75715e">     * @see https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html
+</span><span style="color:#75715e">     * @return greeting message string
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hi&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><code>@see</code>の使い方を間違ってます。<br>
 正しくは次のようにhtmlタグが必要。</p>
-<pre><code class="language-Java">/**
- * @see &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI&quot;&gt;javadoc&lt;/a&gt;
- */
-</code></pre>
-<p><code>@see</code>というアノテーションの使い勝手がいいので、wikiやらメモでも「確認すること」の意味で、<code>@see http://〜</code>なんて書いてました。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * @see &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI&#34;&gt;javadoc&lt;/a&gt;
+</span><span style="color:#75715e"> */</span>
+</code></pre></div><p><code>@see</code>というアノテーションの使い勝手がいいので、wikiやらメモでも「確認すること」の意味で、<code>@see http://〜</code>なんて書いてました。
 そしていつの間にかコードにも……</p>
 <h2 id="参考">参考</h2>
 <p>Form 2.の箇所: <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI">https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI</a></p>
@@ -120,14 +111,6 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

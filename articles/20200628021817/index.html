@@ -14,22 +14,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
   
-  
-  
-  
-  
-  
-  
   <meta name="description"
-    content="package main import ( &quot;fmt&quot; ) // Truncate string. func TruncateString(str string, length int) string { if" />
+    content="package main import ( &#34;fmt&#34; ) // Truncate string. func TruncateString(str string, length int) string { if length" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -56,75 +49,73 @@
       </div>
       
       <div class="content sn-Content mt-5">
-        <pre><code class="language-golang">package main
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-// Truncate string.
-func TruncateString(str string, length int) string {
-    if length &lt;= 0 {
-        return &quot;&quot;
+<span style="color:#75715e">// Truncate string.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TruncateString</span>(<span style="color:#a6e22e">str</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">length</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">string</span> {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">length</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
     }
 
-    // This code cannot support Japanese
-    // orgLen := len(str)
-    // if orgLen &lt;= length {
-    //     return str
-    // }
-    // return str[:length]
-
-    // Support Japanese
-    // Ref: Range loops https://blog.golang.org/strings
-    truncated := &quot;&quot;
-    count := 0
-    for _, char := range str {
-	truncated += string(char)
-        count++
-        if count &gt;= length {
-            break
+    <span style="color:#75715e">// This code cannot support Japanese
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// orgLen := len(str)
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// if orgLen &lt;= length {
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//     return str
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// }
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// return str[:length]
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// Support Japanese
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Ref: Range loops https://blog.golang.org/strings
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">truncated</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#a6e22e">count</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">char</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">str</span> {
+	<span style="color:#a6e22e">truncated</span> <span style="color:#f92672">+=</span> string(<span style="color:#a6e22e">char</span>)
+        <span style="color:#a6e22e">count</span><span style="color:#f92672">++</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">length</span> {
+            <span style="color:#66d9ef">break</span>
         }
     }
-    return truncated
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">truncated</span>
 }
 
-// Main
-func main() {
-	dataList := [][]interface{} {
-		{&quot;drink&quot;, 3, &quot;dri&quot;},
-		{&quot;drink&quot;, 6, &quot;drink&quot;},
-		{&quot;drink&quot;, 0, &quot;&quot;},
-		{&quot;drink&quot;, -1, &quot;&quot;},
-		{&quot;drink&quot;, 100, &quot;drink&quot;},
-		{&quot;pub&quot;, 100, &quot;pub&quot;},
-		{&quot;こんにちは&quot;, 3, &quot;こんに&quot;},
+<span style="color:#75715e">// Main
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">dataList</span> <span style="color:#f92672">:=</span> [][]<span style="color:#66d9ef">interface</span>{} {
+		{<span style="color:#e6db74">&#34;drink&#34;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;dri&#34;</span>},
+		{<span style="color:#e6db74">&#34;drink&#34;</span>, <span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#34;drink&#34;</span>},
+		{<span style="color:#e6db74">&#34;drink&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;&#34;</span>},
+		{<span style="color:#e6db74">&#34;drink&#34;</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;&#34;</span>},
+		{<span style="color:#e6db74">&#34;drink&#34;</span>, <span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#34;drink&#34;</span>},
+		{<span style="color:#e6db74">&#34;pub&#34;</span>, <span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#34;pub&#34;</span>},
+		{<span style="color:#e6db74">&#34;こんにちは&#34;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;こんに&#34;</span>},
 	}
-	for _, dl := range dataList {
-		r := TruncateString(dl[0].(string), dl[1].(int))
-		if r != dl[2].(string) {
-			fmt.Printf(&quot;ERROR: got=%s, want=%s&quot;, r, dl[2].(string))
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">dl</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">dataList</span> {
+		<span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">TruncateString</span>(<span style="color:#a6e22e">dl</span>[<span style="color:#ae81ff">0</span>].(<span style="color:#66d9ef">string</span>), <span style="color:#a6e22e">dl</span>[<span style="color:#ae81ff">1</span>].(<span style="color:#66d9ef">int</span>))
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">dl</span>[<span style="color:#ae81ff">2</span>].(<span style="color:#66d9ef">string</span>) {
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;ERROR: got=%s, want=%s&#34;</span>, <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">dl</span>[<span style="color:#ae81ff">2</span>].(<span style="color:#66d9ef">string</span>))
 		}
 	}
 }
-</code></pre>
-<p><a href="https://play.golang.org/p/iakC8xxTlFI">https://play.golang.org/p/iakC8xxTlFI</a></p>
+</code></pre></div><p><a href="https://play.golang.org/p/iakC8xxTlFI">https://play.golang.org/p/iakC8xxTlFI</a></p>
 <p><strong>Reference:</strong><br>
 <a href="https://play.golang.org/p/EzvhWMljku">https://play.golang.org/p/EzvhWMljku</a></p>
 <p>次のコードはエラーが出る。</p>
-<pre><code class="language-golang">package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-func main() {
-	s := &quot;drink&quot;
-	r := s[:20] // error
-	fmt.Println(r)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;drink&#34;</span>
+	<span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>[:<span style="color:#ae81ff">20</span>] <span style="color:#75715e">// error
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">r</span>)
 }
-</code></pre>
-<p><a href="https://play.golang.org/p/7IfclYXADoW">https://play.golang.org/p/7IfclYXADoW</a></p>
+</code></pre></div><p><a href="https://play.golang.org/p/7IfclYXADoW">https://play.golang.org/p/7IfclYXADoW</a></p>
 
         
       </div>
@@ -166,14 +157,6 @@ func main() {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

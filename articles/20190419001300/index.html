@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="MacにPython3とvirtualenvを設定する手順です。 環境 macOS 10.14.4 インストール 1. Python3をインストール https://www.python.org/ からMac OS X用のインストーラをダウ" />
@@ -73,13 +66,11 @@ Installing collected packages: virtualenv
   The script virtualenv is installed in '/Users/takakd/Library/Python/3.7/bin' which is not on PATH.
   Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
 Successfully installed virtualenv-16.4.3
-</code></pre>
-<h3 id="3-インストール先ディレクトリをpathに追加">3. インストール先ディレクトリをPATHに追加</h3>
+</code></pre><h3 id="3-インストール先ディレクトリをpathに追加">3. インストール先ディレクトリをPATHに追加</h3>
 <pre><code># ~/.bash_profile
 
 PATH=&quot;/Users/takakd/Library/Python/3.7/bin:${PATH}&quot;
-</code></pre>
-<p>参考: <a href="https://virtualenv.pypa.io/en/latest/#">virtualenv</a></p>
+</code></pre><p>参考: <a href="https://virtualenv.pypa.io/en/latest/#">virtualenv</a></p>
 <h2 id="virtualenvの使用">virtualenvの使用</h2>
 <p>個別の仮想環境を作る。</p>
 <pre><code># 環境の情報を保持するディレクトリを作成
@@ -92,8 +83,7 @@ source ~/virtualenv/env1/bin/activate
 
 # 仮想環境から出る = 無効化
 deactivate
-</code></pre>
-<h2 id="補足">補足</h2>
+</code></pre><h2 id="補足">補足</h2>
 <p>pythonの細かいバージョンの変更をしたい場合は、pyenvで可能なようです。</p>
 
         
@@ -136,14 +126,6 @@ deactivate
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

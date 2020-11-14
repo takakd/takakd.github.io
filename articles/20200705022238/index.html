@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="APIGateway &#43; GoでLambdaのサンプルです。 仕様 エンドポイント: https://&lt;API" />
@@ -63,76 +56,72 @@
 <li>HTTPメソッド: GET</li>
 <li>パラメータ:</li>
 </ul>
-<pre><code class="language-json">{
-    &quot;text&quot;: &quot;string&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
 }
-</code></pre>
-<h2 id="lambdaハンドラ">Lambdaハンドラ</h2>
+</code></pre></div><h2 id="lambdaハンドラ">Lambdaハンドラ</h2>
 <p>引数をstructで定義。</p>
-<pre><code class="language-golang">package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;context&quot;
-	&quot;github.com/aws/aws-lambda-go/lambda&quot;
-	&quot;github.com/pkg/errors&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;context&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/aws/aws-lambda-go/lambda&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/pkg/errors&#34;</span>
 )
 
-// Ref: https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html
-
-// Receive arguments as struct.
-type Event struct {
-	Text string `json:&quot;text&quot;`
+<span style="color:#75715e">// Ref: https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Receive arguments as struct.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Event</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Text</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;text&#34;`</span>
 }
 
-func (e *Event) validate() bool {
-	valid := true
-	if e.Text == &quot;&quot; {
-		valid = false
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Event</span>) <span style="color:#a6e22e">validate</span>() <span style="color:#66d9ef">bool</span> {
+	<span style="color:#a6e22e">valid</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">true</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">Text</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+		<span style="color:#a6e22e">valid</span> = <span style="color:#66d9ef">false</span>
 	}
-	return valid
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">valid</span>
 }
 
-// Response
-type Response struct {
-	Message string `json:&quot;message&quot;`
+<span style="color:#75715e">// Response
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Message</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;message&#34;`</span>
 }
 
-// Lambda handler
-func HandleRequest(ctx context.Context, event Event) (Response, error) {
-	resp := Response{}
+<span style="color:#75715e">// Lambda handler
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">HandleRequest</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">event</span> <span style="color:#a6e22e">Event</span>) (<span style="color:#a6e22e">Response</span>, <span style="color:#66d9ef">error</span>) {
+	<span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Response</span>{}
 
-	if !event.validate() {
-		return resp, errors.Errorf(&quot;need text.&quot;)
+	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">validate</span>() {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;need text.&#34;</span>)
 	}
 
-	// Something to do you want here.
-	resp.Message = &quot;ok&quot;
+	<span style="color:#75715e">// Something to do you want here.
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Message</span> = <span style="color:#e6db74">&#34;ok&#34;</span>
 
-	return resp, nil
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">resp</span>, <span style="color:#66d9ef">nil</span>
 }
 
-// Main
-func main() {
-	lambda.Start(HandleRequest)
+<span style="color:#75715e">// Main
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">lambda</span>.<span style="color:#a6e22e">Start</span>(<span style="color:#a6e22e">HandleRequest</span>)
 }
-</code></pre>
-<h2 id="統合リクエスト---マッピングテンプレート">統合リクエスト - マッピングテンプレート</h2>
+</code></pre></div><h2 id="統合リクエスト---マッピングテンプレート">統合リクエスト - マッピングテンプレート</h2>
 <p>structに設定する値を追加。<br>
 ここでは<code>text</code>を設定しています。</p>
-<pre><code class="language-json">#set($allParams = $input.params())
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">#set($allParams</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">$input.params())</span>
 {
-    &quot;text&quot;: &quot;$input.params('text')&quot;,
-    &quot;body-json&quot; : $input.json('$'),
-...
+    <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;$input.params(&#39;text&#39;)&#34;</span>,
+    <span style="color:#f92672">&#34;body-json&#34;</span> : <span style="color:#960050;background-color:#1e0010">$input.json(&#39;$&#39;)</span>,
+<span style="color:#960050;background-color:#1e0010">...</span>
 }
-</code></pre>
-<h2 id="レスポンス">レスポンス</h2>
+</code></pre></div><h2 id="レスポンス">レスポンス</h2>
 <p>返ってくるレスポンス。</p>
-<pre><code class="language-json">{
-    &quot;message&quot;: &quot;ok&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>
 }
-</code></pre>
-
+</code></pre></div>
         
       </div>
       
@@ -173,14 +162,6 @@ func main() {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

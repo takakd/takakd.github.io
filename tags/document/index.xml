@@ -14,7 +14,7 @@
       <pubDate>Wed, 15 Apr 2020 00:02:15 +0900</pubDate>
       
       <guid>https://takakd.github.io/articles/20200415000215/</guid>
-      <description>こんなコメントを書いておりました。 class Hoge { /** * return greeting message string. * * @see https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html * @return greeting message string */ public String hello() { return &amp;quot;Hi&amp;quot;; } } @seeの使い方を間違ってます。 正しくは次のようにhtmlタグが必要。 /** * @see &amp;lt;a href=&amp;quot;https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI&amp;quot;&amp;gt;javadoc&amp;lt;/a&amp;gt; */ @seeというアノテーションの使い勝手がいいので、wikiやらメモでも「確認すること」の意味で、@see http://〜なんて書いてました。 そしていつの間にかコードにも…… 参考 Form 2.の箇所: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI</description>
+      <description>こんなコメントを書いておりました。 class Hoge { /** * return greeting message string. * * @see https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html * @return greeting message string */ public String hello() { return &amp;#34;Hi&amp;#34;; } } @seeの使い方を間違ってます。 正しくは次のようにhtmlタグが必要。 /** * @see &amp;lt;a href=&amp;#34;https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI&amp;#34;&amp;gt;javadoc&amp;lt;/a&amp;gt; */ @seeというアノテーションの使い勝手がいいので、wikiやらメモでも「確認すること」の意味で、@see http://〜なんて書いてました。 そしていつの間にかコードにも…… 参考 Form 2.の箇所: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDDIEDI</description>
     </item>
     
   </channel>

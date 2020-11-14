@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="json.Marshal はomitemptyが値型stringに設定されていれば空文字を出力する。 フィールド自体不要な場合は、ポインタ型stringにするといい。 package main import (" />
@@ -58,57 +51,55 @@
       <div class="content sn-Content mt-5">
         <p><code>json.Marshal</code> は<code>omitempty</code>が値型<code>string</code>に設定されていれば空文字を出力する。<br>
 フィールド自体不要な場合は、ポインタ型<code>string</code>にするといい。</p>
-<pre><code class="language-golang">package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;encoding/json&quot;
-	&quot;fmt&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-type ValueSlice struct {
-	Values []V `json:&quot;b,omitempty&quot;`
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ValueSlice</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Values</span> []<span style="color:#a6e22e">V</span> <span style="color:#e6db74">`json:&#34;b,omitempty&#34;`</span>
 }
 
-type PtrSlice struct {
-	Values []*V `json:&quot;b,omitempty&quot;`
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PtrSlice</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Values</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">V</span> <span style="color:#e6db74">`json:&#34;b,omitempty&#34;`</span>
 }
 
-type ValueStruct struct {
-	Value V `json:&quot;value,omitempty&quot;`
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ValueStruct</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Value</span> <span style="color:#a6e22e">V</span> <span style="color:#e6db74">`json:&#34;value,omitempty&#34;`</span>
 }
 
-type PtrStruct struct {
-	Value *V `json:&quot;value,omitempty&quot;`
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PtrStruct</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Value</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">V</span> <span style="color:#e6db74">`json:&#34;value,omitempty&#34;`</span>
 }
 
-type V struct {
-	Value string `json:&quot;value&quot;`
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">V</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Value</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;value&#34;`</span>
 }
 
-func main() {
-	v1 := &amp;ValueSlice{}
-	v2 := &amp;PtrSlice{}
-	v3 := &amp;ValueStruct{}
-	v4 := &amp;PtrStruct{}
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">v1</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ValueSlice</span>{}
+	<span style="color:#a6e22e">v2</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">PtrSlice</span>{}
+	<span style="color:#a6e22e">v3</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ValueStruct</span>{}
+	<span style="color:#a6e22e">v4</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">PtrStruct</span>{}
 
-	bv1, _ := json.Marshal(v1)
-	bv2, _ := json.Marshal(v2)
-	bv3, _ := json.Marshal(v3)
-	bv4, _ := json.Marshal(v4)
+	<span style="color:#a6e22e">bv1</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">v1</span>)
+	<span style="color:#a6e22e">bv2</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">v2</span>)
+	<span style="color:#a6e22e">bv3</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">v3</span>)
+	<span style="color:#a6e22e">bv4</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">v4</span>)
 
-	fmt.Printf(&quot;bv1: %v\n&quot;, string(bv1))
-	fmt.Printf(&quot;bv2: %v\n&quot;, string(bv2))
-	fmt.Printf(&quot;bv3: %v\n&quot;, string(bv3))
-	fmt.Printf(&quot;bv4: %v\n&quot;, string(bv4))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;bv1: %v\n&#34;</span>, string(<span style="color:#a6e22e">bv1</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;bv2: %v\n&#34;</span>, string(<span style="color:#a6e22e">bv2</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;bv3: %v\n&#34;</span>, string(<span style="color:#a6e22e">bv3</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;bv4: %v\n&#34;</span>, string(<span style="color:#a6e22e">bv4</span>))
 }
-</code></pre>
-<p>出力結果</p>
-<pre><code class="language-sh">bv1: {}
-bv2: {}
-bv3: {&quot;value&quot;:{&quot;value&quot;:&quot;&quot;}}
-bv4: {}
-</code></pre>
-<p><a href="https://play.golang.org/p/7XKphsEayCN">https://play.golang.org/p/7XKphsEayCN</a></p>
+</code></pre></div><p>出力結果</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bv1: <span style="color:#f92672">{}</span>
+bv2: <span style="color:#f92672">{}</span>
+bv3: <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;value&#34;</span>:<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;value&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">}}</span>
+bv4: <span style="color:#f92672">{}</span>
+</code></pre></div><p><a href="https://play.golang.org/p/7XKphsEayCN">https://play.golang.org/p/7XKphsEayCN</a></p>
 
         
       </div>
@@ -150,14 +141,6 @@ bv4: {}
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

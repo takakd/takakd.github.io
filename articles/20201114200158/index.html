@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="ブロックチェーンアプリケーション開発でおすすめの書籍を教えていただいたので読みました。 ブロックチェーンアプリケーション開発の教科書（リフロー版） 教科書というタイトル通り、実装方法だけではなくブロックチェーンの概要から実装に関する注意点ま" />
@@ -73,48 +66,44 @@
 Solidity構文に関する7.2から7.5は対象外です。</p>
 <h3 id="6143-gethの初期化処理">6.1.4.3: Gethの初期化処理</h3>
 <p>次のエラーが出ました。</p>
-<pre><code class="language-shell">Fatal: Failed to write genesis block: unsupported fork ordering: eip150Block not enabled, but eip155Block enabled at 0
-</code></pre>
-<p>6.1.4.1の<code>genesis.json</code>のフォーマットが変わったので、次のように変更します。</p>
-<pre><code class="language-json">{
-  &quot;config&quot;: {
-    &quot;chainId&quot;: 33,
-    &quot;homesteadBlock&quot;: 0,
-    &quot;eip150Block&quot;: 0,
-    &quot;eip155Block&quot;: 0,
-    &quot;eip158Block&quot;: 0,
-    &quot;byzantiumBlock&quot;: 0,
-    &quot;constantinopleBlock&quot;: 0,
-    &quot;petersburgBlock&quot;: 0,
-    &quot;istanbulBlock&quot;: 0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Fatal: Failed to write genesis block: unsupported fork ordering: eip150Block not enabled, but eip155Block enabled at <span style="color:#ae81ff">0</span>
+</code></pre></div><p>6.1.4.1の<code>genesis.json</code>のフォーマットが変わったので、次のように変更します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;config&#34;</span>: {
+    <span style="color:#f92672">&#34;chainId&#34;</span>: <span style="color:#ae81ff">33</span>,
+    <span style="color:#f92672">&#34;homesteadBlock&#34;</span>: <span style="color:#ae81ff">0</span>,
+    <span style="color:#f92672">&#34;eip150Block&#34;</span>: <span style="color:#ae81ff">0</span>,
+    <span style="color:#f92672">&#34;eip155Block&#34;</span>: <span style="color:#ae81ff">0</span>,
+    <span style="color:#f92672">&#34;eip158Block&#34;</span>: <span style="color:#ae81ff">0</span>,
+    <span style="color:#f92672">&#34;byzantiumBlock&#34;</span>: <span style="color:#ae81ff">0</span>,
+    <span style="color:#f92672">&#34;constantinopleBlock&#34;</span>: <span style="color:#ae81ff">0</span>,
+    <span style="color:#f92672">&#34;petersburgBlock&#34;</span>: <span style="color:#ae81ff">0</span>,
+    <span style="color:#f92672">&#34;istanbulBlock&#34;</span>: <span style="color:#ae81ff">0</span>
   },
-  &quot;alloc&quot;: {},
-  &quot;coinbase&quot;: &quot;0x0000000000000000000000000000000000000000&quot;,
-  &quot;difficulty&quot;: &quot;0x20000&quot;,
-  &quot;extraData&quot;: &quot;&quot;,
-  &quot;gasLimit&quot;: &quot;0x2fefd8&quot;,
-  &quot;nonce&quot;: &quot;0x0000000000000042&quot;,
-  &quot;mixhash&quot;: &quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;,
-  &quot;parentHash&quot;: &quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;,
-  &quot;timestamp&quot;: &quot;0x00&quot;
+  <span style="color:#f92672">&#34;alloc&#34;</span>: {},
+  <span style="color:#f92672">&#34;coinbase&#34;</span>: <span style="color:#e6db74">&#34;0x0000000000000000000000000000000000000000&#34;</span>,
+  <span style="color:#f92672">&#34;difficulty&#34;</span>: <span style="color:#e6db74">&#34;0x20000&#34;</span>,
+  <span style="color:#f92672">&#34;extraData&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+  <span style="color:#f92672">&#34;gasLimit&#34;</span>: <span style="color:#e6db74">&#34;0x2fefd8&#34;</span>,
+  <span style="color:#f92672">&#34;nonce&#34;</span>: <span style="color:#e6db74">&#34;0x0000000000000042&#34;</span>,
+  <span style="color:#f92672">&#34;mixhash&#34;</span>: <span style="color:#e6db74">&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span>,
+  <span style="color:#f92672">&#34;parentHash&#34;</span>: <span style="color:#e6db74">&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span>,
+  <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#e6db74">&#34;0x00&#34;</span>
 }
-</code></pre>
-<p><strong>Ref:</strong></p>
+</code></pre></div><p><strong>Ref:</strong></p>
 <ul>
 <li><a href="https://github.com/ethereum/go-ethereum/blob/feeccdf4ec1084b38dac112ff4f86809efd7c0e5/params/config.go#L71">https://github.com/ethereum/go-ethereum/blob/feeccdf4ec1084b38dac112ff4f86809efd7c0e5/params/config.go#L71</a></li>
 </ul>
 <h3 id="6158-ロックの解除">6.1.5.8: ロックの解除</h3>
 <p><code>personal.unlockAccount</code>でエラーがでました。</p>
-<pre><code class="language-shell">GoError: Error: account unlock with HTTP access is forbidden at web3.js:6347:37(47)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">GoError: Error: account unlock with HTTP access is forbidden at web3.js:6347:37<span style="color:#f92672">(</span>47<span style="color:#f92672">)</span>
         at native
-        at &lt;eval&gt;:1:24(6)
-</code></pre>
-<p>6.1.4.6のgeth起動コマンドに<code>--allow-insecure-unlock</code>を追加すると実行可能になります。</p>
-<pre><code class="language-shell">geth --networkid &quot;33&quot; --nodiscover --datadir $DATA_DIR --rpc --rpcaddr &quot;localhost&quot; --rpcport &quot;8545&quot; --rpccorsdomain &quot;*&quot; --rpcapi &quot;eth,net,web3,personal&quot; \
-    --allow-insecure-unlock \
-    --targetgaslimit &quot;20000000&quot; console 2&gt;&gt; ${DATA_DIR}/error.log
-</code></pre>
-<p>unlockはデフォルトで機能OFFに変更されたようです。</p>
+        at &lt;eval&gt;:1:24<span style="color:#f92672">(</span>6<span style="color:#f92672">)</span>
+</code></pre></div><p>6.1.4.6のgeth起動コマンドに<code>--allow-insecure-unlock</code>を追加すると実行可能になります。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">geth --networkid <span style="color:#e6db74">&#34;33&#34;</span> --nodiscover --datadir $DATA_DIR --rpc --rpcaddr <span style="color:#e6db74">&#34;localhost&#34;</span> --rpcport <span style="color:#e6db74">&#34;8545&#34;</span> --rpccorsdomain <span style="color:#e6db74">&#34;*&#34;</span> --rpcapi <span style="color:#e6db74">&#34;eth,net,web3,personal&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --allow-insecure-unlock <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --targetgaslimit <span style="color:#e6db74">&#34;20000000&#34;</span> console 2&gt;&gt; <span style="color:#e6db74">${</span>DATA_DIR<span style="color:#e6db74">}</span>/error.log
+</code></pre></div><p>unlockはデフォルトで機能OFFに変更されたようです。</p>
 <p><strong>Ref:</strong></p>
 <ul>
 <li><a href="https://github.com/ethereum/go-ethereum/pull/17037">https://github.com/ethereum/go-ethereum/pull/17037</a></li>
@@ -122,106 +111,97 @@ Solidity構文に関する7.2から7.5は対象外です。</p>
 </ul>
 <h3 id="7122-simplestoragesol">7.1.2.2: SimpleStorage.sol</h3>
 <p>Solidityのバージョンアップで記述方法が変わったので、次のように変更します。</p>
-<pre><code class="language-sol">// remix IDEサンプルsolidityコードのバージョンに合わせる
-pragma solidity &gt;=0.4.22 &lt;0.7.0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sol" data-lang="sol"><span style="color:#75715e">// remix IDEサンプルsolidityコードのバージョンに合わせる
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">4</span>.<span style="color:#ae81ff">22</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">7</span>.<span style="color:#ae81ff">0</span>;
 
-contract SimpleStorage {
-    uint storedData;
+<span style="color:#66d9ef">contract</span> SimpleStorage {
+    <span style="color:#66d9ef">uint</span> storedData;
 
-    // publicが必要
-    function set(uint x) public {
-        storedData = x;
+    <span style="color:#75715e">// publicが必要
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> set(<span style="color:#66d9ef">uint</span> x) <span style="color:#66d9ef">public</span> {
+        storedData <span style="color:#f92672">=</span> x;
     }
 
-    // publicが必要、constant廃止、viewに変える
-    function get() public view returns (uint) {
-        return storedData;
+    <span style="color:#75715e">// publicが必要、constant廃止、viewに変える
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> get() <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">uint</span>) {
+        <span style="color:#66d9ef">return</span> storedData;
     }
 }
-</code></pre>
-<h3 id="7129-simplestorageownersol">7.1.2.9: SimpleStorageOwner.sol</h3>
+</code></pre></div><h3 id="7129-simplestorageownersol">7.1.2.9: SimpleStorageOwner.sol</h3>
 <p>コンストラクタの書式が変わったので、次のように変更します。</p>
-<pre><code class="language-sol">pragma solidity &gt;=0.4.22 &lt;0.7.0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sol" data-lang="sol"><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">4</span>.<span style="color:#ae81ff">22</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">7</span>.<span style="color:#ae81ff">0</span>;
 
-contract SimpleStorageOwner {
-    uint storedData;
-    address owner;
+<span style="color:#66d9ef">contract</span> SimpleStorageOwner {
+    <span style="color:#66d9ef">uint</span> storedData;
+    <span style="color:#66d9ef">address</span> owner;
 
-    // コンストラクタの記述が、construct() publicに変更
-    constructor() public {
-        owner = msg.sender;
+    <span style="color:#75715e">// コンストラクタの記述が、construct() publicに変更
+</span><span style="color:#75715e"></span>    constructor() <span style="color:#66d9ef">public</span> {
+        owner <span style="color:#f92672">=</span> msg.sender;
     }
-    // ...
-}
-</code></pre>
-<p><strong>Ref:</strong></p>
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p><strong>Ref:</strong></p>
 <ul>
 <li><a href="https://solidity.readthedocs.io/en/v0.5.3/050-breaking-changes.html?highlight=constructor">https://solidity.readthedocs.io/en/v0.5.3/050-breaking-changes.html?highlight=constructor</a></li>
 </ul>
 <h3 id="8162-metacoinsol">8.1.6.2: MetaCoin.sol</h3>
 <p>Solidityのバージョンアップで記述方法が変わったのですが、次のコマンドで取得するコードを実行すればOKでした。</p>
-<pre><code class="language-shell">$ truffle unbox metacoin
-</code></pre>
-<h3 id="8168-metacoinを変数に保存する">8.1.6.8: MetaCoinを変数に保存する</h3>
-<pre><code class="language-shell">truffle(develop)&gt; m = await MetaCoin.at(&quot;&lt;address&gt;&quot;)
-</code></pre>
-<p><code>at</code>は<code>Promise</code>を返すようになったので<code>await</code> or コールバックで受け取ります。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ truffle unbox metacoin
+</code></pre></div><h3 id="8168-metacoinを変数に保存する">8.1.6.8: MetaCoinを変数に保存する</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">truffle<span style="color:#f92672">(</span>develop<span style="color:#f92672">)</span>&gt; m <span style="color:#f92672">=</span> await MetaCoin.at<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&lt;address&gt;&#34;</span><span style="color:#f92672">)</span>
+</code></pre></div><p><code>at</code>は<code>Promise</code>を返すようになったので<code>await</code> or コールバックで受け取ります。</p>
 <p><strong>Ref:</strong></p>
 <ul>
 <li><a href="https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts#use-a-contract-at-a-specific-address">https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts#use-a-contract-at-a-specific-address</a></li>
 </ul>
 <p>また、8.1.6.7の出力形式が変わったので、コントラクトのアドレスは<code>contract address:</code>の値を使用します。</p>
-<pre><code class="language-shell">Replacing 'MetaCoin'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Replacing <span style="color:#e6db74">&#39;MetaCoin&#39;</span>
    --------------------
    &gt; transaction hash:    0xdf84b6dc0debb81e22284bbc8b214c27a9c5b18b76e5ea9baef60c33bc3916b1
-   &gt; Blocks: 0            Seconds: 0
+   &gt; Blocks: <span style="color:#ae81ff">0</span>            Seconds: <span style="color:#ae81ff">0</span>
    &gt; contract address:    0x1dA8f51aad5Eb8B2997AA9dc0FFD838900A2CA1C
-   &gt; block number:        9
-</code></pre>
-<h3 id="8169-getbalanceの呼び出し">8.1.6.9: getBalanceの呼び出し</h3>
+   &gt; block number:        <span style="color:#ae81ff">9</span>
+</code></pre></div><h3 id="8169-getbalanceの呼び出し">8.1.6.9: getBalanceの呼び出し</h3>
 <p><code>web3.eth.getAccounts</code>は<code>Promise</code>を返すようになったので<code>await</code> or コールバックで受け取ります。<br>
 8.1.6.11 - 8.1.6.17で<code>web3.eth.getAccounts</code>を使用しているところも同様に<code>accounts[&lt;index&gt;]</code>を指定します。</p>
-<pre><code class="language-shell">truffle(develop)&gt; accounts = await web3.eth.getAccounts()
-truffle(develop)&gt; m.getBalance(accounts[0])
-</code></pre>
-<p><strong>Ref:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">truffle<span style="color:#f92672">(</span>develop<span style="color:#f92672">)</span>&gt; accounts <span style="color:#f92672">=</span> await web3.eth.getAccounts<span style="color:#f92672">()</span>
+truffle<span style="color:#f92672">(</span>develop<span style="color:#f92672">)</span>&gt; m.getBalance<span style="color:#f92672">(</span>accounts<span style="color:#f92672">[</span>0<span style="color:#f92672">])</span>
+</code></pre></div><p><strong>Ref:</strong></p>
 <ul>
 <li><a href="https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts#making-a-transaction">https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts#making-a-transaction</a></li>
 </ul>
 <h3 id="8221-openzeppelinのインストール">8.2.2.1: OpenZeppelinのインストール</h3>
 <p>zeppelin-solidityはdeprecatedになりました。代わりにopenzeppelin-contractsを使用します。</p>
-<pre><code class="language-shell">$ npm init -f 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ npm init -f 
 $ npm install @openzeppelin/contracts
-</code></pre>
-<p><strong>Ref:</strong></p>
+</code></pre></div><p><strong>Ref:</strong></p>
 <ul>
 <li><a href="https://www.npmjs.com/package/zeppelin-solidity">https://www.npmjs.com/package/zeppelin-solidity</a></li>
 </ul>
 <h3 id="8231-トークンのコントラクト">8.2.3.1: トークンのコントラクト</h3>
 <p>openzeppelin-contractsを使用するため記述が変わります。次のように変更します。</p>
-<pre><code class="language-sol">pragma solidity &gt;=0.5.16 &lt;0.8.0;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sol" data-lang="sol"><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">16</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8</span>.<span style="color:#ae81ff">0</span>;
 
-import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;@openzeppelin/contracts/token/ERC20/ERC20.sol&#34;</span>;
 
-// https://docs.openzeppelin.com/contracts/2.x/erc20-supply
-contract DappsToken is ERC20 {
-    string public name = &quot;Dappstoken&quot;;
-    string public symbol = &quot;DTKN&quot;;
-    uint public decimals = 18;
+<span style="color:#75715e">// https://docs.openzeppelin.com/contracts/2.x/erc20-supply
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">contract</span> DappsToken <span style="color:#66d9ef">is</span> ERC20 {
+    <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">public</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Dappstoken&#34;</span>;
+    <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">public</span> symbol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;DTKN&#34;</span>;
+    <span style="color:#66d9ef">uint</span> <span style="color:#66d9ef">public</span> decimals <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;
 
-    constructor(uint256 initialSupply) public {
+    constructor(<span style="color:#66d9ef">uint256</span> initialSupply) <span style="color:#66d9ef">public</span> {
         _mint(msg.sender, initialSupply);
 
-        // 8.3.2.15を実行するときは10e18を追加
-        //_mint(msg.sender, initialSupply * (10 ** 18));
-    }
+        <span style="color:#75715e">// 8.3.2.15を実行するときは10e18を追加
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//_mint(msg.sender, initialSupply * (10 ** 18));
+</span><span style="color:#75715e"></span>    }
 }
-</code></pre>
-<h3 id="8243-マイグレーションの実行">8.2.4.3: マイグレーションの実行</h3>
+</code></pre></div><h3 id="8243-マイグレーションの実行">8.2.4.3: マイグレーションの実行</h3>
 <p>8.1.6.8同様に<code>await</code>を使用します。</p>
-<pre><code class="language-shell">truffle(develop)&gt; dappsToken = await DappsToken.at(DappsToken.address)
-</code></pre>
-<h3 id="8313-trufflejs">8.3.1.3: truffle.js</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">truffle<span style="color:#f92672">(</span>develop<span style="color:#f92672">)</span>&gt; dappsToken <span style="color:#f92672">=</span> await DappsToken.at<span style="color:#f92672">(</span>DappsToken.address<span style="color:#f92672">)</span>
+</code></pre></div><h3 id="8313-trufflejs">8.3.1.3: truffle.js</h3>
 <p><code>networks.development.network_id</code>はgethの<code>run</code>コマンドで指定している<code>--networkid</code>と同じ値を指定します。</p>
 <h3 id="8327-matemask-ether-faucetでのトランザクション発行">8.3.2.7: MateMask Ether Faucetでのトランザクション発行</h3>
 <p>エラーが出てEtherを取得できませんでした。取得は別サイトでも可能なのでそれを利用します。いくつかあるようですが以下のサイトで取得できました。</p>
@@ -234,77 +214,70 @@ contract DappsToken is ERC20 {
 <p>truffleのバージョンアップで記述方法が変わったので、npmモジュールを追加して、コードを次のように変更します。</p>
 <p><strong>@truffle/hdwallet-providerモジュールの追加</strong></p>
 <p>truffle-config.jsで使用するモジュールを追加します。</p>
-<pre><code class="language-shell">$ npm install @truffle/hdwallet-provider
-</code></pre>
-<p><strong>.secret</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ npm install @truffle/hdwallet-provider
+</code></pre></div><p><strong>.secret</strong></p>
 <p>認証情報を<code>.secret</code>に定義します。MetaMaskで作成したアカウントのニーモニックをスペース区切りで入力します。</p>
-<pre><code class="language-ini">&lt;nemonic1&gt; &lt;nemonic2&gt; &lt;nemonic3&gt; ...
-</code></pre>
-<p><strong>truffle-config.js</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">&lt;nemonic1&gt; &lt;nemonic2&gt; &lt;nemonic3&gt; ...</span>
+</code></pre></div><p><strong>truffle-config.js</strong></p>
 <p>ファイル名が<code>truffle.js</code>から<code>truffle-config.js</code>に変わりました。<br>
 <code>HDWalletProvider</code>に渡すURLに<code>accessToken</code>ではなく<code>PROJECT SECRET</code>を渡します。<code>PROJECT SECRET</code>は<a href="https://infura.io">Infura</a>で作成したプロジェクトで取得できます。</p>
-<pre><code class="language-js">const HDWalletProvider = require('@truffle/hdwallet-provider');
-const fs = require('fs');
-const mnemonic = fs.readFileSync(&quot;.secret&quot;).toString().trim();
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HDWalletProvider</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;@truffle/hdwallet-provider&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;fs&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mnemonic</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#e6db74">&#34;.secret&#34;</span>).<span style="color:#a6e22e">toString</span>().<span style="color:#a6e22e">trim</span>();
 
-module.exports = {
-  networks: {
-    development: {
-     host: &quot;localhost&quot;,     // Localhost (default: none)
-     port: 8545,            // Standard Ethereum port (default: none)
-     network_id: &quot;33&quot;,       // Any network (default: none)
-    },
-    ropsten: {
-      provider: () =&gt; new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/&lt;Infura PROJECT SECRET&gt;`),
-      network_id: 3,       // Ropsten's id
-      gas: 5500000,        // Ropsten has a lower block limit than mainnet
-      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-      skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-    },
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">networks</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">development</span><span style="color:#f92672">:</span> {
+     <span style="color:#a6e22e">host</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;localhost&#34;</span>,     <span style="color:#75715e">// Localhost (default: none)
+</span><span style="color:#75715e"></span>     <span style="color:#a6e22e">port</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">8545</span>,            <span style="color:#75715e">// Standard Ethereum port (default: none)
+</span><span style="color:#75715e"></span>     <span style="color:#a6e22e">network_id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;33&#34;</span>,       <span style="color:#75715e">// Any network (default: none)
+</span><span style="color:#75715e"></span>    },
+    <span style="color:#a6e22e">ropsten</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">provider</span><span style="color:#f92672">:</span> () =&gt; <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">HDWalletProvider</span>(<span style="color:#a6e22e">mnemonic</span>, <span style="color:#e6db74">`https://ropsten.infura.io/v3/&lt;Infura PROJECT SECRET&gt;`</span>),
+      <span style="color:#a6e22e">network_id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,       <span style="color:#75715e">// Ropsten&#39;s id
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">gas</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5500000</span>,        <span style="color:#75715e">// Ropsten has a lower block limit than mainnet
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">confirmations</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,    <span style="color:#75715e">// # of confs to wait between deployments. (default: 0)
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">timeoutBlocks</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">200</span>,  <span style="color:#75715e">// # of blocks before a deployment times out  (minimum/default: 50)
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">skipDryRun</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>     <span style="color:#75715e">// Skip dry run before migrations? (default: false for public nets )
+</span><span style="color:#75715e"></span>    },
   },
   ...
 };
-</code></pre>
-<h3 id="83214-83215">8.3.2.14, 8.3.2.15</h3>
+</code></pre></div><h3 id="83214-83215">8.3.2.14, 8.3.2.15</h3>
 <p><code>migrate</code>で<code>initialSupply</code>のオーバーフローエラーが出るので、Contract側で1e18するように変更します。</p>
 <p><strong>2_deploy_dapps_token.js</strong></p>
-<pre><code class="language-js">const DappsToken = artifacts.require(&quot;./Dappstoken.sol&quot;);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">DappsToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">artifacts</span>.<span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./Dappstoken.sol&#34;</span>);
 
-module.exports = function(deployer){
-    const initialSupply = 1000;
-    // ここでは1000を渡す
-    deployer.deploy(DappsToken, initialSupply, {
-        gas: 2000000
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">deployer</span>){
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialSupply</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>;
+    <span style="color:#75715e">// ここでは1000を渡す
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">deployer</span>.<span style="color:#a6e22e">deploy</span>(<span style="color:#a6e22e">DappsToken</span>, <span style="color:#a6e22e">initialSupply</span>, {
+        <span style="color:#a6e22e">gas</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2000000</span>
     });
 }
-</code></pre>
-<p><strong>DappsToken.sol</strong></p>
-<pre><code class="language-sol">pragma solidity &gt;=0.5.16 &lt;0.8.0;
+</code></pre></div><p><strong>DappsToken.sol</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sol" data-lang="sol"><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">16</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8</span>.<span style="color:#ae81ff">0</span>;
 
-import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;@openzeppelin/contracts/token/ERC20/ERC20.sol&#34;</span>;
 
-// https://docs.openzeppelin.com/contracts/2.x/erc20-supply
-contract DappsToken is ERC20 {
-    string public name = &quot;Dappstoken&quot;;
-    string public symbol = &quot;DTKN&quot;;
-    uint public decimals = 18;
+<span style="color:#75715e">// https://docs.openzeppelin.com/contracts/2.x/erc20-supply
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">contract</span> DappsToken <span style="color:#66d9ef">is</span> ERC20 {
+    <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">public</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Dappstoken&#34;</span>;
+    <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">public</span> symbol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;DTKN&#34;</span>;
+    <span style="color:#66d9ef">uint</span> <span style="color:#66d9ef">public</span> decimals <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;
 
-    constructor(uint256 initialSupply) public {
-        // ここでdecimalsに合わせ、1e18する
-        _mint(msg.sender, initialSupply * (10 ** 18));
+    constructor(<span style="color:#66d9ef">uint256</span> initialSupply) <span style="color:#66d9ef">public</span> {
+        <span style="color:#75715e">// ここでdecimalsに合わせ、1e18する
+</span><span style="color:#75715e"></span>        _mint(msg.sender, initialSupply <span style="color:#f92672">*</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">18</span>));
     }
 }
-</code></pre>
-<h3 id="83220-変数にトークンを設定">8.3.2.20: 変数にトークンを設定</h3>
+</code></pre></div><h3 id="83220-変数にトークンを設定">8.3.2.20: 変数にトークンを設定</h3>
 <p>overflowで失敗するので<code>web3.utils.toBN</code>で変換した値を渡します。</p>
-<pre><code class="language-shell">truffle(ropsten)&gt; d.transfer(“&lt;receiver address&gt;”, web3.utils.toBN(1e18))
-</code></pre>
-<h3 id="83221-残高の確認">8.3.2.21: 残高の確認</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">truffle<span style="color:#f92672">(</span>ropsten<span style="color:#f92672">)</span>&gt; d.transfer<span style="color:#f92672">(</span>“&lt;receiver address&gt;”, web3.utils.toBN<span style="color:#f92672">(</span>1e18<span style="color:#f92672">))</span>
+</code></pre></div><h3 id="83221-残高の確認">8.3.2.21: 残高の確認</h3>
 <p>残高が<code>word</code>に値を分割して表示されます。次のように表示すると一つの値で表示できます。</p>
-<pre><code class="language-shell">truffle(ropsten)&gt; d.totalSupply().then(result =&gt; {console.log(result.toString())})
-</code></pre>
-<h2 id="まとめ">まとめ</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">truffle<span style="color:#f92672">(</span>ropsten<span style="color:#f92672">)</span>&gt; d.totalSupply<span style="color:#f92672">()</span>.then<span style="color:#f92672">(</span>result <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>console.log<span style="color:#f92672">(</span>result.toString<span style="color:#f92672">())})</span>
+</code></pre></div><h2 id="まとめ">まとめ</h2>
 <p>Solidityや関連ライブラリのバージョンアップに伴い、コードのフォーマットが大きく変化していることで、ブロックチェーン関連技術の変化の速さを実感しますね。<br>
 調べていると、もうここまで開発が進んでいるのかという印象も。</p>
 
@@ -348,14 +321,6 @@ contract DappsToken is ERC20 {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

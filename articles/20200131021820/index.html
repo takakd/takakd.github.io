@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="GoでsqliteにデータをInsertしようとしてエラー。 $ error table Balance has no column named price Insertしているコードを見ても問題はない。 カラムを確認すると…… 2個目のカ" />
@@ -57,30 +50,27 @@
       
       <div class="content sn-Content mt-5">
         <p>GoでsqliteにデータをInsertしようとしてエラー。</p>
-<pre><code class="language-sh">$ error table Balance has no column named price
-</code></pre>
-<p>Insertしているコードを見ても問題はない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ error table Balance has no column named price
+</code></pre></div><p>Insertしているコードを見ても問題はない。</p>
 <p>カラムを確認すると……<br>
 2個目のカラムがおかしい。</p>
-<pre><code class="language-sh">$ sqlite3 ./some_db_file_name.sql
-$ PRAGMA table_info(Balance);
-0|time|DATETIME|1||1
-1|rate|FLOAT|0||0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sqlite3 ./some_db_file_name.sql
+$ PRAGMA table_info<span style="color:#f92672">(</span>Balance<span style="color:#f92672">)</span>;
+0|time|DATETIME|1<span style="color:#f92672">||</span><span style="color:#ae81ff">1</span>
+1|rate|FLOAT|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
 2|half|FLOAT
-        price FLOAT|0||0
-3|total|FLOAT|0||0
-</code></pre>
-<p>CREATE TABLEを確認するとtypoでした。</p>
-<pre><code class="language-golang">c := fmt.Sprintf(`
-CREATE TABLE IF NOT EXISTS %s (
-	time DATETIME PRIMARY KEY NOT NULL,
-	rate FLOAT,
-	half FLOAT
-	price FLOAT,
-	total FLOAT)`, Balance)
-DbConnection.Exec(c)
-</code></pre>
-
+        price FLOAT|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+3|total|FLOAT|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</code></pre></div><p>CREATE TABLEを確認するとtypoでした。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">`
+</span><span style="color:#e6db74">CREATE TABLE IF NOT EXISTS %s (
+</span><span style="color:#e6db74">	time DATETIME PRIMARY KEY NOT NULL,
+</span><span style="color:#e6db74">	rate FLOAT,
+</span><span style="color:#e6db74">	half FLOAT
+</span><span style="color:#e6db74">	price FLOAT,
+</span><span style="color:#e6db74">	total FLOAT)`</span>, <span style="color:#a6e22e">Balance</span>)
+<span style="color:#a6e22e">DbConnection</span>.<span style="color:#a6e22e">Exec</span>(<span style="color:#a6e22e">c</span>)
+</code></pre></div>
         
       </div>
       
@@ -121,14 +111,6 @@ DbConnection.Exec(c)
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

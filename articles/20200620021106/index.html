@@ -14,22 +14,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
   
-  
-  
-  
-  
-  
-  
   <meta name="description"
-    content="params := url.Values{ &quot;keyword&quot;: {&quot;some&quot;}, } reqUrl := &quot;https://yourendpoint.example.com?&quot;" />
+    content="params := url.Values{ &#34;keyword&#34;: {&#34;some&#34;}, } reqUrl := &#34;https://yourendpoint.example.com?&#34; &#43;" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -56,12 +49,11 @@
       </div>
       
       <div class="content sn-Content mt-5">
-        <pre><code class="language-golang">params := url.Values{
-    &quot;keyword&quot;: {&quot;some&quot;},
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#a6e22e">params</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Values</span>{
+    <span style="color:#e6db74">&#34;keyword&#34;</span>: {<span style="color:#e6db74">&#34;some&#34;</span>},
 }
-reqUrl := &quot;https://yourendpoint.example.com?&quot; + params.Encode()
-</code></pre>
-<h2 id="reference">Reference</h2>
+<span style="color:#a6e22e">reqUrl</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;https://yourendpoint.example.com?&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">Encode</span>()
+</code></pre></div><h2 id="reference">Reference</h2>
 <p><a href="https://golang.org/pkg/net/url/#URL.Query">https://golang.org/pkg/net/url/#URL.Query</a></p>
 
         
@@ -104,14 +96,6 @@ reqUrl := &quot;https://yourendpoint.example.com?&quot; + params.Encode()
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

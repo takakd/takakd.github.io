@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="vimで複数行の文字列を1行のCSVにする方法です。 エディタで簡単なSQLのIN句を作成するときによく使います。 元のデータ 1134 1373 3985 4588 Ctrl &#43; Vで先頭に&#39;を入れる。 &#39;1134 &#39;1373 &#39;3985" />
@@ -63,26 +56,21 @@
 1373
 3985
 4588
-</code></pre>
-<p><code>Ctrl + V</code>で先頭に<code>'</code>を入れる。</p>
+</code></pre><p><code>Ctrl + V</code>で先頭に<code>'</code>を入れる。</p>
 <pre><code>'1134
 '1373
 '3985
 '4588
-</code></pre>
-<p><code>Ctrl + V</code>の後、<code>$,A</code>して、<code>',</code>を入れる。</p>
+</code></pre><p><code>Ctrl + V</code>の後、<code>$,A</code>して、<code>',</code>を入れる。</p>
 <pre><code>'1134',
 '1373',
 '3985',
 '4588',
-</code></pre>
-<p>全行を<code>j</code>で選択して<code>J</code>で1行へ。</p>
+</code></pre><p>全行を<code>j</code>で選択して<code>J</code>で1行へ。</p>
 <pre><code>'1134', '1373', '3985', '4588', 
-</code></pre>
-<p>末尾の<code>',</code>を削除して、前後に<code>()</code>を入れて完成。</p>
+</code></pre><p>末尾の<code>',</code>を削除して、前後に<code>()</code>を入れて完成。</p>
 <pre><code>('1134', '1373', '3985', '4588')
-</code></pre>
-<p>スクリプトやコマンドを組み合わせてワンラインで書けそうな気もしますが、ややこしくなりそうなので、いつもこのようなコマンドを実行して整形しています。</p>
+</code></pre><p>スクリプトやコマンドを組み合わせてワンラインで書けそうな気もしますが、ややこしくなりそうなので、いつもこのようなコマンドを実行して整形しています。</p>
 
         
       </div>
@@ -124,14 +112,6 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="一部のディレクトリのみBasic認証したいケースがあり、.htaccessで設定しました。 前提 Apache 2.4 .htaccess使用可能 .htaccess 次の通り。 &lt;Files ~" />
@@ -64,45 +57,44 @@
 </ul>
 <h2 id="htaccess">.htaccess</h2>
 <p>次の通り。</p>
-<pre><code class="language-apache">&lt;Files ~ &quot;^\.(htpasswd|htaccess)$&quot;&gt;
-  Require all denied
-&lt;/Files&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-apache" data-lang="apache"><span style="color:#f92672">&lt;Files</span> <span style="color:#e6db74">~ &#34;^\.(htpasswd|htaccess)$&#34;</span><span style="color:#f92672">&gt;</span>
+  Require <span style="color:#66d9ef">all</span> denied
+<span style="color:#f92672">&lt;/Files&gt;</span>
 
-&lt;Files ~ &quot;^(?!\.htpasswd|\.htaccess).*&quot;&gt;
-  Require all denied
+<span style="color:#f92672">&lt;Files</span> <span style="color:#e6db74">~ &#34;^(?!\.htpasswd|\.htaccess).*&#34;</span><span style="color:#f92672">&gt;</span>
+  Require <span style="color:#66d9ef">all</span> denied
 
-  # このURLは認証をかけたい
-  SetEnvIf Request_URI &quot;/api/something.*&quot; urlEndpoint
+  <span style="color:#75715e"># このURLは認証をかけたい</span>
+  SetEnvIf Request_URI <span style="color:#e6db74">&#34;/api/something.*&#34;</span> urlEndpoint
 
-  &lt;RequireAll&gt;
+  <span style="color:#f92672">&lt;RequireAll&gt;</span>
 
     AuthType Basic
-    AuthName &quot;id, pass.&quot;
-    AuthUserFile  /some/directory/.htpasswd
-    AuthGroupfile /dev/null
+    AuthName <span style="color:#e6db74">&#34;id, pass.&#34;</span>
+    AuthUserFile  <span style="color:#e6db74">/some/directory/.htpasswd</span>
+    AuthGroupfile <span style="color:#e6db74">/dev/null</span>
 
-    Require all granted
+    Require <span style="color:#66d9ef">all</span> granted
 
-    &lt;RequireAny&gt;
+    <span style="color:#f92672">&lt;RequireAny&gt;</span>
 
-    # Basic認証必要
-    &lt;RequireAll&gt;
+    <span style="color:#75715e"># Basic認証必要</span>
+    <span style="color:#f92672">&lt;RequireAll&gt;</span>
       Require valid-user
       Require env urlEndpoint
-    &lt;/RequireAll&gt;
+    <span style="color:#f92672">&lt;/RequireAll&gt;</span>
 
-    # それ以外は通常アクセス可能
-    &lt;RequireAll&gt;
-      Require all granted
+    <span style="color:#75715e"># それ以外は通常アクセス可能</span>
+    <span style="color:#f92672">&lt;RequireAll&gt;</span>
+      Require <span style="color:#66d9ef">all</span> granted
       Require not env urlEndpoint
-    &lt;/RequireAll&gt;
+    <span style="color:#f92672">&lt;/RequireAll&gt;</span>
 
-    &lt;/RequireAny&gt;
+    <span style="color:#f92672">&lt;/RequireAny&gt;</span>
 
-  &lt;/RequireAll&gt;
-&lt;/Files&gt;
-</code></pre>
-<p>Apache2.2, 2.4環境を行き来すると、間違ってallow, denyで設定を書いてしまったり。
+  <span style="color:#f92672">&lt;/RequireAll&gt;</span>
+<span style="color:#f92672">&lt;/Files&gt;</span>
+</code></pre></div><p>Apache2.2, 2.4環境を行き来すると、間違ってallow, denyで設定を書いてしまったり。
 気をつけないと。</p>
 
         
@@ -145,14 +137,6 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

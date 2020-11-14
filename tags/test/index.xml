@@ -14,7 +14,7 @@
       <pubDate>Thu, 28 May 2020 04:36:46 +0900</pubDate>
       
       <guid>https://takakd.github.io/articles/20200528043646/</guid>
-      <description>Goでパニックが発生するかどうかのテストです。 // Testing if testFunc calls panic. // e.g. // IsTestCallPanic(func(){ // &amp;lt;place test target here.&amp;gt; // }) func IsTestCallPanic(testFunc func()) (ok bool) { defer func() { if err := recover(); err == nil { ok = false } }() ok = true testFunc() return } // Test for test. func TestIsTestCallPanic(t *testing.T) { isCalled := IsTestCallPanic(func() { var i interface{} if i == nil { panic(&amp;quot;Hi, panic.&amp;quot;) } }) if !isCalled { t.Errorf(&amp;quot;failed.&amp;quot;) } }</description>
+      <description>Goでパニックが発生するかどうかのテストです。 // Testing if testFunc calls panic. // e.g. // IsTestCallPanic(func(){ // &amp;lt;place test target here.&amp;gt; // }) func IsTestCallPanic(testFunc func()) (ok bool) { defer func() { if err := recover(); err == nil { ok = false } }() ok = true testFunc() return } // Test for test. func TestIsTestCallPanic(t *testing.T) { isCalled := IsTestCallPanic(func() { var i interface{} if i == nil { panic(&amp;#34;Hi, panic.&amp;#34;) } }) if !isCalled { t.Errorf(&amp;#34;failed.&amp;#34;) } }</description>
     </item>
     
   </channel>

@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="// Set FormValues to struct func SetFormValueToStruct(values url.Values, structPtr interface{}) error { // Get the" />
@@ -56,44 +49,43 @@
       </div>
       
       <div class="content sn-Content mt-5">
-        <pre><code class="language-golang">// Set FormValues to struct
-func SetFormValueToStruct(values url.Values, structPtr interface{}) error {
-	// Get the pointer of struct
-	ptr := reflect.ValueOf(structPtr)
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// Set FormValues to struct
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">SetFormValueToStruct</span>(<span style="color:#a6e22e">values</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Values</span>, <span style="color:#a6e22e">structPtr</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">error</span> {
+	<span style="color:#75715e">// Get the pointer of struct
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">ptr</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#a6e22e">structPtr</span>)
 
-	// Get the value of struct
-	value := ptr.Elem()
+	<span style="color:#75715e">// Get the value of struct
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ptr</span>.<span style="color:#a6e22e">Elem</span>()
 
-	// Set value to struct field
-	valueType := value.Type()
-	for i := 0; i &lt; value.NumField(); i++ {
-		jsonTag := valueType.Field(i).Tag.Get(&quot;json&quot;)
-		if value.Field(i).CanSet() == false {
-			return errors.New(&quot;cannot set value to field&quot;)
+	<span style="color:#75715e">// Set value to struct field
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">valueType</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">Type</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">NumField</span>(); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">jsonTag</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">valueType</span>.<span style="color:#a6e22e">Field</span>(<span style="color:#a6e22e">i</span>).<span style="color:#a6e22e">Tag</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;json&#34;</span>)
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">Field</span>(<span style="color:#a6e22e">i</span>).<span style="color:#a6e22e">CanSet</span>() <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;cannot set value to field&#34;</span>)
 		}
-		value.Field(i).Set(reflect.ValueOf(values.Get(jsonTag)))
+		<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">Field</span>(<span style="color:#a6e22e">i</span>).<span style="color:#a6e22e">Set</span>(<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#a6e22e">values</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#a6e22e">jsonTag</span>)))
 	}
 
-	return nil
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
 }
 
-// Example
-func ExampleSetFormValueToStruct() {
-	// Form values
-	formValues := url.Values{}
-	formValues.Set(&quot;test1&quot;, &quot;test1_value&quot;)
-	formValues.Set(&quot;test2&quot;, &quot;test2_value&quot;)
+<span style="color:#75715e">// Example
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ExampleSetFormValueToStruct</span>() {
+	<span style="color:#75715e">// Form values
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">formValues</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Values</span>{}
+	<span style="color:#a6e22e">formValues</span>.<span style="color:#a6e22e">Set</span>(<span style="color:#e6db74">&#34;test1&#34;</span>, <span style="color:#e6db74">&#34;test1_value&#34;</span>)
+	<span style="color:#a6e22e">formValues</span>.<span style="color:#a6e22e">Set</span>(<span style="color:#e6db74">&#34;test2&#34;</span>, <span style="color:#e6db74">&#34;test2_value&#34;</span>)
 
-	// Struct that be wanted to set form values.
-	structPtr := &amp;TestSetFormValueToStructStruct{}
+	<span style="color:#75715e">// Struct that be wanted to set form values.
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">structPtr</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">TestSetFormValueToStructStruct</span>{}
 
-	// Set
-	structWithValuesPtr := apphttputil.SetFormValueToStruct(formValues, structPtr)
+	<span style="color:#75715e">// Set
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">structWithValuesPtr</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">apphttputil</span>.<span style="color:#a6e22e">SetFormValueToStruct</span>(<span style="color:#a6e22e">formValues</span>, <span style="color:#a6e22e">structPtr</span>)
 
-	fmt.Printf(&quot;%v&quot;, structWithValuesPtr)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v&#34;</span>, <span style="color:#a6e22e">structWithValuesPtr</span>)
 }
-</code></pre>
-
+</code></pre></div>
         
       </div>
       
@@ -134,14 +126,6 @@ func ExampleSetFormValueToStruct() {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

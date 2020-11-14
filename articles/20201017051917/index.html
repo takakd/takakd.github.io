@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content=".sql向けgolang-migrateのヘルパスクリプトです。 機能 .envからデータソースを読み込み ディレクトリ内のSQLファイルでマイグレート SQLのみ対応 helper.sh #!/usr/bin/env bash #" />
@@ -64,51 +57,49 @@
 <li>SQLのみ対応</li>
 </ul>
 <p><strong>helper.sh</strong></p>
-<pre><code class="language-sh">#!/usr/bin/env bash
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># golang-migrate helper script</span>
+<span style="color:#75715e">#   https://github.com/golang-migrate/migrate</span>
 
-# golang-migrate helper script
-#   https://github.com/golang-migrate/migrate
+usage<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    echo <span style="color:#e6db74">&#34;Usage: migrate.sh COMMAND
+</span><span style="color:#e6db74">COMMAND:
+</span><span style="color:#e6db74">    Input golang-migrate command and options.
+</span><span style="color:#e6db74">    &#39;create&#39; is limited to SQL.
+</span><span style="color:#e6db74">    e.g.
+</span><span style="color:#e6db74">        migrate.sh create NAME
+</span><span style="color:#e6db74">        migrate.sh up
+</span><span style="color:#e6db74">        migrate.sh down 2
+</span><span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">}</span>
 
-usage() {
-    echo &quot;Usage: migrate.sh COMMAND
-COMMAND:
-    Input golang-migrate command and options.
-    'create' is limited to SQL.
-    e.g.
-        migrate.sh create NAME
-        migrate.sh up
-        migrate.sh down 2
-&quot;
-}
-
-if [[ &quot;$1&quot; = &quot;help&quot; ]]; then
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
     usage
-    exit 0
-fi
+    exit <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">fi</span>
 
-SCRIPT_DIR=$(cd $(dirname &quot;$0&quot;); pwd)
-ENV_FILE=${SCRIPT_DIR}/../configs/.env
+SCRIPT_DIR<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cd <span style="color:#66d9ef">$(</span>dirname <span style="color:#e6db74">&#34;</span>$0<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>; pwd<span style="color:#66d9ef">)</span>
+ENV_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>SCRIPT_DIR<span style="color:#e6db74">}</span>/../configs/.env
 
-if [[ -e &quot;$ENV_FILE&quot; ]]; then
-    source &quot;$ENV_FILE&quot;
-fi
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> -e <span style="color:#e6db74">&#34;</span>$ENV_FILE<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+    source <span style="color:#e6db74">&#34;</span>$ENV_FILE<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">fi</span>
 
-# Limit create to SQL
-if [[ &quot;$1&quot; = &quot;create&quot; ]]; then
-    # Exclude options
-    param=$(echo &quot;$@&quot; | sed -e 's/create //')
-    # Remove schema from env value
-    dir=$(echo &quot;$MIGRATION_DIR&quot; | sed -e 's/file:\/\///')
-    migrate -source &quot;$MIGRATION_DIR&quot; -database &quot;$DATABASE_URL&quot; create -dir $dir -ext sql $param
-else
-    migrate -source &quot;$MIGRATION_DIR&quot; -database &quot;$DATABASE_URL&quot; $@
-fi
-</code></pre>
-<p><strong>.env</strong></p>
-<pre><code class="language-sh">MIGRATION_DIR=/Users/user/...
-DATABASE_URL=mysql:...
-</code></pre>
-<p>プロジェクトに応じたヘルパスクリプトをよく作るのですが、他の現場ではどのくらい用意しているんだろう。</p>
+<span style="color:#75715e"># Limit create to SQL</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;create&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+    <span style="color:#75715e"># Exclude options</span>
+    param<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/create //&#39;</span><span style="color:#66d9ef">)</span>
+    <span style="color:#75715e"># Remove schema from env value</span>
+    dir<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$MIGRATION_DIR<span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/file:\/\///&#39;</span><span style="color:#66d9ef">)</span>
+    migrate -source <span style="color:#e6db74">&#34;</span>$MIGRATION_DIR<span style="color:#e6db74">&#34;</span> -database <span style="color:#e6db74">&#34;</span>$DATABASE_URL<span style="color:#e6db74">&#34;</span> create -dir $dir -ext sql $param
+<span style="color:#66d9ef">else</span>
+    migrate -source <span style="color:#e6db74">&#34;</span>$MIGRATION_DIR<span style="color:#e6db74">&#34;</span> -database <span style="color:#e6db74">&#34;</span>$DATABASE_URL<span style="color:#e6db74">&#34;</span> $@
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><p><strong>.env</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">MIGRATION_DIR<span style="color:#f92672">=</span>/Users/user/...
+DATABASE_URL<span style="color:#f92672">=</span>mysql:...
+</code></pre></div><p>プロジェクトに応じたヘルパスクリプトをよく作るのですが、他の現場ではどのくらい用意しているんだろう。</p>
 
         
       </div>
@@ -150,14 +141,6 @@ DATABASE_URL=mysql:...
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

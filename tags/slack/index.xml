@@ -14,7 +14,7 @@
       <pubDate>Fri, 23 Oct 2020 05:24:54 +0900</pubDate>
       
       <guid>https://takakd.github.io/articles/20201023052454/</guid>
-      <description>エラーレスポンスを返す時でもリトライさせたくない場合は、ヘッダにX-Slack-No-Retryを指定する。 func handler(w http.ResponseWriter, r *http.Request) { // Process something... // Set &amp;quot;X-Slack-No-Retry: 1&amp;quot; if prevent retry. w.Header().Set(&amp;quot;X-Slack-No-Retry&amp;quot;, &amp;quot;1&amp;quot;) w.Header().Set(&amp;quot;Content-Type&amp;quot;, &amp;quot;application/json&amp;quot;) w.WriteHeader(http.StatusBadRequest) w.Write([]byte(&amp;quot;&amp;quot;)) } Reference https://api.slack.com/events-api#the-events-api__field-guide__error-handling__graceful-retries__turning-retries-off</description>
+      <description>エラーレスポンスを返す時でもリトライさせたくない場合は、ヘッダにX-Slack-No-Retryを指定する。 func handler(w http.ResponseWriter, r *http.Request) { // Process something... // Set &amp;#34;X-Slack-No-Retry: 1&amp;#34; if prevent retry. w.Header().Set(&amp;#34;X-Slack-No-Retry&amp;#34;, &amp;#34;1&amp;#34;) w.Header().Set(&amp;#34;Content-Type&amp;#34;, &amp;#34;application/json&amp;#34;) w.WriteHeader(http.StatusBadRequest) w.Write([]byte(&amp;#34;&amp;#34;)) } Reference https://api.slack.com/events-api#the-events-api__field-guide__error-handling__graceful-retries__turning-retries-off</description>
     </item>
     
   </channel>

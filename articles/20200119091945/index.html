@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="shellでzip圧縮するコマンドです。 環境 Mac 10.14.6 GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin18) zip #" />
@@ -63,31 +56,30 @@
 <li>GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin18)</li>
 </ul>
 <h2 id="zip">zip</h2>
-<pre><code class="language-bash"># --------------------------------------
-# filename.txtをsth.zipに圧縮
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># --------------------------------------</span>
+<span style="color:#75715e"># filename.txtをsth.zipに圧縮</span>
 
-# -Xで.DS_Storeなどの特殊ファイルを無視して圧縮
+<span style="color:#75715e"># -Xで.DS_Storeなどの特殊ファイルを無視して圧縮</span>
 $ zip -X ./sth.zip ./filename.txt
 
 
-# --------------------------------------
-# ディレクトリをzipに圧縮
+<span style="color:#75715e"># --------------------------------------</span>
+<span style="color:#75715e"># ディレクトリをzipに圧縮</span>
 
-# これだと空になってしまう
+<span style="color:#75715e"># これだと空になってしまう</span>
 $ zip ./sth.zip ./some_directory
 
-# -rを指定するか
+<span style="color:#75715e"># -rを指定するか</span>
 $ zip -r ./sth.zip ./some_directory
 
-# ファイルを与える
+<span style="color:#75715e"># ファイルを与える</span>
 $ zip ./sth.zip ./some_directory/*
 
 
-# --------------------------------------
-# zipの中身を解凍せずに確認
+<span style="color:#75715e"># --------------------------------------</span>
+<span style="color:#75715e"># zipの中身を解凍せずに確認</span>
 $ zip -Z ./sth.zip
-</code></pre>
-<h2 id="参考">参考</h2>
+</code></pre></div><h2 id="参考">参考</h2>
 <p><a href="http://totech.hateblo.jp/entry/2015/03/04/093757">http://totech.hateblo.jp/entry/2015/03/04/093757</a></p>
 
         
@@ -130,14 +122,6 @@ $ zip -Z ./sth.zip
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

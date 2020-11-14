@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="json.Unmarshalしたデータに含まれる文字列のユニコードキャラクタをエスケープシーケンスに変換します。 // func convertJsonElement(data interface{}) interface{} {" />
@@ -57,39 +50,38 @@
       
       <div class="content sn-Content mt-5">
         <p><code>json.Unmarshal</code>したデータに含まれる文字列のユニコードキャラクタをエスケープシーケンスに変換します。</p>
-<pre><code class="language-golang">//
-func convertJsonElement(data interface{}) interface{} {
-	switch v := data.(type) {
-	case map[string]interface{}:
-		for ik, iv := range v {
-			v[ik] = convertJsonElement(iv)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">convertJsonElement</span>(<span style="color:#a6e22e">data</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">interface</span>{} {
+	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">data</span>.(<span style="color:#66d9ef">type</span>) {
+	<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}:
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">ik</span>, <span style="color:#a6e22e">iv</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">v</span> {
+			<span style="color:#a6e22e">v</span>[<span style="color:#a6e22e">ik</span>] = <span style="color:#a6e22e">convertJsonElement</span>(<span style="color:#a6e22e">iv</span>)
 		}
-		data = v
-	case []interface{}:
-		for ik, iv := range v {
-			v[ik] = convertJsonElement(iv)
+		<span style="color:#a6e22e">data</span> = <span style="color:#a6e22e">v</span>
+	<span style="color:#66d9ef">case</span> []<span style="color:#66d9ef">interface</span>{}:
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">ik</span>, <span style="color:#a6e22e">iv</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">v</span> {
+			<span style="color:#a6e22e">v</span>[<span style="color:#a6e22e">ik</span>] = <span style="color:#a6e22e">convertJsonElement</span>(<span style="color:#a6e22e">iv</span>)
 		}
-		data = v
-	case string:
-		v = fmt.Sprintf(&quot;%+q&quot;, v)
-                if len(v) &gt; 0 {
-		    // Remove unnecessary double-quote
-		    data = v[1 : len(v)-1]
+		<span style="color:#a6e22e">data</span> = <span style="color:#a6e22e">v</span>
+	<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">string</span>:
+		<span style="color:#a6e22e">v</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;%+q&#34;</span>, <span style="color:#a6e22e">v</span>)
+                <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">v</span>) &gt; <span style="color:#ae81ff">0</span> {
+		    <span style="color:#75715e">// Remove unnecessary double-quote
+</span><span style="color:#75715e"></span>		    <span style="color:#a6e22e">data</span> = <span style="color:#a6e22e">v</span>[<span style="color:#ae81ff">1</span> : len(<span style="color:#a6e22e">v</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
                 }
-	default:
+	<span style="color:#66d9ef">default</span>:
 	}
-	return data
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>
 }
 
-//
-func main() {
-        jsonStr := []byte(`{&quot;test&quot;:&quot;こんにちは&quot;}`)
-	var data interface{}
-	json.Unmarshal(jsonStr, &amp;data)
-	convertedData := convertJsonElement(data)
+<span style="color:#75715e">//
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#a6e22e">jsonStr</span> <span style="color:#f92672">:=</span> []byte(<span style="color:#e6db74">`{&#34;test&#34;:&#34;こんにちは&#34;}`</span>)
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#66d9ef">interface</span>{}
+	<span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">jsonStr</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">data</span>)
+	<span style="color:#a6e22e">convertedData</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">convertJsonElement</span>(<span style="color:#a6e22e">data</span>)
 }
-</code></pre>
-
+</code></pre></div>
         
       </div>
       
@@ -130,14 +122,6 @@ func main() {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

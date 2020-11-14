@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="Iocコンテナを作ろうとして次のようなコードを書くとエラーが出ました。 原因はinterfaceのポインタの型エラー。 // interface type IFace interface { hello() string } //" />
@@ -58,70 +51,68 @@
       <div class="content sn-Content mt-5">
         <p>Iocコンテナを作ろうとして次のようなコードを書くとエラーが出ました。<br>
 原因は<code>interface</code>のポインタの型エラー。</p>
-<pre><code class="language-golang">// interface
-type IFace interface {
-    hello() string
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// interface
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IFace</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#a6e22e">hello</span>() <span style="color:#66d9ef">string</span>
 }
 
-// concrete type
-type Concrete struct {
+<span style="color:#75715e">// concrete type
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Concrete</span> <span style="color:#66d9ef">struct</span> {
 }
 
-func NewConcrete() *Concrete {
-    return &amp;Concrete{}
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewConcrete</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">Concrete</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Concrete</span>{}
 }
 
-// - implementation
-func (c *Concrete) hello() string {
-    return &quot;Hi&quot;
+<span style="color:#75715e">// - implementation
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Concrete</span>) <span style="color:#a6e22e">hello</span>() <span style="color:#66d9ef">string</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hi&#34;</span>
 }
 
-// ioc
-type Ioc struct {
+<span style="color:#75715e">// ioc
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Ioc</span> <span style="color:#66d9ef">struct</span> {
 }
 
-func NewIoc() *Ioc {
-    return &amp;Ioc{}
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewIoc</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">Ioc</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Ioc</span>{}
 }
 
-// NG: this method raises error
-// これは次のようなエラーがでる
-// cannot use NewConcrete() (type *Concrete) as type *IFace in return argument:
-// *IFace is pointer to interface, not interface
-func (i *Ioc) IFace() *IFace {
-	return NewConcrete()
+<span style="color:#75715e">// NG: this method raises error
+</span><span style="color:#75715e">// これは次のようなエラーがでる
+</span><span style="color:#75715e">// cannot use NewConcrete() (type *Concrete) as type *IFace in return argument:
+</span><span style="color:#75715e">// *IFace is pointer to interface, not interface
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Ioc</span>) <span style="color:#a6e22e">IFace</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">IFace</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">NewConcrete</span>()
 }
 
-// こちらはOK
-func (i *Ioc) IFace() IFace {
-	return NewConcrete()
+<span style="color:#75715e">// こちらはOK
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Ioc</span>) <span style="color:#a6e22e">IFace</span>() <span style="color:#a6e22e">IFace</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">NewConcrete</span>()
 }
 
-func main() {
-    i := NewIoc()
-    ic := i.IFace()
-    // ...
-}
-</code></pre>
-<p>いくつ書き換えるとOK。<br>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">NewIoc</span>()
+    <span style="color:#a6e22e">ic</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span>.<span style="color:#a6e22e">IFace</span>()
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>いくつ書き換えるとOK。<br>
 しかし綺麗ではない。</p>
-<pre><code class="language-golang">// value receiverにする
-func (c Concrete) hello() string {
-    return &quot;Hi&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// value receiverにする
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#a6e22e">Concrete</span>) <span style="color:#a6e22e">hello</span>() <span style="color:#66d9ef">string</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Hi&#34;</span>
 }
 
-...
+<span style="color:#f92672">...</span>
 
-// 型を明示的に指定していれるとOK
-func (i *Ioc) IFace() *IFace {
-    var vif IFace
-    var pif *IFace
-    vif = *NewConcrete()
-    pif = &amp;vif
-    return pif
+<span style="color:#75715e">// 型を明示的に指定していれるとOK
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Ioc</span>) <span style="color:#a6e22e">IFace</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">IFace</span> {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">vif</span> <span style="color:#a6e22e">IFace</span>
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pif</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">IFace</span>
+    <span style="color:#a6e22e">vif</span> = <span style="color:#f92672">*</span><span style="color:#a6e22e">NewConcrete</span>()
+    <span style="color:#a6e22e">pif</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">vif</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">pif</span>
 }
-</code></pre>
-<p><code>struct</code>と同様に、ポインタを返したほうがコピーされる時のコストが低くなるかと思いきや、そもそも<code>interface</code>はポインタ2個分なのでそれほどコストがかからない。
+</code></pre></div><p><code>struct</code>と同様に、ポインタを返したほうがコピーされる時のコストが低くなるかと思いきや、そもそも<code>interface</code>はポインタ2個分なのでそれほどコストがかからない。
 <a href="https://groups.google.com/forum/#!topic/golang-nuts/N9f70MZUulk">https://groups.google.com/forum/#!topic/golang-nuts/N9f70MZUulk</a></p>
 <p>ちゃんと<code>A Tour Of Go</code>にも書いてますね……<br>
 <a href="https://tour.golang.org/methods/11">https://tour.golang.org/methods/11</a></p>
@@ -169,14 +160,6 @@ func (i *Ioc) IFace() *IFace {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

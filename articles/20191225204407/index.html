@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="Salesforceのオブジェクトの内、添付ファイルがついているオブジェクト名を取得するコードです。 開発者コンソールの[Open Execute Anonymous Window]から実行できます。 // 添付ファイルがついているレコー" />
@@ -58,24 +51,23 @@
       <div class="content sn-Content mt-5">
         <p>Salesforceのオブジェクトの内、添付ファイルがついているオブジェクト名を取得するコードです。<br>
 開発者コンソールの[Open Execute Anonymous Window]から実行できます。</p>
-<pre><code class="language-Java">// 添付ファイルがついているレコードID取得
-List&lt;Attachment&gt; atts = [SELECT ParentId From Attachment];
-Set&lt;Id&gt; idSet = new Set&lt;Id&gt;();
-for (Attachment att : atts) {
-    idSet.add(att.ParentId);
-}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#75715e">// 添付ファイルがついているレコードID取得
+</span><span style="color:#75715e"></span>List<span style="color:#f92672">&lt;</span>Attachment<span style="color:#f92672">&gt;</span> atts <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>SELECT ParentId From Attachment<span style="color:#f92672">];</span>
+Set<span style="color:#f92672">&lt;</span>Id<span style="color:#f92672">&gt;</span> idSet <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Set<span style="color:#f92672">&lt;</span>Id<span style="color:#f92672">&gt;();</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Attachment att <span style="color:#f92672">:</span> atts<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    idSet<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>att<span style="color:#f92672">.</span><span style="color:#a6e22e">ParentId</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
 
-// レコードIDからオブジェクト名取得
-Set&lt;String&gt; objSet = new Set&lt;String&gt;();
-for (Id rid : idSet) {
-  Schema.SObjectType name = rid.getSObjectType();
-  objSet.add(String.valueOf(name));
-}
+<span style="color:#75715e">// レコードIDからオブジェクト名取得
+</span><span style="color:#75715e"></span>Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> objSet <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Id rid <span style="color:#f92672">:</span> idSet<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  Schema<span style="color:#f92672">.</span><span style="color:#a6e22e">SObjectType</span> name <span style="color:#f92672">=</span> rid<span style="color:#f92672">.</span><span style="color:#a6e22e">getSObjectType</span><span style="color:#f92672">();</span>
+  objSet<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>name<span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
 
-// ログで確認
-System.debug(objSet);
-</code></pre>
-<p>メリークリスマス。</p>
+<span style="color:#75715e">// ログで確認
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">debug</span><span style="color:#f92672">(</span>objSet<span style="color:#f92672">);</span>
+</code></pre></div><p>メリークリスマス。</p>
 
         
       </div>
@@ -117,14 +109,6 @@ System.debug(objSet);
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

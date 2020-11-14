@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="もう一回おさらいということで プログラミングコンテスト攻略のためのアルゴリズムとデータ構造を購入しました。 AIZU ONLINE JUDGEのInsertion Sortです。 package main import (" />
@@ -59,50 +52,49 @@
         <p>もう一回おさらいということで
 <a href="https://www.amazon.co.jp/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B3%E3%83%B3%E3%83%86%E3%82%B9%E3%83%88%E6%94%BB%E7%95%A5%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E6%A7%8B%E9%80%A0-%E6%B8%A1%E9%83%A8-%E6%9C%89%E9%9A%86/dp/4839952957">プログラミングコンテスト攻略のためのアルゴリズムとデータ構造</a>を購入しました。</p>
 <p><a href="https://onlinejudge.u-aizu.ac.jp/home">AIZU ONLINE JUDGE</a>の<a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_A">Insertion Sort</a>です。</p>
-<pre><code class="language-golang">package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;strings&quot;
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;fmt&#34;</span>
+    <span style="color:#e6db74">&#34;strings&#34;</span>
 )
 
-func scanInput() (n int, slice []int) {
-    fmt.Scanf(&quot;%d&quot;, &amp;n)
-    slice = make([]int, n)
-    for i := 0; i &lt; n; i++ {
-        fmt.Scanf(&quot;%d&quot;, &amp;slice[i])
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">scanInput</span>() (<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">slice</span> []<span style="color:#66d9ef">int</span>) {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">n</span>)
+    <span style="color:#a6e22e">slice</span> = make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">slice</span>[<span style="color:#a6e22e">i</span>])
     }
-    return
+    <span style="color:#66d9ef">return</span>
 }
 
-func printSlice(slice []int) {
-    fmt.Println(strings.Trim(strings.Join(strings.Fields(fmt.Sprint(slice)), &quot; &quot;), &quot;[]&quot;))
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">slice</span> []<span style="color:#66d9ef">int</span>) {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Trim</span>(<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Fields</span>(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprint</span>(<span style="color:#a6e22e">slice</span>)), <span style="color:#e6db74">&#34; &#34;</span>), <span style="color:#e6db74">&#34;[]&#34;</span>))
 }
 
-func main() {
-    _, slice := scanInput()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">slice</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">scanInput</span>()
 
-    printSlice(slice)
+    <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">slice</span>)
 
-    solve(slice)
+    <span style="color:#a6e22e">solve</span>(<span style="color:#a6e22e">slice</span>)
 }
 
-func solve(nums []int) {
-    l := len(nums)
-    for i := 1; i &lt; l; i++ {
-        v := nums[i]
-        j := i - 1
-        for j &gt;= 0 &amp;&amp; nums[j] &gt; v {
-            nums[j+1] = nums[j]
-            j--
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">solve</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>) {
+    <span style="color:#a6e22e">l</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">nums</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">l</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">i</span>]
+        <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">j</span>] &gt; <span style="color:#a6e22e">v</span> {
+            <span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] = <span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">j</span>]
+            <span style="color:#a6e22e">j</span><span style="color:#f92672">--</span>
         }
-        nums[j+1] = v
+        <span style="color:#a6e22e">nums</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] = <span style="color:#a6e22e">v</span>
 
-        printSlice(nums)
+        <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">nums</span>)
     }
 }
-</code></pre>
-<p>ロジックよりも、入力を受け取る実装で戸惑いました。<br>
+</code></pre></div><p>ロジックよりも、入力を受け取る実装で戸惑いました。<br>
 プログラミングパズルは言語の筋トレにもなっていいですね。</p>
 <h2 id="参考">参考</h2>
 <p><a href="https://stackoverflow.com/questions/37532255/one-liner-to-transform-int-into-string">https://stackoverflow.com/questions/37532255/one-liner-to-transform-int-into-string</a></p>
@@ -147,14 +139,6 @@ func solve(nums []int) {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

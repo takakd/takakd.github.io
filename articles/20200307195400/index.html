@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="Reconstruction of a Tree Preorderだけだと構造が決まらないので、Inorderと合わせて木構造を決定する。 Inorderの値の中のPreorder値の左右が、木の左右に対応する。 package main" />
@@ -59,63 +52,62 @@
         <p><a href="https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_7_D">Reconstruction of a Tree</a></p>
 <p>Preorderだけだと構造が決まらないので、Inorderと合わせて木構造を決定する。<br>
 Inorderの値の中のPreorder値の左右が、木の左右に対応する。</p>
-<pre><code class="language-golang">package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;strings&quot;
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;fmt&#34;</span>
+    <span style="color:#e6db74">&#34;strings&#34;</span>
 )
 
-func scanInput() (n int, pre []int, in []int) {
-    fmt.Scanf(&quot;%d&quot;, &amp;n)
-    pre = make([]int, n)
-    in = make([]int, n)
-    for i := 0; i &lt; n; i++ {
-        fmt.Scanf(&quot;%d&quot;, &amp;pre[i])
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">scanInput</span>() (<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">pre</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">in</span> []<span style="color:#66d9ef">int</span>) {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">n</span>)
+    <span style="color:#a6e22e">pre</span> = make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
+    <span style="color:#a6e22e">in</span> = make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">pre</span>[<span style="color:#a6e22e">i</span>])
     }
-    for i := 0; i &lt; n; i++ {
-        fmt.Scanf(&quot;%d&quot;, &amp;in[i])
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>])
     }
-    return
+    <span style="color:#66d9ef">return</span>
 }
 
-func printSlice(slice []int) {
-    fmt.Println(strings.Trim(strings.Join(strings.Fields(fmt.Sprint(slice)), &quot; &quot;), &quot;[]&quot;))
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">slice</span> []<span style="color:#66d9ef">int</span>) {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Trim</span>(<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Fields</span>(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprint</span>(<span style="color:#a6e22e">slice</span>)), <span style="color:#e6db74">&#34; &#34;</span>), <span style="color:#e6db74">&#34;[]&#34;</span>))
 }
 
-func main() {
-    n, pre, in := scanInput()
-    post := make([]int, 0, n)
-    parent := 0
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">pre</span>, <span style="color:#a6e22e">in</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">scanInput</span>()
+    <span style="color:#a6e22e">post</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">n</span>)
+    <span style="color:#a6e22e">parent</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
 
-    walk(0, len(pre)-1, &amp;parent, pre, in, &amp;post)
+    <span style="color:#a6e22e">walk</span>(<span style="color:#ae81ff">0</span>, len(<span style="color:#a6e22e">pre</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">parent</span>, <span style="color:#a6e22e">pre</span>, <span style="color:#a6e22e">in</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">post</span>)
 
-    printSlice(post)
+    <span style="color:#a6e22e">printSlice</span>(<span style="color:#a6e22e">post</span>)
 }
 
-func walk(left, right int, parent *int, pre, in []int, post *[]int) {
-    if left &gt; right {
-        return
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">walk</span>(<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">right</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">parent</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">pre</span>, <span style="color:#a6e22e">in</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">post</span> <span style="color:#f92672">*</span>[]<span style="color:#66d9ef">int</span>) {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">left</span> &gt; <span style="color:#a6e22e">right</span> {
+        <span style="color:#66d9ef">return</span>
     }
 
-    dlm := pre[*parent]
-    *parent++
+    <span style="color:#a6e22e">dlm</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">pre</span>[<span style="color:#f92672">*</span><span style="color:#a6e22e">parent</span>]
+    <span style="color:#f92672">*</span><span style="color:#a6e22e">parent</span><span style="color:#f92672">++</span>
 
-    var idx int
-    for i, v := range in {
-        if v == dlm {
-            idx = i
-            break
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">idx</span> <span style="color:#66d9ef">int</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">in</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">dlm</span> {
+            <span style="color:#a6e22e">idx</span> = <span style="color:#a6e22e">i</span>
+            <span style="color:#66d9ef">break</span>
         }
     }
 
-    walk(left, idx-1, parent, pre, in, post)
-    walk(idx+1, right, parent, pre, in, post)
+    <span style="color:#a6e22e">walk</span>(<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">idx</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">parent</span>, <span style="color:#a6e22e">pre</span>, <span style="color:#a6e22e">in</span>, <span style="color:#a6e22e">post</span>)
+    <span style="color:#a6e22e">walk</span>(<span style="color:#a6e22e">idx</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">right</span>, <span style="color:#a6e22e">parent</span>, <span style="color:#a6e22e">pre</span>, <span style="color:#a6e22e">in</span>, <span style="color:#a6e22e">post</span>)
 
-    *post = append(*post, dlm)
+    <span style="color:#f92672">*</span><span style="color:#a6e22e">post</span> = append(<span style="color:#f92672">*</span><span style="color:#a6e22e">post</span>, <span style="color:#a6e22e">dlm</span>)
 }
-</code></pre>
-<p>配列の結果をポインタで引き回しているけど、引数で返したほうがよいのかな。</p>
+</code></pre></div><p>配列の結果をポインタで引き回しているけど、引数で返したほうがよいのかな。</p>
 <h2 id="参考">参考</h2>
 <p><a href="https://stackoverflow.com/questions/8307478/how-to-find-out-element-position-in-slice">https://stackoverflow.com/questions/8307478/how-to-find-out-element-position-in-slice</a></p>
 
@@ -159,14 +151,6 @@ func walk(left, right int, parent *int, pre, in []int, post *[]int) {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

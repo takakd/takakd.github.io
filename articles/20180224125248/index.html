@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="AWSのリファレンスを参考に、FormでS3バケットへのPOSTを試してみました。 準備 FormでS3にPOSTするためには、各フィールドに送信するファイルに合わせ、POST Policy、Signature、アクセスID、その他ファイル" />
@@ -64,96 +57,92 @@
 <p>フィールドにアクセスIDを設定しますが、このアクセスIDに対応するIAMユーザーは、POST先のバケットに対する操作権限が必要です。<br>
 基本的なAWSのIAMユーザーの考えですね。</p>
 <p>次のようにバケットポリシーを設定します。</p>
-<pre><code class="language-json">{
-  &quot;Version&quot;: &quot;2012-10-17&quot;,
-  &quot;Statement&quot;: [
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+  <span style="color:#f92672">&#34;Statement&#34;</span>: [
     {
-      &quot;Effect&quot;: &quot;Allow&quot;,
-      &quot;Principal&quot;: {
-      &quot;aws&quot;: &quot;arn:aws:iam::&lt;12桁の数字&gt;:user/&lt;IAMユーザー名&gt;&quot;
+      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+      <span style="color:#f92672">&#34;Principal&#34;</span>: {
+      <span style="color:#f92672">&#34;aws&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:iam::&lt;12桁の数字&gt;:user/&lt;IAMユーザー名&gt;&#34;</span>
       },
-      &quot;Action&quot;: &quot;s3:*&quot;,
-      &quot;Resource&quot;: [
-        &quot;arn:aws:s3:::&lt;バケット名&gt;/*&quot;
+      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:*&#34;</span>,
+      <span style="color:#f92672">&#34;Resource&#34;</span>: [
+        <span style="color:#e6db74">&#34;arn:aws:s3:::&lt;バケット名&gt;/*&#34;</span>
       ]
     }
   ]
 }
-</code></pre>
-<p>ここでは全ての権限与えておりますが、実際に使う場合はActionやConditionブロックで制限したほうがよいかと思います。</p>
+</code></pre></div><p>ここでは全ての権限与えておりますが、実際に使う場合はActionやConditionブロックで制限したほうがよいかと思います。</p>
 <h2 id="フォーム">フォーム</h2>
 <p>続いてフォーム。<br>
 <code>multipart/form-data</code>で、アップロードするファイルの属性や認証情報をPOSTします。<br>
 各パラメータについては<a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTForms.html%22">リファレンス</a>の[HTML Form Fields]をご参考。</p>
-<pre><code class="language-html">&lt;form action=&quot;http://&lt;bucket name&gt;.s3.amazonaws.com/&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
-  &lt;label&gt;
-    S3 Tags for File: &lt;input type=&quot;text&quot;  name=&quot;x-amz-meta-tag&quot; value=&quot;&quot; /&gt;&lt;br /&gt;
-  &lt;/label&gt;
-  &lt;label&gt;
-    Content-Type: &lt;span&gt;image/png&lt;/span&gt;
-  &lt;/label&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://&lt;bucket name&gt;.s3.amazonaws.com/&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">enctype</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;multipart/form-data&#34;</span>&gt;
+  &lt;<span style="color:#f92672">label</span>&gt;
+    S3 Tags for File: &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;x-amz-meta-tag&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> /&gt;&lt;<span style="color:#f92672">br</span> /&gt;
+  &lt;/<span style="color:#f92672">label</span>&gt;
+  &lt;<span style="color:#f92672">label</span>&gt;
+    Content-Type: &lt;<span style="color:#f92672">span</span>&gt;image/png&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;/<span style="color:#f92672">label</span>&gt;
 
-  &lt;!-- AWSが${filename}に選択したファイル名を入れてくれる --&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;key&quot; value=&quot;from-form${filename}&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;acl&quot; value=&quot;private&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;success_action_redirect&quot; value=&quot;[任意のURL]&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;x-amz-server-side-encryption&quot; value=&quot;AES256&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;Policy&quot; value='[POST PlolicyをBase64エンコードした値]' /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;X-Amz-Signature&quot; value=&quot;[Policyをもとに作成したSignature]&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;X-Amz-Credential&quot; value=&quot;/20180219/ap-northeast-1/s3/aws4_request&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;X-Amz-Algorithm&quot; value=&quot;AWS4-HMAC-SHA256&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;X-Amz-Date&quot; value=&quot;20180219T000000Z&quot; /&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;Content-Type&quot; value=&quot;image/png&quot; /&gt;
-  &lt;label&gt;
-    File: &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt; &lt;br /&gt;
-  &lt;/label&gt;
+  <span style="color:#75715e">&lt;!-- AWSが${filename}に選択したファイル名を入れてくれる --&gt;</span>
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;key&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;from-form${filename}&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;acl&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;private&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;success_action_redirect&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[任意のURL]&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;x-amz-server-side-encryption&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AES256&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Policy&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;[POST PlolicyをBase64エンコードした値]&#39;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X-Amz-Signature&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[Policyをもとに作成したSignature]&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X-Amz-Credential&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/20180219/ap-northeast-1/s3/aws4_request&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X-Amz-Algorithm&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AWS4-HMAC-SHA256&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X-Amz-Date&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;20180219T000000Z&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content-Type&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image/png&#34;</span> /&gt;
+  &lt;<span style="color:#f92672">label</span>&gt;
+    File: &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> /&gt; &lt;<span style="color:#f92672">br</span> /&gt;
+  &lt;/<span style="color:#f92672">label</span>&gt;
 
-  &lt;!-- The elements after this will be ignored --&gt;
-  &lt;!-- submitより後にinput要素を置いても送信できないので、submitは一番最後に書く。 --&gt;
-  &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Upload to Amazon S3&quot; /&gt;
-&lt;/form&gt;
-</code></pre>
-<p>試していて、次のようなところで手間取りました。<br>
+  <span style="color:#75715e">&lt;!-- The elements after this will be ignored --&gt;</span>
+  <span style="color:#75715e">&lt;!-- submitより後にinput要素を置いても送信できないので、submitは一番最後に書く。 --&gt;</span>
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Upload to Amazon S3&#34;</span> /&gt;
+&lt;/<span style="color:#f92672">form</span>&gt;
+</code></pre></div><p>試していて、次のようなところで手間取りました。<br>
 ただの私の確認不足なのですが……</p>
 <h3 id="signature生成">Signature生成</h3>
 <p>POST PolicyをBase64エンコードしたものをPolicyというFieldに指定。<br>
 それをStringToSignとして、認証情報（Signature）を生成しFieldにのせます。</p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/general/latest/gr/sigv4-signed-request-examples.html">生成手順</a>を参考にPHPで実装したのですが、各処理ステップでキー文字列を16進数文字列に変換してしまい、上手く認証が通らず？になってました。<br>
 正しくは、キーをバイナリデータとしてそのまま渡せばOK。１６進数文字列にするのは生成したSignatureをFormのフィールドに指定する時だけ。</p>
-<pre><code class="language-php">function makeSignatureKey($awsSecretKey, $dateStamp, $regionName, $serviceName) {
-  // 間違い
-  //    $kDate = bin2hex(signHash('AWS4' . $awsSecretKey, $dateStamp));
-  //    $kRegion = bin2hex(signHash($kDate, $regionName));
-  //    $kService = bin2hex(signHash($kRegion, $serviceName));
-  //    $kSign = bin2hex(signHash($kService, 'aws4_request'));
-
-  $kDate = signHash('AWS4' . $awsSecretKey, $dateStamp);
-  $kRegion = signHash($kDate, $regionName);
-  $kService = signHash($kRegion, $serviceName);
-  $kSign = signHash($kService, 'aws4_request');
-  return $kSign;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeSignatureKey</span>($awsSecretKey, $dateStamp, $regionName, $serviceName) {
+  <span style="color:#75715e">// 間違い
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//    $kDate = bin2hex(signHash(&#39;AWS4&#39; . $awsSecretKey, $dateStamp));
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//    $kRegion = bin2hex(signHash($kDate, $regionName));
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//    $kService = bin2hex(signHash($kRegion, $serviceName));
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">//    $kSign = bin2hex(signHash($kService, &#39;aws4_request&#39;));
+</span><span style="color:#75715e"></span>
+  $kDate <span style="color:#f92672">=</span> <span style="color:#a6e22e">signHash</span>(<span style="color:#e6db74">&#39;AWS4&#39;</span> <span style="color:#f92672">.</span> $awsSecretKey, $dateStamp);
+  $kRegion <span style="color:#f92672">=</span> <span style="color:#a6e22e">signHash</span>($kDate, $regionName);
+  $kService <span style="color:#f92672">=</span> <span style="color:#a6e22e">signHash</span>($kRegion, $serviceName);
+  $kSign <span style="color:#f92672">=</span> <span style="color:#a6e22e">signHash</span>($kService, <span style="color:#e6db74">&#39;aws4_request&#39;</span>);
+  <span style="color:#66d9ef">return</span> $kSign;
 }
-</code></pre>
-<h3 id="fieldの位置">Fieldの位置</h3>
+</code></pre></div><h3 id="fieldの位置">Fieldの位置</h3>
 <p>各フィールド、POST Policyも大丈夫そうなのに、[key]フィールドが不足というエラーが発生。<br>
 原因は、コードをととえている時にsubmitの位置を上にしてしまい、それ以降に書いているパラメータを送れていないからでした。</p>
-<pre><code class="language-html">&lt;form action=&quot;http://&lt;bucket name&gt;.s3.amazonaws.com/&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
-  &lt;!-- The elements after this will be ignored --&gt;
-  &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Upload to Amazon S3&quot; /&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://&lt;bucket name&gt;.s3.amazonaws.com/&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">enctype</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;multipart/form-data&#34;</span>&gt;
+  <span style="color:#75715e">&lt;!-- The elements after this will be ignored --&gt;</span>
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Upload to Amazon S3&#34;</span> /&gt;
 
-  &lt;!-- submit以降のフィールドが無視されるため、パラメータ不足エラーとなる。 --&gt;
+  <span style="color:#75715e">&lt;!-- submit以降のフィールドが無視されるため、パラメータ不足エラーとなる。 --&gt;</span>
 
-  &lt;label&gt;
-    S3 Tags for File: &lt;input type=&quot;text&quot;  name=&quot;x-amz-meta-tag&quot; value=&quot;&quot; /&gt;&lt;br /&gt;
-  &lt;/label&gt;
-  &lt;label&gt;
-    Content-Type: &lt;span&gt;image/png&lt;/span&gt;
-  &lt;/label&gt;
-  &lt;input type=&quot;hidden&quot; name=&quot;key&quot; value=&quot;from-form${filename}&quot; /&gt;
+  &lt;<span style="color:#f92672">label</span>&gt;
+    S3 Tags for File: &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;x-amz-meta-tag&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> /&gt;&lt;<span style="color:#f92672">br</span> /&gt;
+  &lt;/<span style="color:#f92672">label</span>&gt;
+  &lt;<span style="color:#f92672">label</span>&gt;
+    Content-Type: &lt;<span style="color:#f92672">span</span>&gt;image/png&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;/<span style="color:#f92672">label</span>&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hidden&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;key&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;from-form${filename}&#34;</span> /&gt;
   ...
-&lt;/form&gt;
-</code></pre>
-<p><a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTForms.html">リファレンス</a>を見なおすと、<code>&lt;!-- The elements after this will be ignored --&gt;</code>とちゃんと書いてありますね。恥ずかしい。</p>
+&lt;/<span style="color:#f92672">form</span>&gt;
+</code></pre></div><p><a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTForms.html">リファレンス</a>を見なおすと、<code>&lt;!-- The elements after this will be ignored --&gt;</code>とちゃんと書いてありますね。恥ずかしい。</p>
 <p>サンプルコードは<a href="https://github.com/takakd/demo-page/tree/master/docs/s3post">こちら</a></p>
 <p>単純なPOSTだとPOST Policyのフォームが楽そうですが、少し込み入った処理（容量が大きいファイル送信など）をする場合は、JavaScriptのSDKを使ったほうがよさそうです。<br>
 また試してみよう。</p>
@@ -198,14 +187,6 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

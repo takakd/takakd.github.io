@@ -14,19 +14,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <link rel='stylesheet' href='/assets/style.min.a637c76d326f6af57819d41db749ed25e02ebfd6adf2891c2da22c6ccf95e8c7.css'>
-  
+  <link rel='stylesheet' href='/assets/style.min.15828e0fe4027955715769cb47085ad8a14cf48379619f72bb2b49decdf62b94.css'>
   
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="shortcut icon" href="/favicon.ico">
-  
-  
-  
-  
-  
-  
   
   <meta name="description"
     content="Goでパニックが発生するかどうかのテストです。 // Testing if testFunc calls panic. // e.g. // IsTestCallPanic(func(){ // &lt;place test target" />
@@ -57,36 +50,35 @@
       
       <div class="content sn-Content mt-5">
         <p>Goでパニックが発生するかどうかのテストです。</p>
-<pre><code class="language-golang">// Testing if testFunc calls panic.
-// e.g.
-// IsTestCallPanic(func(){
-//   &lt;place test target here.&gt;
-// })
-func IsTestCallPanic(testFunc func()) (ok bool) {
-	defer func() {
-		if err := recover(); err == nil {
-			ok = false
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// Testing if testFunc calls panic.
+</span><span style="color:#75715e">// e.g.
+</span><span style="color:#75715e">// IsTestCallPanic(func(){
+</span><span style="color:#75715e">//   &lt;place test target here.&gt;
+</span><span style="color:#75715e">// })
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">IsTestCallPanic</span>(<span style="color:#a6e22e">testFunc</span> <span style="color:#66d9ef">func</span>()) (<span style="color:#a6e22e">ok</span> <span style="color:#66d9ef">bool</span>) {
+	<span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> recover(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#a6e22e">ok</span> = <span style="color:#66d9ef">false</span>
 		}
 	}()
-	ok = true
-	testFunc()
-	return
+	<span style="color:#a6e22e">ok</span> = <span style="color:#66d9ef">true</span>
+	<span style="color:#a6e22e">testFunc</span>()
+	<span style="color:#66d9ef">return</span>
 }
 
-// Test for test.
-func TestIsTestCallPanic(t *testing.T) {
-	isCalled := IsTestCallPanic(func() {
-		var i interface{}
-		if i == nil {
-			panic(&quot;Hi, panic.&quot;)
+<span style="color:#75715e">// Test for test.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestIsTestCallPanic</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+	<span style="color:#a6e22e">isCalled</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">IsTestCallPanic</span>(<span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">interface</span>{}
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+			panic(<span style="color:#e6db74">&#34;Hi, panic.&#34;</span>)
 		}
 	})
-	if !isCalled {
-		t.Errorf(&quot;failed.&quot;)
+	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">isCalled</span> {
+		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;failed.&#34;</span>)
 	}
 }
-</code></pre>
-
+</code></pre></div>
         
       </div>
       
@@ -127,14 +119,6 @@ func TestIsTestCallPanic(t *testing.T) {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-<script src="/assets/bundle.min.js"></script>
-
 
 <script type="application/javascript">
 var doNotTrack = false;

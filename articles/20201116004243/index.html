@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <title>aws | taka👨🏻‍💻</title>
+  <title>The REST API doesn&#39;t contain any methods (Service: AmazonApiGateway... | taka👨🏻‍💻</title>
   
   
   
@@ -22,7 +22,7 @@
   <link rel="shortcut icon" href="/favicon.ico">
   
   <meta name="description"
-    content="" />
+    content="AWS CloudFormationでProxy統合したAPIをデプロイしようとして次のようなエラーがでました。 CREATE_FAILED AWS::ApiGateway::Deployment SomeDeployment The" />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -38,138 +38,35 @@
       </a></nav>
   </nav>
 </section>
-  <section class="ls-Section px-4 px-lg-5 pt-5">
-    <h1 class="cs-title">#aws</h1>
-    <div>
+  <section class="sn-Section m-0 p-0">
+    <div class="px-4 px-lg-5 pt-5 pb-5">
+      <h1 class="cs-title">The REST API doesn&#39;t contain any methods (Service: AmazonApiGateway...</h1>
+      <h2 class="cs-subtitle pt-2">2020-11-16</h2>
+      <div class="m-0 p-0">
+        
+          <a class="cs-tags" href="/tags/aws">#aws</a>
+        
+      </div>
       
+      <div class="content sn-Content mt-5">
+        <p>AWS CloudFormationでProxy統合したAPIをデプロイしようとして次のようなエラーがでました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">CREATE_FAILED  AWS::ApiGateway::Deployment  SomeDeployment The REST API doesn<span style="color:#960050;background-color:#1e0010">&#39;</span>t contain any methods <span style="color:#f92672">(</span>Service:BadRequestException; Request ID:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx; Proxy: null<span style="color:#f92672">)</span>
+</code></pre></div><p>原因は、Deploymentリソース作成時に<code>AWS::ApiGateway::Method</code>リソースがまだ作られていないため<code>doesn't contain</code><br>
+<code>DependsOn</code>を<code>AWS::ApiGateway::Deployment</code>に追記することで解決できました。<br>
+記述のクセをつけておいたほうがよさそうですね。</p>
+<p><strong>Ref.</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html</a></li>
+<li><a href="https://nickolaskraus.org/articles/creating-an-amazon-api-gateway-with-a-lambda-integration-using-cloudformation/">https://nickolaskraus.org/articles/creating-an-amazon-api-gateway-with-a-lambda-integration-using-cloudformation/</a></li>
+</ul>
+
+        
+      </div>
       
-      
-<article class="pt-5 pb-5 cs-article">
-  <div class="cs-tags float-right">
-    
-    <a class="cs-tags" href="/tags/aws">#aws</a>
-    
-  </div>
-  <h2 class="cs-article-title">
-    <a href="https://takakd.github.io/articles/20201116004243/" class="cs-article-title-label">
-      The REST API doesn&#39;t contain any methods (Service: AmazonApiGateway...
-    </a></h2>
-  <h3 class="cs-subtitle mb-3">2020-11-16</h3>
-  <div class="content">
-    AWS CloudFormationでProxy統合したAPIをデプロイしようとして次のようなエラーがでました。 CREATE_FAILED AWS::ApiGateway::Deployment...
-    
-  </div>
-</article>
-
-<article class="pt-5 pb-5 cs-article">
-  <div class="cs-tags float-right">
-    
-    <a class="cs-tags" href="/tags/aws">#aws</a>
-    
-  </div>
-  <h2 class="cs-article-title">
-    <a href="https://takakd.github.io/articles/20201102010035/" class="cs-article-title-label">
-      API Gateway統合レスポンスのヘッダーのマッピングで固定値を設定
-    </a></h2>
-  <h3 class="cs-subtitle mb-3">2020-11-02</h3>
-  <div class="content">
-    CloudFormation(.yaml)で、API Gatewayの統合レスポンスのヘッダーのマッピングで固定値を指定したい場合は、次のように書くとよい。 SomeMethod: Type:...
-    
-  </div>
-</article>
-
-<article class="pt-5 pb-5 cs-article">
-  <div class="cs-tags float-right">
-    
-    <a class="cs-tags" href="/tags/aws">#aws</a>
-    
-  </div>
-  <h2 class="cs-article-title">
-    <a href="https://takakd.github.io/articles/20200806023547/" class="cs-article-title-label">
-      AWS5資格の勉強ログ
-    </a></h2>
-  <h3 class="cs-subtitle mb-3">2020-08-06</h3>
-  <div class="content">
-    勉強を始めた時に勉強法を色々調べたのですが、勉強ログ的なものは少ないように思ったので残しておきます。どなたかの参考になれば幸いです。 背景 勉強を始めた時のスペックは次の通り。 AWS使用歴4年ぐら...
-    
-    
-  </div>
-</article>
-
-<article class="pt-5 pb-5 cs-article">
-  <div class="cs-tags float-right">
-    
-    <a class="cs-tags" href="/tags/golang">#golang</a><span class="ml-1 mr-1">|</span><a class="cs-tags" href="/tags/aws">#aws</a>
-    
-  </div>
-  <h2 class="cs-article-title">
-    <a href="https://takakd.github.io/articles/20200705022238/" class="cs-article-title-label">
-      API Gateway &#43; Lambda - golang
-    </a></h2>
-  <h3 class="cs-subtitle mb-3">2020-07-05</h3>
-  <div class="content">
-    APIGateway + GoでLambdaのサンプルです。 仕様 エンドポイント: https://&lt;API...
-    
-  </div>
-</article>
-
-<article class="pt-5 pb-5 cs-article">
-  <div class="cs-tags float-right">
-    
-    <a class="cs-tags" href="/tags/aws">#aws</a>
-    
-  </div>
-  <h2 class="cs-article-title">
-    <a href="https://takakd.github.io/articles/20180224125248/" class="cs-article-title-label">
-      HTML FormでS3にPOST
-    </a></h2>
-  <h3 class="cs-subtitle mb-3">2018-02-24</h3>
-  <div class="content">
-    AWSのリファレンスを参考に、FormでS3バケットへのPOSTを試してみました。 準備 FormでS3にPOSTするためには、各フィールドに送信するファイルに合わせ、POST...
-    
-    
-  </div>
-</article>
-
-<article class="pt-5 pb-5 cs-article">
-  <div class="cs-tags float-right">
-    
-    <a class="cs-tags" href="/tags/aws">#aws</a>
-    
-  </div>
-  <h2 class="cs-article-title">
-    <a href="https://takakd.github.io/articles/20180209233744/" class="cs-article-title-label">
-      AWSでVPC &#43; 踏み台EC2 &#43; NAT Gatewayの設定
-    </a></h2>
-  <h3 class="cs-subtitle mb-3">2018-02-09</h3>
-  <div class="content">
-    VPCの勉強のため、よくある構成で設定を試しました。 構成 VPC test-vpc1(172.31.0.0/16) Private Subnet...
-    
-    
-  </div>
-</article>
-
-<article class="pt-5 pb-5 cs-article">
-  <div class="cs-tags float-right">
-    
-    <a class="cs-tags" href="/tags/aws">#aws</a>
-    
-  </div>
-  <h2 class="cs-article-title">
-    <a href="https://takakd.github.io/articles/20171025023301/" class="cs-article-title-label">
-      AWS CLIのインストール
-    </a></h2>
-  <h3 class="cs-subtitle mb-3">2017-10-25</h3>
-  <div class="content">
-    AWSマネジメントコンソールを使う機会が増えてきました。 軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストール。 環境 macOS Sierra...
-    
-    
-  </div>
-</article>
-
     </div>
   </section>
   
+
 
 <section class="ft-Section mt-auto ml-0 mr-0 mb-0 pa-0">
   <div class="d-flex px-5 py-lg-3 pt-4 pb-3 align-items-center justify-content-md-between align-items-md-center flex-lg-row flex-column">

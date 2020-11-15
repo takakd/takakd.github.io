@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Mon, 02 Nov 2020 01:00:36 +0900</lastBuildDate><atom:link href="https://takakd.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Nov 2020 00:42:43 +0900</lastBuildDate><atom:link href="https://takakd.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The REST API doesn&#39;t contain any methods (Service: AmazonApiGateway...</title>
+      <link>https://takakd.github.io/articles/20201116004243/</link>
+      <pubDate>Mon, 16 Nov 2020 00:42:43 +0900</pubDate>
+      
+      <guid>https://takakd.github.io/articles/20201116004243/</guid>
+      <description>AWS CloudFormationでProxy統合したAPIをデプロイしようとして次のようなエラーがでました。 CREATE_FAILED AWS::ApiGateway::Deployment SomeDeployment The REST API doesn&amp;#39;t contain any methods (Service:BadRequestException; Request ID:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx; Proxy: null) 原因は、Deploymentリソース作成時にAWS::ApiGateway::Methodリソースがまだ作られていないためdoesn&#39;t contain DependsOnをAWS::ApiGateway::Deploymentに追記することで解決できました。 記述のクセをつけておいたほうがよさそうですね。 Ref. https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html https://nickolaskraus.org/articles/creating-an-amazon-api-gateway-with-a-lambda-integration-using-cloudformation/</description>
+    </item>
+    
     <item>
       <title>API Gateway統合レスポンスのヘッダーのマッピングで固定値を設定</title>
       <link>https://takakd.github.io/articles/20201102010035/</link>

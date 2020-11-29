@@ -7,27 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; taka 2018</copyright>
-    <lastBuildDate>Sun, 07 Jun 2020 14:30:24 +0900</lastBuildDate>
-    
-	<atom:link href="https://takakd.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 27 Nov 2020 17:31:30 +0900</lastBuildDate><atom:link href="https://takakd.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Goのパッケージ名で悩む</title>
-      <link>https://takakd.github.io/articles/20200607143024/</link>
-      <pubDate>Sun, 07 Jun 2020 14:30:24 +0900</pubDate>
+      <title>AWS SDK for Goを使ったユニットテスト</title>
+      <link>https://takakd.github.io/articles/20201129173130/</link>
+      <pubDate>Fri, 27 Nov 2020 17:31:30 +0900</pubDate>
       
-      <guid>https://takakd.github.io/articles/20200607143024/</guid>
-      <description>プロジェクト内で、HTTPのユーティリティ関数をまとめるモジュールの命名に悩んでいました。 結果はproject-layoutの構成で、internalの下にhttputilを配置して解決。 悩んでいた時は回答がでず、こちらで聞いてみると、 internalを作って、その下は好きにするといい httpextとextをつける というような意見をいただきました。 個人的にはinternalを使うほうが、プロジェクト内ということがわかりやすいと考え、そちらで実装。 最初に考えていた名前は、mypackage/utils しかし、&amp;ldquo;Avoid meaningless package names.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). という記載があるので違う気がする。 次は、mypackage/http or mypackage/httputil これは、&amp;ldquo;Avoid unnecessary package name collisions.&amp;rdquo; (&amp;ldquo;Bad package names&amp;rdquo; section). にひっかかるので違う気がする。 最後に、mypackage/apphttputilsにしてましたが、どうにも冗長。質問を投げてみて、</description>
-    </item>
-    
-    <item>
-      <title>panicのテスト</title>
-      <link>https://takakd.github.io/articles/20200528043646/</link>
-      <pubDate>Thu, 28 May 2020 04:36:46 +0900</pubDate>
-      
-      <guid>https://takakd.github.io/articles/20200528043646/</guid>
-      <description>Goでパニックが発生するかどうかのテストです。 // Testing if testFunc calls panic. // e.g. // IsTestCallPanic(func(){ // &amp;lt;place test target here.&amp;gt; // }) func IsTestCallPanic(testFunc func()) (ok bool) { defer func() { if err := recover(); err == nil { ok = false } }() ok = true testFunc() return } // Test for test. func TestIsTestCallPanic(t *testing.T) { isCalled := IsTestCallPanic(func() { var i interface{} if i == nil { panic(&amp;quot;Hi, panic.&amp;quot;) } }) if !isCalled { t.Errorf(&amp;quot;failed.&amp;quot;) } }</description>
+      <guid>https://takakd.github.io/articles/20201129173130/</guid>
+      <description>AWS SDK for Goの各AWSサービスのユニットテストのコードです。 単純にラップするするstructを作ってテストしています。 例えば、DynamoDBの場合は次の通り。 実装 package repository import ( &amp;#34;context&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;github.com/aws/aws-sdk-go/aws&amp;#34; &amp;#34;github.com/aws/aws-sdk-go/aws/session&amp;#34; &amp;#34;github.com/aws/aws-sdk-go/service/dynamodb&amp;#34; &amp;#34;github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute&amp;#34; // ... ) // SDK wrapper interface, which can be able to unit test. type DynamoDbWrapper interface { // Define the same as SDK. Query(input *dynamodb.QueryInput) (*dynamodb.QueryOutput, error) // Define, if it needs more. // ... } // Default implementation. // Use this if the argument of &amp;#34;NewDynamoDbRepository&amp;#34; is not passed. type DynamoDbWrapperAdapter struct { svc *dynamodb.DynamoDB } // Dispatch simply. func (d *DynamoDbWrapperAdapter) Query(input *dynamodb.QueryInput) (*dynamodb.QueryOutput, error) { return d.svc.Query(input) } // Set wrp to null. In case unit test, set mock interface. func NewDynamoDbRepository(wrp DynamoDbWrapper) updatetimerevent.Repository { if wrp == nil { wrp = &amp;amp;DynamoDbWrapperAdapter{ svc: dynamodb.New(session.New()), } } return &amp;amp;DynamoDbRepository{ wrp: wrp, } } // Find something. func (r *DynamoDbRepository) FindSome(ctx context.Context, userId string) (some *SomeStruct, err error) { input := &amp;amp;dynamodb.QueryInput{ ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{ &amp;#34;:userid&amp;#34;: { S: aws.String(userId), }, }, KeyConditionExpression: aws.String(&amp;#34;UserId = :userid&amp;#34;), TableName: aws.String(&amp;#34;DYNAMODB_TABLE&amp;#34;), } // Call mock method, if r.wrp is set mock. result, err := r.wrp.Query(input) if err != nil { return } // ... } テストコード t.Run(&amp;#34;ok:Query&amp;#34;, func(t *testing.T) { caseUserId := &amp;#34;test user&amp;#34; caseInput := &amp;amp;dynamodb.QueryInput{ ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{ &amp;#34;:userid&amp;#34;: { S: aws.String(caseUserId), }, }, KeyConditionExpression: aws.String(&amp;#34;UserId = :userid&amp;#34;), TableName: aws.String(&amp;#34;DYNAMODB_TABLE&amp;#34;), } caseItem := &amp;amp;dynamodb.QueryOutput{ Items: []map[string]*dynamodb.AttributeValue{}, } ctrl := gomock.NewController(t) defer ctrl.Finish() s := NewMockDynamoDbWrapper(ctrl) s.EXPECT().Query(gomock.Eq(caseInput)).Return(caseItem, nil) repo := NewDynamoDbRepository(s) got, err := repo.FindSome(context.TODO(), caseUserId) assert.NoError(t, err) // assert... }) Ref. AWS SDK for Go aws/aws-sdk-go</description>
     </item>
     
   </channel>

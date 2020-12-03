@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://takakd.github.io/sitemap.xml

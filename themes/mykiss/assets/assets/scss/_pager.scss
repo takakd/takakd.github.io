@@ -1,0 +1,26 @@
+/**
+ * Pager
+ */
+.pg-Section {
+  .cs-btn {
+    color: $pg-color-link !important;
+    border-color: $color-link !important;
+    background-color: $color-link !important;
+    border-radius: 2px !important;
+    font-size: 1.0rem;
+    text-transform: uppercase;
+
+    @include static-link-color($pg-color-link, $pg-color-link-hover);
+
+    &:hover {
+      border-color: $color-link-hover !important;
+      background-color: $color-link-hover !important;
+    }
+    &:visited {
+      &:hover {
+        border-color: $color-link-hover !important;
+        background-color: $color-link-hover !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{{ if and .Paginator.HasPrev .Paginator.HasNext }}
+<section class="pg-Section p-0 m-0">
+  <div class="d-flex px-5 my-5 align-items-center justify-content-between align-items-center">
+    {{ if .Paginator.HasPrev }}
+    <a class="btn btn-primary cs-btn" href="{{ .Paginator.Prev.URL }}">
+      Newer
+    </a>
+    {{ else }}
+    <span aria-disabled="true" aria-hidden="true"></span>
+    {{ end }}
+    {{ if .Paginator.HasNext }}
+    <a class="btn btn-primary cs-btn flex-grows-1 px-4" href="{{ .Paginator.Next.URL }}">
+      Older
+    </a>
+    {{ else }}
+    <span aria-disabled="true" aria-hidden="true"></span>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

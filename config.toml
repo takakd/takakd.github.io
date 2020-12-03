@@ -1,0 +1,78 @@
+baseurl = "https://takakd.github.io"
+languageCode = "ja"
+title = "taka👨🏻‍💻"
+theme = "mykiss"
+copyright = "&copy; taka 2018"
+#disqusShortname = ""
+googleAnalytics = "UA-108607644-3"
+# Number of posts per page
+Paginate = 999
+enableRobotsTXT = true
+
+hasCJKLanguage = true
+summaryLength = 400
+
+[params.sections_center]
+"/about/" = "About"
+
+[params]
+description = "日々の開発作業で気づいたこと、その他小ネタを書いております。"
+mainSections = ["articles"]
+
+[params.format]
+date = "2006-01-02"
+
+[params.assets]
+customCSS = []
+customSCSS = []
+customJS = []
+
+
+[params.rss]
+includeContent = true # Includes whole content in rss
+authorName = "taka" # Site author's full name
+authorEmail = ""
+
+[params.info]
+adsense = "" # Adsense ID (ID only, without ca-pub-)
+enableSocial = false # Adds OpenGraph and Twitter cards
+homeTitle = "takakd👨🏻‍💻" # Title for home page
+poweredby = false # Adds powered by Hugo and Kiss below Copyright section
+related = false # Includes related articles
+
+[params.opengraph.facebook]
+admins = [] # array of Facebook IDs
+appID = ""
+pageID = ""
+
+[params.opengraph.twitter]
+page = "" # Twitter Page username. If not set, params.social.twitter will be used.
+
+[params.social]
+
+twitter = "takakdkd"
+github = "takakd"
+email = ""
+linkedin = "takakd"
+facebook = "takakd987"
+instagram = ""
+devto = ""
+codepen = ""
+
+[params.matomoAnalytics]
+#siteID = 1
+#rootURL = "//matomo.example.com/"
+
+[params.fathomAnalytics]
+#rootURL = "//fathom.example.com/"
+
+[taxonomies]
+tag ="tags"
+
+[blackfriday]
+hrefTargetBlank = true
+noreferrerLinks = true
+nofollowLinks = true
+autolink = true
+#extensionsmask = ["autolink"]
+#extensionsmask = ["autolink"]

@@ -1,0 +1,56 @@
+@import "./_var";
+
+// font
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
+//@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+//@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+//@import url("https://fonts.googleapis.com/css?family=Barlow+Condensed&display=swap");
+
+/**
+ * Mixins
+ */
+@mixin headerText {
+  letter-spacing: 0.05em;
+
+  font-family: "Noto Sans", sans-serif !important;
+  html[lang="ja"] & {
+    font-family: "Noto Sans JP", sans-serif !important;
+  }
+}
+
+@mixin static-link-color($color, $hover_color, $text_decoration: none) {
+  color: $color;
+  &:visited {
+    color: $color;
+    &:hover {
+      color: $hover_color;
+      text-decoration: $text_decoration;
+    }
+  }
+  &:hover {
+    color: $hover_color;
+    text-decoration: $text_decoration;
+  }
+}
+
+// @see: https://getbootstrap.com/docs/4.3/layout/overview/#responsive-breakpoints
+@mixin breakpoint($bootstrap_breakpoint_word) {
+  @if $bootstrap_breakpoint_word == sm {
+    @media (min-width: 576px) {
+      @content;
+    }
+  } @else if $bootstrap_breakpoint_word == md {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $bootstrap_breakpoint_word == lg {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $bootstrap_breakpoint_word == xl {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}

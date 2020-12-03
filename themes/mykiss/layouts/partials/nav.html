@@ -1,0 +1,18 @@
+<section class="nav-Section m-0 p-0">
+  <nav class="nav d-flex px-4 px-lg-5 align-items-center justify-content-between">
+    <div class="my-3 my-lg-4">
+      <a class="p-0 text-decoration-none" href="{{ .Site.BaseURL }}">
+        <h1 class="cs-title p-0 m-0">{{ .Site.Title }}</h1>
+      </a>
+    </div>
+    <nav>
+      {{- range $section, $printable := .Site.Params.sections_center -}}
+      {{- if $printable -}}
+      <a href="{{$section}}" class="cs-menu-link text-decoration-none">
+        {{$printable}}
+      </a>
+      {{- end -}}
+      {{- end -}}
+    </nav>
+  </nav>
+</section>

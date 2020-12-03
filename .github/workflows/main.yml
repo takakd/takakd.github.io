@@ -1,0 +1,36 @@
+name: Deploy to GitHub pages
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  GitHub pages deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      # Ref: https://github.com/actions/checkout#usage
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # https://github.com/marketplace/actions/hugo-setup#getting-started
+      - name: Setup Hugo 📦
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build 🔧
+        run: hugo --minify
+
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public

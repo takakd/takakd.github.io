@@ -1,0 +1,54 @@
+/**
+ * List
+ */
+.ls-Section {
+  .cs-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    @include breakpoint(md) {
+      font-size: 2rem;
+    }
+  }
+
+  .cs-article-title {
+    font-weight: 600;
+    font-size: 1rem;
+    @include breakpoint(md) {
+      font-size: 1.2rem;
+    }
+
+    .cs-article-title-label {
+      font-size: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      @include static-link-color($color-link, $color-link-hover);
+      @include breakpoint(md) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .cs-article {
+    border-top: solid 1px #ddd;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  .cs-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .cs-tags {
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-weight: normal;
+    @include static-link-color($color-link, $color-link-hover);
+
+    @include breakpoint(md) {
+      font-size: 1rem;
+    }
+  }
+}

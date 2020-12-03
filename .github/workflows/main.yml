@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  GitHub pages deploy:
+  deploy_github-pages:
     runs-on: ubuntu-18.04
     steps:
       # Ref: https://github.com/actions/checkout#usage

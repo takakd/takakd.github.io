@@ -8,9 +8,9 @@ body {
   color: $color-txt;
 
   // need font of paragraph text?
-  font-family: "Noto Sans", sans-serif !important;
+  font-family: "BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;"
   html[lang="ja"] & {
-    font-family: "Noto Sans JP", sans-serif !important;
+    font-family: "BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;"
   }
 }
 

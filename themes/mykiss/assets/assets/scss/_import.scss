@@ -1,21 +1,14 @@
 @import "./_var";
 
-// font
-@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
-//@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
-//@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
-//@import url("https://fonts.googleapis.com/css?family=Barlow+Condensed&display=swap");
-
 /**
  * Mixins
  */
 @mixin headerText {
   letter-spacing: 0.05em;
 
-  font-family: "Noto Sans", sans-serif !important;
+  font-family: "BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;"
   html[lang="ja"] & {
-    font-family: "Noto Sans JP", sans-serif !important;
+    font-family: "BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;"
   }
 }
 

@@ -27,7 +27,6 @@ customCSS = []
 customSCSS = []
 customJS = []
 
-
 [params.rss]
 includeContent = true # Includes whole content in rss
 authorName = "taka" # Site author's full name

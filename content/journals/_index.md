@@ -1,5 +1,5 @@
 ---
-title: "Articles"
+title: "Journals"
 menu:
   after:
     weight: 5

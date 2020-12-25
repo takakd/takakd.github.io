@@ -1,0 +1,46 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.79.1"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="AWSマネジメントコンソールを使う機会が増えてきました。 軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストー"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="AWS CLIのインストール"><meta property="og:description" content="AWSマネジメントコンソールを使う機会が増えてきました。 軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストー"><meta property="og:type" content="article"><meta property="og:url" content="https://takakd.github.io/articles/20171025023301/"><meta property="article:published_time" content="2017-10-25T02:33:01+09:00"><meta property="article:modified_time" content="2020-12-03T22:35:36+09:00"><title>AWS CLIのインストール | taka👨🏻‍💻</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.becc5f833d5163a998ae7d18e80e7d882d355079fc4dc44a8860ee1c2a960a7a.css integrity="sha256-vsxfgz1RY6mYrn0Y6A59iC01UHn8TcRKiGDuHCqWCno="><script defer src=/en.search.min.d864b04d1b39a7cce07fcdaa85493e85bfe752f3a5ecd421e7bdba0ba0a5f0fd.js integrity="sha256-2GSwTRs5p8zgf82qhUk+hb/nUvOl7NQh5726C6Cl8P0="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-108607644-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>taka👨🏻‍💻</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/articles/>Articles</a></li><li><a href=/journals/>Journals</a></li><li><a href=/about/>About</a></li><li><a href=https://github.com/takakd target=_blank rel=noopener>Github</a></li><li><a href=https://www.linkedin.com/in/takakd/ target=_blank rel=noopener>Linkedin</a></li><li><a href=https://twitter.com/takakdkd target=_blank rel=noopener>Twitter</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>AWS CLIのインストール</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#環境>環境</a></li><li><a href=#手順>手順</a><ul><li><a href=#1-aws-cliのインストール>1. AWS CLIのインストール</a></li><li><a href=#2-認証情報の設定>2. 認証情報の設定</a></li><li><a href=#3-aws-cli実行確認>3. AWS CLI実行確認</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1><a href=/articles/20171025023301/>AWS CLIのインストール</a></h1><h5>2017-10-25</h5><div><a href=/tags/aws/>aws</a></div><p><p>AWSマネジメントコンソールを使う機会が増えてきました。<br>軽微な確認作業で毎度ログインするのが手間なため、AWS CLIを使って簡単にできないかなとまずはインストール。</p><h2 id=環境>環境
+<a class=anchor href=#%e7%92%b0%e5%a2%83>#</a></h2><ul><li>macOS Sierra</li><li>python 2.7.13</li><li>pip 9.0.1</li></ul><h2 id=手順>手順
+<a class=anchor href=#%e6%89%8b%e9%a0%86>#</a></h2><ol><li>AWS CLIのインストール</li><li>認証情報設定</li><li>AWS CLI実行確認</li></ol><h3 id=1-aws-cliのインストール>1. AWS CLIのインストール
+<a class=anchor href=#1-aws-cli%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab>#</a></h3><p>ターミナルを起動して、pipでインストール。<br><a href=http://docs.aws.amazon.com/ja_jp/general/latest/gr/rande.html>参考: Install</a></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ pip install awscli --upgrade --user
+...
+ずらずらとログ出力される。
+...
+...
+
+<span style=color:#75715e># 完了後、awsを実行。</span>
+$ aws
+<span style=color:#75715e># usageが出たらOK。</span>
+usage: aws <span style=color:#f92672>[</span>options<span style=color:#f92672>]</span> &lt;command&gt; &lt;subcommand&gt; <span style=color:#f92672>[</span>&lt;subcommand&gt; ...<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>parameters<span style=color:#f92672>]</span>
+To see help text, you can run:
+
+aws help
+aws &lt;command&gt; help
+aws &lt;command&gt; &lt;subcommand&gt; help
+aws: error: too few arguments
+</code></pre></div><h3 id=2-認証情報の設定>2. 認証情報の設定
+<a class=anchor href=#2-%e8%aa%8d%e8%a8%bc%e6%83%85%e5%a0%b1%e3%81%ae%e8%a8%ad%e5%ae%9a>#</a></h3><p>認証情報は実行時のコマンドライン引数や環境変数でも指定できますが、毎度指定するのも手間なので設定ファイルの方法を選択しました。
+<a href=http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html target=_blank>参考: Configuration and Credential Files</a></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># ファイルの置き場所を作って</span>
+$ mkdir ~/.aws
+
+<span style=color:#75715e># 認証ファイル作成</span>
+touch ~/.aws/credentials
+
+<span style=color:#75715e># 環境設定ファイルも作成</span>
+touch ~/.aws/config
+</code></pre></div><p>各ファイルの内容は次の通り。</p><p><strong>~/.aws/credentials</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#66d9ef>[default]</span>
+<span style=color:#a6e22e>aws_access_key_id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&lt;アクセスキーID&gt;</span>
+<span style=color:#a6e22e>aws_secret_access_key</span><span style=color:#f92672>=</span><span style=color:#e6db74>&lt;アクセスキーID作成時に表示できたシークレットキー&gt;</span>
+</code></pre></div><p>アクセスキーIDは下記で表示されているもの。</p><p><strong>~/.aws/config</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#66d9ef>[default]</span>
+<span style=color:#a6e22e>region</span><span style=color:#f92672>=</span><span style=color:#e6db74>ap-northeast-1</span>
+<span style=color:#a6e22e>output</span><span style=color:#f92672>=</span><span style=color:#e6db74>json</span>
+</code></pre></div><p>初期設定リージョンは東京にしました。
+<a href=http://docs.aws.amazon.com/ja_jp/general/latest/gr/rande.html target=_blank>リージョン名(サービス名の箇所)</a></p><p>これでインストール完了。</p><h3 id=3-aws-cli実行確認>3. AWS CLI実行確認
+<a class=anchor href=#3-aws-cli%e5%ae%9f%e8%a1%8c%e7%a2%ba%e8%aa%8d>#</a></h3><p>試しにS3バケット一覧をAWS CLI経由で取得してみます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ aws s3 ls
+...
+S3のバケット一覧が出るはず。
+...
+...
+</code></pre></div><p>機会見ていろいろなコマンドを試していこう。</p></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><a href=#環境>環境</a></li><li><a href=#手順>手順</a><ul><li><a href=#1-aws-cliのインストール>1. AWS CLIのインストール</a></li><li><a href=#2-認証情報の設定>2. 認証情報の設定</a></li><li><a href=#3-aws-cli実行確認>3. AWS CLI実行確認</a></li></ul></li></ul></li></ul></nav></aside></main></body></html>

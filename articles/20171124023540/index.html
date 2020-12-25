@@ -1,0 +1,44 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.79.1"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一部のディレクトリのみBasic認証したいケースがあり、.htaccessで設定しました。 前提 # Apache 2.4 .htaccess使用可能 .htaccess # 次の通り。 <Files ~ &#34;^\.(htpasswd|htaccess)$&#34;> Require all denied </Files> <Files ~ &#34;^(?!\.htpasswd|\.htaccess).*&#34;>"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Apache2.4で一部のディレクトリのみBasic認証"><meta property="og:description" content="一部のディレクトリのみBasic認証したいケースがあり、.htaccessで設定しました。 前提 # Apache 2.4 .htaccess使用可能 .htaccess # 次の通り。 <Files ~ &#34;^\.(htpasswd|htaccess)$&#34;> Require all denied </Files> <Files ~ &#34;^(?!\.htpasswd|\.htaccess).*&#34;>"><meta property="og:type" content="article"><meta property="og:url" content="https://takakd.github.io/articles/20171124023540/"><meta property="article:published_time" content="2017-11-24T02:35:40+09:00"><meta property="article:modified_time" content="2020-12-03T22:35:36+09:00"><title>Apache2.4で一部のディレクトリのみBasic認証 | taka👨🏻‍💻</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.becc5f833d5163a998ae7d18e80e7d882d355079fc4dc44a8860ee1c2a960a7a.css integrity="sha256-vsxfgz1RY6mYrn0Y6A59iC01UHn8TcRKiGDuHCqWCno="><script defer src=/en.search.min.d864b04d1b39a7cce07fcdaa85493e85bfe752f3a5ecd421e7bdba0ba0a5f0fd.js integrity="sha256-2GSwTRs5p8zgf82qhUk+hb/nUvOl7NQh5726C6Cl8P0="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-108607644-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>taka👨🏻‍💻</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/articles/>Articles</a></li><li><a href=/journals/>Journals</a></li><li><a href=/about/>About</a></li><li><a href=https://github.com/takakd target=_blank rel=noopener>Github</a></li><li><a href=https://www.linkedin.com/in/takakd/ target=_blank rel=noopener>Linkedin</a></li><li><a href=https://twitter.com/takakdkd target=_blank rel=noopener>Twitter</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Apache2.4で一部のディレクトリのみBasic認証</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#前提>前提</a></li><li><a href=#htaccess>.htaccess</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1><a href=/articles/20171124023540/>Apache2.4で一部のディレクトリのみBasic認証</a></h1><h5>2017-11-24</h5><div><a href=/tags/Server/>Server</a></div><p><p>一部のディレクトリのみBasic認証したいケースがあり、.htaccessで設定しました。</p><h2 id=前提>前提
+<a class=anchor href=#%e5%89%8d%e6%8f%90>#</a></h2><ul><li>Apache 2.4</li><li>.htaccess使用可能</li></ul><h2 id=htaccess>.htaccess
+<a class=anchor href=#htaccess>#</a></h2><p>次の通り。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-apache data-lang=apache><span style=color:#f92672>&lt;Files</span> <span style=color:#e6db74>~ &#34;^\.(htpasswd|htaccess)$&#34;</span><span style=color:#f92672>&gt;</span>
+  Require <span style=color:#66d9ef>all</span> denied
+<span style=color:#f92672>&lt;/Files&gt;</span>
+
+<span style=color:#f92672>&lt;Files</span> <span style=color:#e6db74>~ &#34;^(?!\.htpasswd|\.htaccess).*&#34;</span><span style=color:#f92672>&gt;</span>
+  Require <span style=color:#66d9ef>all</span> denied
+
+  <span style=color:#75715e># このURLは認証をかけたい</span>
+  SetEnvIf Request_URI <span style=color:#e6db74>&#34;/api/something.*&#34;</span> urlEndpoint
+
+  <span style=color:#f92672>&lt;RequireAll&gt;</span>
+
+    AuthType Basic
+    AuthName <span style=color:#e6db74>&#34;id, pass.&#34;</span>
+    AuthUserFile  <span style=color:#e6db74>/some/directory/.htpasswd</span>
+    AuthGroupfile <span style=color:#e6db74>/dev/null</span>
+
+    Require <span style=color:#66d9ef>all</span> granted
+
+    <span style=color:#f92672>&lt;RequireAny&gt;</span>
+
+    <span style=color:#75715e># Basic認証必要</span>
+    <span style=color:#f92672>&lt;RequireAll&gt;</span>
+      Require valid-user
+      Require env urlEndpoint
+    <span style=color:#f92672>&lt;/RequireAll&gt;</span>
+
+    <span style=color:#75715e># それ以外は通常アクセス可能</span>
+    <span style=color:#f92672>&lt;RequireAll&gt;</span>
+      Require <span style=color:#66d9ef>all</span> granted
+      Require not env urlEndpoint
+    <span style=color:#f92672>&lt;/RequireAll&gt;</span>
+
+    <span style=color:#f92672>&lt;/RequireAny&gt;</span>
+
+  <span style=color:#f92672>&lt;/RequireAll&gt;</span>
+<span style=color:#f92672>&lt;/Files&gt;</span>
+</code></pre></div><p>Apache2.2, 2.4環境を行き来すると、間違ってallow, denyで設定を書いてしまったり。
+気をつけないと。</p></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><a href=#前提>前提</a></li><li><a href=#htaccess>.htaccess</a></li></ul></li></ul></nav></aside></main></body></html>

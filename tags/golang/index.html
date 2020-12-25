@@ -1,0 +1,79 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.79.1"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="golang"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://takakd.github.io/tags/golang/"><meta property="og:updated_time" content="2020-12-03T22:35:36+09:00"><title>golang | taka👨🏻‍💻</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.becc5f833d5163a998ae7d18e80e7d882d355079fc4dc44a8860ee1c2a960a7a.css integrity="sha256-vsxfgz1RY6mYrn0Y6A59iC01UHn8TcRKiGDuHCqWCno="><script defer src=/en.search.min.d864b04d1b39a7cce07fcdaa85493e85bfe752f3a5ecd421e7bdba0ba0a5f0fd.js integrity="sha256-2GSwTRs5p8zgf82qhUk+hb/nUvOl7NQh5726C6Cl8P0="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-108607644-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>taka👨🏻‍💻</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/articles/>Articles</a></li><li><a href=/journals/>Journals</a></li><li><a href=/about/>About</a></li><li><a href=https://github.com/takakd target=_blank rel=noopener>Github</a></li><li><a href=https://www.linkedin.com/in/takakd/ target=_blank rel=noopener>Linkedin</a></li><li><a href=https://twitter.com/takakdkd target=_blank rel=noopener>Twitter</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>golang</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav><ul><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/journal/>journal</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/aws/>aws</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/go/>go</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/blockchain/>blockchain</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/ethereum/>ethereum</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/solidity/>solidity</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/API/>API</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/golang/>golang</a>
+<span>13</span></li><li class="flex justify-between"><a href=/tags/slack/>slack</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/tips/>tips</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/shell/>shell</a>
+<span>4</span></li><li class="flex justify-between"><a href=/tags/design/>design</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/node/>node</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/npm/>npm</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/test/>test</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/document/>document</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/java/>java</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/AIZU-ONLINE-JUDGE/>AIZU ONLINE JUDGE</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/vim/>vim</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/sqlite/>sqlite</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/Salesforce/>Salesforce</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/Hugo/>Hugo</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/Python/>Python</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/MovableType/>MovableType</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/Heroku/>Heroku</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/JavaScript/>JavaScript</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/IDE/>IDE</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/Server/>Server</a>
+<span>1</span></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h2><a href=/articles/20201023052454/>SlackのEventAPIのリトライコールを防ぐ - golang</a></h2><h5>2020-10-23</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/API/>API</a>,
+<a href=/tags/slack/>slack</a></div><p>エラーレスポンスを返す時でもリトライさせたくない場合は、ヘッダにX-Slack-No-Retryを指定する。 func handler(w http.ResponseWriter, r *http.Request) { // Process something... // Set "X-Slack-No-Retry: 1" if prevent retry. w.Header().Set("X-Slack-No-Retry", "1") w.Header().Set("Content-Type", "application/json") w.WriteHeader(http.StatusBadRequest) w.Write([]byte("")) } Reference # https://api.slack.com/events-api#the-events-api__field-guide__error-handling__graceful-retries__turning-retries-off</p></article><article class="markdown book-post"><h2><a href=/articles/20201021052243/>generate gomockでエラーが出た - golang</a></h2><h5>2020-10-21</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/tips/>tips</a></div><p>gomockでエラー。とりあえず古いファイルを消して再実行すると解消できた。 % mockgen -source ./internal/app/usecase/xxx/repository.go -destination ./internal/app/usecase/xxx/repository_mock.go -package xxx -: found packages xxx (repository.go) and mock_updateproteinevent (repository_mock.go) in /Users/xxx/go/src/proteinreminder/internal/app/usecase/xxx 2020/10/21 04:21:56 Loading input failed: loading package failed # Delete % rm -rf ./internal/app/usecase/xxx/repository_mock.go # Run again and completed. % mockgen -source ./internal/app/usecase/xxx/repository.go -destination
+<a href=/articles/20201021052243/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20201017051917/>golang-migrateのヘルパスクリプト - golang</a></h2><h5>2020-10-17</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/shell/>shell</a></div><p>.sql向け golang-migrateのヘルパスクリプトです。 機能 # .envからデータソースを読み込み ディレクトリ内のSQLファイルでマイグレート SQLのみ対
+<a href=/articles/20201017051917/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200705022238/>API Gateway + Lambda - golang</a></h2><h5>2020-07-05</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/aws/>aws</a></div><p>APIGateway + GoでLambdaのサンプルです。 仕様 # エンドポイント: https://&lt;API ID>.execute-api.ap-northeast-1.amazonaws.com/&lt;stage>/&lt;Resource> HTTPメソッド: GET パラメータ: { "text": "string" } Lambdaハンドラ # 引数をstructで定義。 package main import (
+<a href=/articles/20200705022238/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200628021817/>安全なtruncate string - golang</a></h2><h5>2020-06-28</h5><div><a href=/tags/golang/>golang</a></div><p>package main import ( "fmt" ) // Truncate string. func TruncateString(str string, length int) string { if length &lt;= 0 { return "" } // This code cannot support Japanese // orgLen := len(str) // if orgLen &lt;= length { // return str // } // return str[:length] // Support Japanese // Ref: Range loops https://blog.golang.org/strings truncated := "" count := 0 for _, char := range str { truncated += string(char) count++ if count >= length { break }
+<a href=/articles/20200628021817/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200625021433/>"omitempty"のメモ - golang</a></h2><h5>2020-06-25</h5><div><a href=/tags/golang/>golang</a></div><p>json.Marshal はomitemptyが値型stringに設定されていれば空文字を出力する。 フィールド自体不要な場合は、ポインタ型stringにするといい。 package main import ( "encoding/json" "fmt" ) type ValueSlice struct
+<a href=/articles/20200625021433/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200623021217/>ParseFormした値をstructに設定 - golang</a></h2><h5>2020-06-23</h5><div><a href=/tags/golang/>golang</a></div><p>// Set FormValues to struct func SetFormValueToStruct(values url.Values, structPtr interface{}) error { // Get the pointer of struct ptr := reflect.ValueOf(structPtr) // Get the value of struct value := ptr.Elem() // Set value to struct field valueType := value.Type() for i := 0; i &lt; value.NumField(); i++ { jsonTag := valueType.Field(i).Tag.Get("json") if value.Field(i).CanSet() == false { return errors.New("cannot set value to field") } value.Field(i).Set(reflect.ValueOf(values.Get(jsonTag))) } return nil } // Example func ExampleSetFormValueToStruct() { // Form values formValues := url.Values{} formValues.Set("test1",
+<a href=/articles/20200623021217/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200620021106/>URLクエリ文字列を生成 - golang</a></h2><h5>2020-06-20</h5><div><a href=/tags/golang/>golang</a></div><p>params := url.Values{ "keyword": {"some"}, } reqUrl := "https://yourendpoint.example.com?" + params.Encode() Reference # https://golang.org/pkg/net/url/#URL.Query</p></article><article class="markdown book-post"><h2><a href=/articles/20200612020628/>ユニコードキャラクタをエスケープシーケンスに変換 - golang</a></h2><h5>2020-06-12</h5><div><a href=/tags/golang/>golang</a></div><p>json.Unmarshalしたデータに含まれる文字列のユニコードキャラクタをエスケープシーケンスに変換します。 // func convertJsonElement(data interface{}) interface{} { switch v := data.(type) { case map[string]interface{}: for ik, iv := range v { v[ik] = convertJsonElement(iv) }
+<a href=/articles/20200612020628/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200607143024/>パッケージ名で悩む - golang</a></h2><h5>2020-06-07</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/design/>design</a></div><p>プロジェクト内で、HTTPのユーティリティ関数をまとめるモジュールの命名に悩んでいました。 結果は project-layoutの構成で、internalの下にht
+<a href=/articles/20200607143024/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200528043646/>panicのテスト - golang</a></h2><h5>2020-05-28</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/test/>test</a></div><p>Goでパニックが発生するかどうかのテストです。 // Testing if testFunc calls panic. // e.g. // IsTestCallPanic(func(){ // &lt;place test target here.> // }) func IsTestCallPanic(testFunc func()) (ok bool) { defer func() { if err := recover(); err == nil { ok = false } }() ok = true testFunc() return } // Test for test. func TestIsTestCallPanic(t *testing.T) { isCalled := IsTestCallPanic(func() {
+<a href=/articles/20200528043646/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200413235004/>Interfaceポインタの型エラー - golang</a></h2><h5>2020-04-13</h5><div><a href=/tags/golang/>golang</a></div><p>Iocコンテナを作ろうとして次のようなコードを書くとエラーが出ました。 原因はinterfaceのポインタの型エラー。 // interface type IFace interface { hello() string } // concrete type type Concrete struct { } func NewConcrete() *Concrete { return
+<a href=/articles/20200413235004/>...</a></p></article><article class="markdown book-post"><h2><a href=/articles/20200131021820/>error table [name] has no column [column]</a></h2><h5>2020-01-31</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/sqlite/>sqlite</a></div><p>GoでsqliteにデータをInsertしようとしてエラー。 $ error table Balance has no column named price Insertしているコードを見ても問題はない。 カラムを確認すると…… 2個目のカラム
+<a href=/articles/20200131021820/>...</a></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav><ul><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/journal/>journal</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/aws/>aws</a>
+<span>8</span></li><li class="flex justify-between"><a href=/tags/go/>go</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/blockchain/>blockchain</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/ethereum/>ethereum</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/solidity/>solidity</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/API/>API</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/golang/>golang</a>
+<span>13</span></li><li class="flex justify-between"><a href=/tags/slack/>slack</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/tips/>tips</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/shell/>shell</a>
+<span>4</span></li><li class="flex justify-between"><a href=/tags/design/>design</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/node/>node</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/npm/>npm</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/test/>test</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/document/>document</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/java/>java</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/AIZU-ONLINE-JUDGE/>AIZU ONLINE JUDGE</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/vim/>vim</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/sqlite/>sqlite</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/Salesforce/>Salesforce</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/Hugo/>Hugo</a>
+<span>2</span></li><li class="flex justify-between"><a href=/tags/Python/>Python</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/MovableType/>MovableType</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/Heroku/>Heroku</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/JavaScript/>JavaScript</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/IDE/>IDE</a>
+<span>1</span></li><li class="flex justify-between"><a href=/tags/Server/>Server</a>
+<span>1</span></li></ul></li></ul></nav></aside></main></body></html>

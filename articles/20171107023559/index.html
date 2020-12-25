@@ -1,0 +1,97 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.79.1"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="サイトの記事データをJSONで出力したい。手作業は大変。CMSを設置するのも億劫。 ということで、Hugoで出力するようにしました。 サンプルコード 前提 # macOS Sierra Hom"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="HugoでJSONを出力"><meta property="og:description" content="サイトの記事データをJSONで出力したい。手作業は大変。CMSを設置するのも億劫。 ということで、Hugoで出力するようにしました。 サンプルコード 前提 # macOS Sierra Hom"><meta property="og:type" content="article"><meta property="og:url" content="https://takakd.github.io/articles/20171107023559/"><meta property="article:published_time" content="2017-11-07T02:35:59+09:00"><meta property="article:modified_time" content="2020-12-03T22:35:36+09:00"><title>HugoでJSONを出力 | taka👨🏻‍💻</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.becc5f833d5163a998ae7d18e80e7d882d355079fc4dc44a8860ee1c2a960a7a.css integrity="sha256-vsxfgz1RY6mYrn0Y6A59iC01UHn8TcRKiGDuHCqWCno="><script defer src=/en.search.min.d864b04d1b39a7cce07fcdaa85493e85bfe752f3a5ecd421e7bdba0ba0a5f0fd.js integrity="sha256-2GSwTRs5p8zgf82qhUk+hb/nUvOl7NQh5726C6Cl8P0="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-108607644-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>taka👨🏻‍💻</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/articles/>Articles</a></li><li><a href=/journals/>Journals</a></li><li><a href=/about/>About</a></li><li><a href=https://github.com/takakd target=_blank rel=noopener>Github</a></li><li><a href=https://www.linkedin.com/in/takakd/ target=_blank rel=noopener>Linkedin</a></li><li><a href=https://twitter.com/takakdkd target=_blank rel=noopener>Twitter</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>HugoでJSONを出力</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#前提>前提</a></li><li><a href=#やりたいこと>やりたいこと</a></li><li><a href=#hugoにした理由>Hugoにした理由</a></li><li><a href=#手順>手順</a><ul><li><a href=#1-configtomlでjsonを出力するように設定>1. config.tomlでJSONを出力するように設定</a></li><li><a href=#2-出力したい内容となるようにjson出力用テンプレートを調整>2. 出力したい内容となるようにJSON出力用テンプレートを調整</a></li><li><a href=#3-hugoで出力>3. hugoで出力</a></li><li><a href=#補足>補足</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1><a href=/articles/20171107023559/>HugoでJSONを出力</a></h1><h5>2017-11-07</h5><div><a href=/tags/Hugo/>Hugo</a></div><p><p>サイトの記事データをJSONで出力したい。手作業は大変。CMSを設置するのも億劫。
+ということで、Hugoで出力するようにしました。</p><p><a href=https://github.com/takakd/sample-hugo-json>サンプルコード</a></p><h2 id=前提>前提
+<a class=anchor href=#%e5%89%8d%e6%8f%90>#</a></h2><ul><li>macOS Sierra</li><li>HomebrewでHugo
+<a href=https://gohugo.io/getting-started/quick-start/>インストール</a>済み</li></ul><h2 id=やりたいこと>やりたいこと
+<a class=anchor href=#%e3%82%84%e3%82%8a%e3%81%9f%e3%81%84%e3%81%93%e3%81%a8>#</a></h2><p>MarkDownで書いた記事データをJSONで出力する。</p><h2 id=hugoにした理由>Hugoにした理由
+<a class=anchor href=#hugo%e3%81%ab%e3%81%97%e3%81%9f%e7%90%86%e7%94%b1>#</a></h2><p>他の静的サイトジェネレータをいくつか試したのですが、次のような印象でした。</p><dl><dt>Middleman</dt><dd>うまくテンプレートでJSON出力できなかった。</dd><dt>Jekyll</dt><dd>ページ一覧をJSON出力する際、list.jsonという出力ファイル名を作れなかった。</dd><dt>Hexo</dt><dd>こちらも、ページ一覧をJSON出力する際、list.jsonというファイル名を作れなかった。</dd></dl><p>メモを破棄したため正直なところ空覚えなのと、あまり深く確認せず試していたので、間違っているかもしれません。
+予めご容赦ください。</p><h2 id=手順>手順
+<a class=anchor href=#%e6%89%8b%e9%a0%86>#</a></h2><p>手順は次のとおりです。</p><ol><li>config.tomlでJSONを出力するように設定。</li><li>出力したい内容となるようにJSON出力用テンプレートを調整。</li><li>hugoで出力。</li></ol><h3 id=1-configtomlでjsonを出力するように設定>1. config.tomlでJSONを出力するように設定
+<a class=anchor href=#1-configtoml%e3%81%a7json%e3%82%92%e5%87%ba%e5%8a%9b%e3%81%99%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e8%a8%ad%e5%ae%9a>#</a></h3><p>記事データをすべてJSON出力したいので、sectionページタイプの出力フォーマットにJSONを追加します。</p><p><strong>config.toml</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=color:#a6e22e>baseURL</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;http://example.org/&#34;</span>
+<span style=color:#a6e22e>languageCode</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;en-us&#34;</span>
+<span style=color:#a6e22e>title</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;My New Hugo Site&#34;</span>
+
+<span style=color:#66d9ef>[outputs]</span>
+<span style=color:#a6e22e>section</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>[&#34;JSON&#34;, &#34;HTML&#34;]</span>
+</code></pre></div><h3 id=2-出力したい内容となるようにjson出力用テンプレートを調整>2. 出力したい内容となるようにJSON出力用テンプレートを調整
+<a class=anchor href=#2-%e5%87%ba%e5%8a%9b%e3%81%97%e3%81%9f%e3%81%84%e5%86%85%e5%ae%b9%e3%81%a8%e3%81%aa%e3%82%8b%e3%82%88%e3%81%86%e3%81%abjson%e5%87%ba%e5%8a%9b%e7%94%a8%e3%83%86%e3%83%b3%e3%83%97%e3%83%ac%e3%83%bc%e3%83%88%e3%82%92%e8%aa%bf%e6%95%b4>#</a></h3><p>JSON出力用テンプレートを作成します。
+postsディレクトリ下に記事データを入れるようにしたので、テンプレートはposts/list.jsonとして作成します。</p><p><strong>posts/list.json</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang>{<span style=color:#f92672>%</span> <span style=color:#a6e22e>raw</span> <span style=color:#f92672>%</span>}
+{
+  <span style=color:#e6db74>&#34;posts&#34;</span>: [
+    {{ <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>list</span> <span style=color:#f92672>:=</span> .<span style=color:#a6e22e>Data</span>.<span style=color:#a6e22e>Pages</span> <span style=color:#f92672>-</span>}}
+    {{ <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>len</span> <span style=color:#f92672>:=</span> (<span style=color:#a6e22e>len</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>list</span>) <span style=color:#f92672>-</span>}}
+    {{ <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>lt</span> <span style=color:#ae81ff>0</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>len</span> <span style=color:#f92672>-</span>}}
+      {{ <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>first</span> <span style=color:#ae81ff>1</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>list</span> <span style=color:#f92672>-</span>}}
+      {
+        <span style=color:#e6db74>&#34;id&#34;</span> : {{ .<span style=color:#a6e22e>Date</span>.<span style=color:#a6e22e>Format</span> <span style=color:#e6db74>&#34;20060102150405&#34;</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;date&#34;</span> : {{ <span style=color:#66d9ef>if</span> .<span style=color:#a6e22e>Date</span> }}{{ .<span style=color:#a6e22e>Date</span>.<span style=color:#a6e22e>Format</span> <span style=color:#e6db74>&#34;2006.01.02&#34;</span> | <span style=color:#a6e22e>jsonify</span> }}{{<span style=color:#66d9ef>else</span>}}<span style=color:#e6db74>&#34;&#34;</span>{{<span style=color:#a6e22e>end</span>}},
+        <span style=color:#e6db74>&#34;title&#34;</span> : {{ .<span style=color:#a6e22e>Title</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;summary&#34;</span> : {{ .<span style=color:#a6e22e>Summary</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;body&#34;</span> : {{ .<span style=color:#a6e22e>Content</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;tags&#34;</span> : {{ <span style=color:#66d9ef>if</span> .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>tags</span> }}{{ .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>tags</span> | <span style=color:#a6e22e>jsonify</span> }}{{ <span style=color:#66d9ef>else</span> }}[]{{ <span style=color:#a6e22e>end</span> }},
+        <span style=color:#e6db74>&#34;some-ex-param&#34;</span> : {{ <span style=color:#66d9ef>if</span> .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>someexparam</span> }}{{ .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>someexparam</span> | <span style=color:#a6e22e>jsonify</span> }}{{ <span style=color:#66d9ef>else</span> }}<span style=color:#66d9ef>false</span>{{ <span style=color:#a6e22e>end</span> }}
+      }
+      {{<span style=color:#f92672>-</span> <span style=color:#a6e22e>end</span> <span style=color:#f92672>-</span>}}
+    {{<span style=color:#f92672>-</span> <span style=color:#a6e22e>end</span> <span style=color:#f92672>-</span>}}
+    {{<span style=color:#f92672>-</span> <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>lt</span> <span style=color:#ae81ff>1</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>len</span> <span style=color:#f92672>-</span>}}
+      {{<span style=color:#f92672>-</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>after</span> <span style=color:#ae81ff>1</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>list</span> <span style=color:#f92672>-</span>}}
+      ,{
+        <span style=color:#e6db74>&#34;id&#34;</span> : {{ .<span style=color:#a6e22e>Date</span>.<span style=color:#a6e22e>Format</span> <span style=color:#e6db74>&#34;20060102150405&#34;</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;date&#34;</span> : {{ <span style=color:#66d9ef>if</span> .<span style=color:#a6e22e>Date</span> }}{{ .<span style=color:#a6e22e>Date</span>.<span style=color:#a6e22e>Format</span> <span style=color:#e6db74>&#34;2006.01.02&#34;</span> | <span style=color:#a6e22e>jsonify</span> }}{{<span style=color:#66d9ef>else</span>}}<span style=color:#e6db74>&#34;&#34;</span>{{<span style=color:#a6e22e>end</span>}},
+        <span style=color:#e6db74>&#34;title&#34;</span> : {{ .<span style=color:#a6e22e>Title</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;summary&#34;</span> : {{ .<span style=color:#a6e22e>Summary</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;body&#34;</span> : {{ .<span style=color:#a6e22e>Content</span> | <span style=color:#a6e22e>jsonify</span> }},
+        <span style=color:#e6db74>&#34;tags&#34;</span> : {{ <span style=color:#66d9ef>if</span> .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>tags</span> }}{{ .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>tags</span> | <span style=color:#a6e22e>jsonify</span> }}{{ <span style=color:#66d9ef>else</span> }}[]{{ <span style=color:#a6e22e>end</span> }},
+        <span style=color:#e6db74>&#34;some-ex-param&#34;</span> : {{ <span style=color:#66d9ef>if</span> .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>sameexparam</span> }}{{ .<span style=color:#a6e22e>Params</span>.<span style=color:#a6e22e>sameexparam</span> | <span style=color:#a6e22e>jsonify</span> }}{{ <span style=color:#66d9ef>else</span> }}<span style=color:#66d9ef>false</span>{{ <span style=color:#a6e22e>end</span> }}
+      }
+      {{<span style=color:#f92672>-</span> <span style=color:#a6e22e>end</span> <span style=color:#f92672>-</span>}}
+    {{<span style=color:#f92672>-</span> <span style=color:#a6e22e>end</span> }}
+  ]
+}
+{<span style=color:#f92672>%</span> <span style=color:#a6e22e>endraw</span> <span style=color:#f92672>%</span>}
+</code></pre></div><h3 id=3-hugoで出力>3. hugoで出力
+<a class=anchor href=#3-hugo%e3%81%a7%e5%87%ba%e5%8a%9b>#</a></h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># 実行</span>
+$ hugo
+</code></pre></div><p>次のようなファイルができていれば完成です。</p><p><strong>index.json</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;posts&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;20171004010101&#34;</span>,
+      <span style=color:#f92672>&#34;date&#34;</span>: <span style=color:#e6db74>&#34;2017.10.04&#34;</span>,
+      <span style=color:#f92672>&#34;title&#34;</span> : <span style=color:#e6db74>&#34;Post4&#34;</span>,
+      <span style=color:#f92672>&#34;summary&#34;</span>: <span style=color:#e6db74>&#34;etc4 etc4\u0026hellip;&#34;</span>,
+      <span style=color:#f92672>&#34;body&#34;</span>: <span style=color:#e6db74>&#34;\u003cp\u003eetc4 etc4\u0026hellip;\u003c/p\u003e\n&#34;</span>,
+      <span style=color:#f92672>&#34;tags&#34;</span>: [],
+      <span style=color:#f92672>&#34;some-ex-param&#34;</span>: <span style=color:#e6db74>&#34;test4&#34;</span>
+    }, {
+      <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;20171003010101&#34;</span>,
+      <span style=color:#f92672>&#34;date&#34;</span>: <span style=color:#e6db74>&#34;2017.10.03&#34;</span>,
+      <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;Post3&#34;</span>,
+      <span style=color:#f92672>&#34;summary&#34;</span> : <span style=color:#e6db74>&#34;etc3 etc3\u0026hellip;&#34;</span>,
+      <span style=color:#f92672>&#34;body&#34;</span>: <span style=color:#e6db74>&#34;\u003cp\u003eetc3 etc3\u0026hellip;\u003c/p\u003e\n&#34;</span>,
+      <span style=color:#f92672>&#34;tags&#34;</span>: [],
+      <span style=color:#f92672>&#34;some-ex-param&#34;</span>: <span style=color:#66d9ef>false</span>
+    }, {
+      <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;20171002010101&#34;</span>,
+      <span style=color:#f92672>&#34;date&#34;</span>: <span style=color:#e6db74>&#34;2017.10.02&#34;</span>,
+      <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;Post2&#34;</span>,
+      <span style=color:#f92672>&#34;summary&#34;</span> : <span style=color:#e6db74>&#34;etc2 etc2\u0026hellip;&#34;</span>,
+      <span style=color:#f92672>&#34;body&#34;</span>: <span style=color:#e6db74>&#34;\u003cp\u003eetc2 etc2\u0026hellip;\u003c/p\u003e\n&#34;</span>,
+      <span style=color:#f92672>&#34;tags&#34;</span>: [],
+      <span style=color:#f92672>&#34;some-ex-param&#34;</span>: <span style=color:#66d9ef>false</span>
+    }, {
+      <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;20171001010101&#34;</span>,
+      <span style=color:#f92672>&#34;date&#34;</span>: <span style=color:#e6db74>&#34;2017.10.01&#34;</span>,
+      <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;Post1&#34;</span>,
+      <span style=color:#f92672>&#34;summary&#34;</span> : <span style=color:#e6db74>&#34;etc1 etc1\u0026hellip;&#34;</span>,
+      <span style=color:#f92672>&#34;body&#34;</span>: <span style=color:#e6db74>&#34;\u003cp\u003eetc1 etc1\u0026hellip;\u003c/p\u003e\n&#34;</span>,
+      <span style=color:#f92672>&#34;tags&#34;</span>: [],
+      <span style=color:#f92672>&#34;some-ex-param&#34;</span>: <span style=color:#66d9ef>false</span>
+    }
+  ]
+}
+</code></pre></div><h3 id=補足>補足
+<a class=anchor href=#%e8%a3%9c%e8%b6%b3>#</a></h3><p>Hugoは、&ldquo;list"というテンプレート名を持つものを一覧ページのテンプレートと認識します。
+<a href=https://gohugo.io/templates/lists/>一覧ページのテンプレートについて</a></p><p>最初、この仕様の理解ができておらず、手間取りました。
+とほほ……</p><p>静的サイトジェネレータはWebサイトの作成を目的としなくても、こういったシードデータの作成にも使えて便利ですね。</p></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><a href=#前提>前提</a></li><li><a href=#やりたいこと>やりたいこと</a></li><li><a href=#hugoにした理由>Hugoにした理由</a></li><li><a href=#手順>手順</a><ul><li><a href=#1-configtomlでjsonを出力するように設定>1. config.tomlでJSONを出力するように設定</a></li><li><a href=#2-出力したい内容となるようにjson出力用テンプレートを調整>2. 出力したい内容となるようにJSON出力用テンプレートを調整</a></li><li><a href=#3-hugoで出力>3. hugoで出力</a></li><li><a href=#補足>補足</a></li></ul></li></ul></li></ul></nav></aside></main></body></html>

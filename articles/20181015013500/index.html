@@ -1,0 +1,43 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.79.1"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&#34;A JavaScript error occurred in the main process&#34; 試"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="SalesForce CLIでApexを取得"><meta property="og:description" content="MavensMateがサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。 エラーは&#34;A JavaScript error occurred in the main process&#34; 試"><meta property="og:type" content="article"><meta property="og:url" content="https://takakd.github.io/articles/20181015013500/"><meta property="article:published_time" content="2018-10-17T01:08:00+09:00"><meta property="article:modified_time" content="2020-12-03T22:35:36+09:00"><title>SalesForce CLIでApexを取得 | taka👨🏻‍💻</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.becc5f833d5163a998ae7d18e80e7d882d355079fc4dc44a8860ee1c2a960a7a.css integrity="sha256-vsxfgz1RY6mYrn0Y6A59iC01UHn8TcRKiGDuHCqWCno="><script defer src=/en.search.min.d864b04d1b39a7cce07fcdaa85493e85bfe752f3a5ecd421e7bdba0ba0a5f0fd.js integrity="sha256-2GSwTRs5p8zgf82qhUk+hb/nUvOl7NQh5726C6Cl8P0="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-108607644-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>taka👨🏻‍💻</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/articles/>Articles</a></li><li><a href=/journals/>Journals</a></li><li><a href=/about/>About</a></li><li><a href=https://github.com/takakd target=_blank rel=noopener>Github</a></li><li><a href=https://www.linkedin.com/in/takakd/ target=_blank rel=noopener>Linkedin</a></li><li><a href=https://twitter.com/takakdkd target=_blank rel=noopener>Twitter</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>SalesForce CLIでApexを取得</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#手順>手順</a><ul><li><a href=#1-salesforce-cliをインストール>1. Salesforce CLIをインストール</a></li><li><a href=#2-apex取得>2. Apex取得</a></li></ul></li><li><a href=#補足>補足</a><ul><li><a href=#sfdx>SFDX</a></li><li><a href=#forcecode>ForceCode</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1><a href=/articles/20181015013500/>SalesForce CLIでApexを取得</a></h1><h5>2018-10-17</h5><div><a href=/tags/Salesforce/>Salesforce</a></div><p><p><a href=http://mavensmate.com/>MavensMate</a>がサポート終了になった後も、Apexを取得するために利用していたのですが、ついに起動しなくなりました。</p><p>エラーは"A JavaScript error occurred in the main process"</p><p>試行錯誤すれば解消できるかもしれませんが、無理やり利用を続けるのも不毛そう。<br>素直に公式のSalesfoce CLIで取得しました。</p><h2 id=手順>手順
+<a class=anchor href=#%e6%89%8b%e9%a0%86>#</a></h2><h3 id=1-salesforce-cliをインストール>1. Salesforce CLIをインストール
+<a class=anchor href=#1-salesforce-cli%e3%82%92%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab>#</a></h3><p>npmでインストールしました。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ node --version
+v9.1.0
+$ npm install -g sfdx-cli
+</code></pre></div><p><a href=https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm>Salesforce CLIのインストール</a></p><h3 id=2-apex取得>2. Apex取得
+<a class=anchor href=#2-apex%e5%8f%96%e5%be%97>#</a></h3><p>SandboxからApexClassをすべて取得。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># 1. Sandboxにログイン</span>
+<span style=color:#75715e># ... -aでエイリアスを作成（Apex取得時、取得先Salesforce環境を指定するために利用）</span>
+<span style=color:#75715e># ... -rでSandboxのログインURLを指定</span>
+<span style=color:#75715e># ... -sでデフォルトユーザ名を指定できるが、毎回取得先を指定する予定のため、未指定</span>
+
+$ sfdx force:auth:web:login -a myprj-sand -r https://test.salesforce.com
+
+<span style=color:#75715e># ... ブラウザが起動して、Salesforceのログイン画面表示</span>
+
+<span style=color:#75715e># ... ログインする</span>
+Successfully authorized &lt;mail address&gt; with org ID &lt;object id&gt;
+You may now close the browser
+
+<span style=color:#75715e># ... ブラウザ閉じる</span>
+
+
+<span style=color:#75715e># 2. Salesforce DX Project作成</span>
+<span style=color:#75715e># ... Apex取得コマンド実行に、Projectが必要となるため作成</span>
+$ sfdx force:project:create -n myprj
+
+
+<span style=color:#75715e># 3. Apex取得</span>
+<span style=color:#75715e># ... Projectディレクトリに移動</span>
+$ cd myprj
+<span style=color:#75715e># ... Apexクラスのソースを全て取得</span>
+<span style=color:#75715e># ... -uでエイリアス指定</span>
+<span style=color:#75715e># ... -mで全ApexClass取得を指定</span>
+$ sfdx force:source:retirieve -u myprj-sand -m ApexClass
+</code></pre></div><p><a href=https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force.htm>CLIコマンド参考</a></p><h2 id=補足>補足
+<a class=anchor href=#%e8%a3%9c%e8%b6%b3>#</a></h2><h3 id=sfdx>SFDX
+<a class=anchor href=#sfdx>#</a></h3><p>SalesforceCLIは、Salesforce Developer Experience（SFDX）という開発体制で真価を発揮するようです。</p><p><a href=https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm>Salesforce Developer Experience による作業方法の変化</a></p><p>使いこなすためには
+<a href=https://developer.salesforce.com/docs/atlas.ja-jp.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_create.htm>スクラッチ組織</a>など、学ぶことは多そう。</p><h3 id=forcecode>ForceCode
+<a class=anchor href=#forcecode>#</a></h3><p>ググるとVisual Studio Codeアドオンの
+<a href="https://marketplace.visualstudio.com/items?itemName=JohnAaronNelson.ForceCode">ForceCode</a>の利用例が多数ありました。<br>私の環境ではうまく機能せず断念。</p><p>　</p><p>開発者が多数いらっしゃる組織では、CLI利用が一般的なのでしょうか。<br>楽しそうでもあり、大変そうでもありそう。</p></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><a href=#手順>手順</a><ul><li><a href=#1-salesforce-cliをインストール>1. Salesforce CLIをインストール</a></li><li><a href=#2-apex取得>2. Apex取得</a></li></ul></li><li><a href=#補足>補足</a><ul><li><a href=#sfdx>SFDX</a></li><li><a href=#forcecode>ForceCode</a></li></ul></li></ul></li></ul></nav></aside></main></body></html>

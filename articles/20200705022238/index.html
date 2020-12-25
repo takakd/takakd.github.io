@@ -1,0 +1,67 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.79.1"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="APIGateway + GoでLambdaのサンプルです。 仕様 # エンドポイント: https://<API ID>.execute-api.ap-northeast-1.amazonaws.com/<stage>/<Resource> HTTPメソッド: GET パラメータ: { &#34;text&#34;: &#34;string&#34; } Lambdaハンドラ # 引数をstructで定義。 package main import ("><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="API Gateway + Lambda - golang"><meta property="og:description" content="APIGateway + GoでLambdaのサンプルです。 仕様 # エンドポイント: https://<API ID>.execute-api.ap-northeast-1.amazonaws.com/<stage>/<Resource> HTTPメソッド: GET パラメータ: { &#34;text&#34;: &#34;string&#34; } Lambdaハンドラ # 引数をstructで定義。 package main import ("><meta property="og:type" content="article"><meta property="og:url" content="https://takakd.github.io/articles/20200705022238/"><meta property="article:published_time" content="2020-07-05T02:22:39+09:00"><meta property="article:modified_time" content="2020-12-03T22:35:36+09:00"><title>API Gateway + Lambda - golang | taka👨🏻‍💻</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.becc5f833d5163a998ae7d18e80e7d882d355079fc4dc44a8860ee1c2a960a7a.css integrity="sha256-vsxfgz1RY6mYrn0Y6A59iC01UHn8TcRKiGDuHCqWCno="><script defer src=/en.search.min.d864b04d1b39a7cce07fcdaa85493e85bfe752f3a5ecd421e7bdba0ba0a5f0fd.js integrity="sha256-2GSwTRs5p8zgf82qhUk+hb/nUvOl7NQh5726C6Cl8P0="></script><script defer src=/sw.min.74a8bb07f0bee86d6bb9a2750f073f14d93c7e4512f28860370cfd879e9719b4.js integrity="sha256-dKi7B/C+6G1ruaJ1Dwc/FNk8fkUS8ohgNwz9h56XGbQ="></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-108607644-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=/><span>taka👨🏻‍💻</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=/articles/>Articles</a></li><li><a href=/journals/>Journals</a></li><li><a href=/about/>About</a></li><li><a href=https://github.com/takakd target=_blank rel=noopener>Github</a></li><li><a href=https://www.linkedin.com/in/takakd/ target=_blank rel=noopener>Linkedin</a></li><li><a href=https://twitter.com/takakdkd target=_blank rel=noopener>Twitter</a></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>API Gateway + Lambda - golang</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#仕様>仕様</a></li><li><a href=#lambdaハンドラ>Lambdaハンドラ</a></li><li><a href=#統合リクエスト---マッピングテンプレート>統合リクエスト - マッピングテンプレート</a></li><li><a href=#レスポンス>レスポンス</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1><a href=/articles/20200705022238/>API Gateway + Lambda - golang</a></h1><h5>2020-07-05</h5><div><a href=/tags/golang/>golang</a>,
+<a href=/tags/aws/>aws</a></div><p><p>APIGateway + GoでLambdaのサンプルです。</p><h2 id=仕様>仕様
+<a class=anchor href=#%e4%bb%95%e6%a7%98>#</a></h2><ul><li>エンドポイント: https://<code>&lt;API ID></code>.execute-api.ap-northeast-1.amazonaws.com/<code>&lt;stage></code>/<code>&lt;Resource></code></li><li>HTTPメソッド: GET</li><li>パラメータ:</li></ul><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+}
+</code></pre></div><h2 id=lambdaハンドラ>Lambdaハンドラ
+<a class=anchor href=#lambda%e3%83%8f%e3%83%b3%e3%83%89%e3%83%a9>#</a></h2><p>引数をstructで定義。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+
+<span style=color:#f92672>import</span> (
+	<span style=color:#e6db74>&#34;context&#34;</span>
+	<span style=color:#e6db74>&#34;github.com/aws/aws-lambda-go/lambda&#34;</span>
+	<span style=color:#e6db74>&#34;github.com/pkg/errors&#34;</span>
+)
+
+<span style=color:#75715e>// Ref: https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// Receive arguments as struct.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Event</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>Text</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;text&#34;`</span>
+}
+
+<span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Event</span>) <span style=color:#a6e22e>validate</span>() <span style=color:#66d9ef>bool</span> {
+	<span style=color:#a6e22e>valid</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>true</span>
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Text</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {
+		<span style=color:#a6e22e>valid</span> = <span style=color:#66d9ef>false</span>
+	}
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>valid</span>
+}
+
+<span style=color:#75715e>// Response
+</span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Response</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>Message</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;message&#34;`</span>
+}
+
+<span style=color:#75715e>// Lambda handler
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>HandleRequest</span>(<span style=color:#a6e22e>ctx</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Context</span>, <span style=color:#a6e22e>event</span> <span style=color:#a6e22e>Event</span>) (<span style=color:#a6e22e>Response</span>, <span style=color:#66d9ef>error</span>) {
+	<span style=color:#a6e22e>resp</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>Response</span>{}
+
+	<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>validate</span>() {
+		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>resp</span>, <span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;need text.&#34;</span>)
+	}
+
+	<span style=color:#75715e>// Something to do you want here.
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>Message</span> = <span style=color:#e6db74>&#34;ok&#34;</span>
+
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>resp</span>, <span style=color:#66d9ef>nil</span>
+}
+
+<span style=color:#75715e>// Main
+</span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+	<span style=color:#a6e22e>lambda</span>.<span style=color:#a6e22e>Start</span>(<span style=color:#a6e22e>HandleRequest</span>)
+}
+</code></pre></div><h2 id=統合リクエスト---マッピングテンプレート>統合リクエスト - マッピングテンプレート
+<a class=anchor href=#%e7%b5%b1%e5%90%88%e3%83%aa%e3%82%af%e3%82%a8%e3%82%b9%e3%83%88---%e3%83%9e%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%e3%83%86%e3%83%b3%e3%83%97%e3%83%ac%e3%83%bc%e3%83%88>#</a></h2><p>structに設定する値を追加。<br>ここでは<code>text</code>を設定しています。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=color:#960050;background-color:#1e0010>#set($allParams</span> <span style=color:#960050;background-color:#1e0010>=</span> <span style=color:#960050;background-color:#1e0010>$input.params())</span>
+{
+    <span style=color:#f92672>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;$input.params(&#39;text&#39;)&#34;</span>,
+    <span style=color:#f92672>&#34;body-json&#34;</span> : <span style=color:#960050;background-color:#1e0010>$input.json(&#39;$&#39;)</span>,
+<span style=color:#960050;background-color:#1e0010>...</span>
+}
+</code></pre></div><h2 id=レスポンス>レスポンス
+<a class=anchor href=#%e3%83%ac%e3%82%b9%e3%83%9d%e3%83%b3%e3%82%b9>#</a></h2><p>返ってくるレスポンス。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;ok&#34;</span>
+}
+</code></pre></div></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><ul><li><a href=#仕様>仕様</a></li><li><a href=#lambdaハンドラ>Lambdaハンドラ</a></li><li><a href=#統合リクエスト---マッピングテンプレート>統合リクエスト - マッピングテンプレート</a></li><li><a href=#レスポンス>レスポンス</a></li></ul></li></ul></nav></aside></main></body></html>

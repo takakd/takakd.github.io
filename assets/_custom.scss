@@ -1,8 +1,63 @@
 /* You can add custom styles here. */
-
 @import "plugins/scrollbars";
+
+$font-color: #333;
+$link-color: #1c84da;
+$icon-color: #444;
+
+// Common
+body {
+  color: $font-color;
+}
+
+a {
+  color: #1c84da;
+  &:visited {
+    color: #1c84da;
+  }
+}
 
 // Prevents rattling.
 body, .book-toc nav {
   overflow-y: scroll;
+}
+
+// Nav
+.book-menu nav {
+  .book-search {
+    margin: 0;
+  }
+  .sns-menu {
+    margin: 3rem 0 0 0;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+
+      li {
+        margin: 0 1rem 0 0;
+      }
+
+      .icon-github, .icon-linkedin, .icon-devto {
+        svg {
+          height: 26px;
+          width: auto;
+          path {
+            fill: $icon-color !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Markdown
+.markdown {
+  a {
+    color: #1c84da;
+    &:visited {
+      color: #1c84da;
+    }
+  }
 }

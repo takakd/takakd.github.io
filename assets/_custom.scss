@@ -52,6 +52,14 @@ body, .book-toc nav {
   }
 }
 
+.book-toc {
+  flex: 0 0 12rem;
+
+  nav {
+    width: 12rem;
+  }
+}
+
 // Markdown
 .markdown {
   a {

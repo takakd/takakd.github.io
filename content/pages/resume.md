@@ -8,7 +8,7 @@ aliases:
     - /page/resume
 ---
 
-# Resume - 工藤高浩（クドウタカヒロ）
+## Resume - 工藤高浩（クドウタカヒロ）
 
 ## 概要
 

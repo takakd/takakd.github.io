@@ -1,7 +1,7 @@
 ---
 title: "Articles"
 menu:
-  after:
-    weight: 5
+  before:
+    weight: 1
 ---
 

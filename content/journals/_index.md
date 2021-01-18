@@ -1,7 +1,7 @@
 ---
 title: "Journals"
 menu:
-  after:
+  before:
     weight: 5
 ---
 

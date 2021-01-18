@@ -2,7 +2,7 @@
 title: "About"
 date: 2017-10-23T09:18:00+09:00
 menu:
-  after:
+  before:
     weight: 50
 draft: false
 ---

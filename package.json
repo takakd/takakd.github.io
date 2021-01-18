@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "format": "textlint content/**/*.md --fix",
+    "lint": "textlint content/**/*.md  -f pretty-error"
+  },
+  "dependencies": {
+    "textlint": "^11.7.7",
+    "textlint-rule-preset-ja-technical-writing": "^4.0.1",
+    "textlint-rule-preset-japanese": "^5.0.0"
+  }
+}

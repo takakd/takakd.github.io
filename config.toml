@@ -13,6 +13,9 @@ hasCJKLanguage = true
 summaryLength = 80
 paginate = 999
 
+[minify]
+  disableSVG = true
+
 [taxonomies]
   tag ="tags"
 

@@ -27,6 +27,11 @@ main.container {
   max-width: none;
   margin-left: 1rem;
   margin-right: 1rem;
+
+  @media screen and (max-width: 56rem) {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
 }
 
 // Left nav

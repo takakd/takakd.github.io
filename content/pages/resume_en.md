@@ -19,7 +19,7 @@ A backend engineer responsible for technical verification, mock production, desi
 *TAMSAN inc., Tokyo, 09/2020 - current  
 TAM inc., Tokyo, 04/2013 - 08/2020*
 
-Design and implementation of web systems and services, and maintenance them.
+Design and implementation of web systems and services and maintenance them.
 
 * LINE bot：TypeScript, JavaScript, Node.js, AWS(Lambda, DynamoDB, API Gateway, SQS).
 * Web portal：PHP, JavaScript, HTML5, CSS3, Vue.js, PostgreSQL, Heroku, Salesforce, AWS(Cognito, API Gateway, Lambda, S3), Laravel.
@@ -30,12 +30,12 @@ Design and implementation of web systems and services, and maintenance them.
 *Tempstaff technology Co., Ltd., Osaka, 02/2012  
 Recruit Staffing Co., Ltd., Osaka, 11/2012 - 01/2013*
 
-Testing of devices related to media.
+Test devices related to media.
 
 ### Engineer
 *SOKEN Co., Ltd., Osaka, 04/2006 - 10/2012*
 
-Design and implementation of applications for business use, and maintenance them.
+Design and implementation of applications for business use and maintenance.
 
 * Reservation web application1：PHP, ActionScript 3, Flex, MySQL, HTML, CSS.
 * Reservation web application2：Perl, MySQL, HTML, CSS.

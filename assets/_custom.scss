@@ -22,12 +22,32 @@ body, .book-toc nav {
   overflow-y: scroll;
 }
 
-// Nav
+// Whole view
+main.container {
+  max-width: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  @media screen and (max-width: 56rem) {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+}
+
+// Left nav
 .book-menu nav {
+  .book-brand {
+    font-size: 1.5rem;
+  }
   .book-search {
     margin: 0;
+    font-size: 1.0rem;
+  }
+  .book-contents {
+    font-size: 1.0rem;
   }
   .sns-menu {
+    font-size: 1.0rem;
     margin: 3rem 0 0 0;
 
     ul {
@@ -52,20 +72,17 @@ body, .book-toc nav {
   }
 }
 
+// Right Nav
 .book-toc {
   flex: 0 0 12rem;
 
   nav {
     width: 12rem;
   }
-}
 
-// Markdown
-.markdown {
-  a {
-    color: #1c84da;
-    &:visited {
-      color: #1c84da;
-    }
+  .book-section-flat {
+    font-size: 0.9rem;
   }
 }
+
+@import "_github-markdown.scss";

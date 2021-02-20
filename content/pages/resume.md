@@ -1,5 +1,5 @@
 ---
-title: "Resume - 工藤高浩（クドウタカヒロ）"
+title: "Resume"
 date: 2020-12-03T12:52:00+09:00
 draft: false
 hidden: true
@@ -8,60 +8,107 @@ aliases:
     - /page/resume
 ---
 
-## Resume - 工藤高浩（クドウタカヒロ）
+# 工藤高浩 - クドウタカヒロ
 
-## 概要
+バックエンドエンジニアです。  
+現在は株式会社TAMSANで、受託案件における技術検証やモック製作、設計・実装、リリース後の保守・運用を行っております。
 
-**バックエンドエンジニア - ミドルレベル**
+* [GitHub](https://github.com/takakd)
+* [LinkedIn](https://www.linkedin.com/in/takakd/)
 
-案件提案時の技術検証やモック実装。設計・実装、リリース後の保守・運用を担当しています。
+## 経歴
 
-* ソフトウェア開発 4年
-* Web関連開発 6年
-* AWS, Heroku, Salesforce使用経験 4年
+### エンジニア
+*株式会社TAMSAN：東京　2020年9月転籍入社 〜 現在  
+株式会社TAM：東京　2013年4月 〜 2020年8月転籍退社*
 
-## 業務経験
+Webシステム・サービスの設計と実装、リリース後の保守を行う。
 
-### 2013年 - 現在　株式会社TAM　東京
-**Web開発エンジニア**
-アプリケーションの設計と実装、リリース後の保守運用
-* ファイナンシャルプランニングサービス会社の会員ポータル
-* 広告宣伝アセット管理システム
-* 航空輸送会社のキャンペーンサイト
-* 物流業務管理システム
+LINEボット開発
+: TypeScript, JavaScript, Node.js, AWS(Lambda, DynamoDB, API Gateway, SQS).
 
-### 2006年 - 2012年　株式会社創研　大阪
-**ソフトウェアエンジニア**
-アプリケーションの設計と実装、リリース後の保守運用
-* フットサルコート予約アプリケーション
-* 配送輸送用ラベル生成Adobeイラストレータープラグイン
-* 美容室予約アプリケーション
-* 業務用プリント基板製造装置の操作用Windowsアプリケーション
-* 監視カメラ管理ユニット操作用Windowsアプリケーション
+会員Webポータル
+: PHP, JavaScript, HTML5, CSS3, Vue.js, PostgreSQL, Heroku, Salesforce, AWS(Cognito, API Gateway, Lambda, S3), Laravel.
+
+キャンペーンサイト
+: PHP, JavaScript, HTML5, CSS3, PostgreSQL, Heroku, Salesforce, Laravel.
+
+業務管理システム
+: JavaScript, HTML5, CSS3, Salesforce.
+
+### テスター
+*テンプスタッフ・テクノロジー株式会社：　大阪　2012年2月（派遣）  
+株式会社リクルートスタッフィング：　大阪　2012年11月 〜 2013年1月（派遣）*
+
+メディア関連機器のテスト業務を行う。
+
+### エンジニア
+*株式会社創研：大阪　2006年4月 〜 2012年10月*
+
+業務向けアプリケーションの設計と実装、リリース後の保守を行う。
+
+スポーツ施設予約Webアプリケーション
+: PHP, ActionScript 3, Flex, MySQL, HTML, CSS.
+
+美容系予約Webアプリケーション
+: Perl, MySQL, HTML, CSS.
+
+監視カメラ管理ユニット操作用Windowsアプリケーション
+: C#, .Net Framework, MS Access.
+
+製造機器操作用Windowsアプリケーション
+: C++, Borland C++ Builder.
 
 ## スキル
-* 上級レベル：PHP, JavaScript, AWS, Heroku, Salesforce, SQL, CentOS.
-* 中級レベル：Golang, Python, HTML5, CSS3, C++, C#, Java.
-* 初級レベル：Ruby.
+言語
+: PHP, Go, JavaScript, TypeScript, SQL, HTML5/CSS3, Shell, C++, C#, Java.
+
+フレームワーク
+: Laravel, CakePHP, Zend Framework, Vue.js, React, Spring Boot.
+
+DB
+: MySQL, PostgreSQL, Redis, DynamoDB.
+
+サービス・ミドルウェア・ツール
+: AWS, Heroku, Salesforce, CentOS, Apache, NGINX, Git, Slack.
 
 ## 資格
-* AWS ソリューションアーキテクト - プロフェッショナル
-* AWS DevOps エンジニア – プロフェッショナル
-* AWS デベロッパー - アソシエイト
-* AWS SysOps アドミニストレーター - アソシエイト
-* AWS ソリューションアーキテクト - アソシエイト
-* Salesforce 認定 Platform デベロッパー
-* IPA システムアーキテクト
-* TOEIC 780
-
+* AWS 認定 ソリューションアーキテクト - プロフェッショナル：2020年7月
+* AWS 認定 DevOps エンジニア - プロフェッショナル：2020年5月
+* AWS 認定 デベロッパー - アソシエイト：2019年10月
+* AWS 認定 SysOps アドミニストレーター - アソシエイト：2019年11月
+* AWS 認定 ソリューションアーキテクト - アソシエイト：2019年9月
+* AWS 認定 クラウドプラクティショナー：2017年12月
+* Salesforce 認定 Platform デベロッパー：2019年4月
+* IPA システムアーキテクト：2020年1月
+* TOEIC 780：2020年11月
 
 ## 学歴
-* 大阪教育大学 教育学部 教養学科 自然研究専攻 物質科学コース（2006年卒業）
+大阪教育大学 教育学部 教養学科 自然研究専攻 物質科学コース：2006年卒業
+
+## プロジェクト
+[Retranslate](https://github.com/takakd/retranslate)　2021年1月 〜 2月
+: Google Translation APIとAmazon Translate APIを使用した日本語・英語翻訳Webアプリケーション  
+*Go, TypeScript, gRPC, React, Kubernetes, GCP(GKE, GCR), AWS(EKS).*
+
+[Lambda-wrk2](https://github.com/takakd/lambda-wrk2)　2020年12月
+: AWS Lambdaコンテナでwrk2を実行するスクリプト  
+*AWS(Lambda, CDK), wrk2, Shell.*
+
+[SlackTimer](https://github.com/takakd/slack-timer)　2020年8月 〜 12月
+: SlackのDMで定期的に通知を受け取るSlackアプリケーション  
+*Go, AWS(Lambda, API Gateway, SQS), Slack.*
+
+[Copy to Slack](https://github.com/takakd/copy-to-slack)　2020年5月 〜 2020年10月
+: Webページ上のコンテンツを右クリックメニューからSlackに送るChrome拡張  
+*JavaScript, Chrome拡張, jest.*
+
+[Simple Video Manual Theme](https://github.com/takakd/simple-video-manual-theme)　2018年12月
+: 動画ファイルをもとにマニュアル用サイトを作るWordPressテーマ  
+*Vue.js, JavaScript, PHP, WordPress.*
 
 ## SNS
-* GitHub: [https://github.com/takakd](https://github.com/takakd)
-* LinkedIn: [https://www.linkedin.com/in/takakd/](https://www.linkedin.com/in/takakd/)
-* Dev.to: [https://dev.to/takakd](https://dev.to/takakd)
+* [Dev.to](https://dev.to/takakd)
 
 ## ミートアップ
 * [re:Invent初参加印象に残ったシーン](https://www.slideshare.net/ssuserb88ac6/reinvent-208755909)：[JAWS-UG Osaka / AAJUG関西合同 re:invent 2019 振り返り & LT忘年会](https://jawsugosaka.doorkeeper.jp/events/101158)

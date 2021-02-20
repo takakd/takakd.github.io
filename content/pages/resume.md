@@ -1,6 +1,6 @@
 ---
-title: "Resume"
-date: 2020-12-03T12:52:00+09:00
+title: "工藤高浩 - クドウタカヒロ"
+date: 2021-02-03T12:15:00+09:00
 draft: false
 hidden: true
 type: "doc"
@@ -8,10 +8,8 @@ aliases:
     - /page/resume
 ---
 
-# 工藤高浩 - クドウタカヒロ
-
 バックエンドエンジニアです。  
-現在は株式会社TAMSANで、受託案件における技術検証やモック製作、設計・実装、リリース後の保守・運用を行っております。
+株式会社TAMSANで、受託案件における技術検証やモック製作、設計・実装、リリース後の保守・運用を行っております。
 
 * [GitHub](https://github.com/takakd)
 * [LinkedIn](https://www.linkedin.com/in/takakd/)
@@ -24,17 +22,10 @@ aliases:
 
 Webシステム・サービスの設計と実装、リリース後の保守を行う。
 
-LINEボット開発
-: TypeScript, JavaScript, Node.js, AWS(Lambda, DynamoDB, API Gateway, SQS).
-
-会員Webポータル
-: PHP, JavaScript, HTML5, CSS3, Vue.js, PostgreSQL, Heroku, Salesforce, AWS(Cognito, API Gateway, Lambda, S3), Laravel.
-
-キャンペーンサイト
-: PHP, JavaScript, HTML5, CSS3, PostgreSQL, Heroku, Salesforce, Laravel.
-
-業務管理システム
-: JavaScript, HTML5, CSS3, Salesforce.
+* LINEボット開発：TypeScript, JavaScript, Node.js, AWS(Lambda, DynamoDB, API Gateway, SQS).
+* 会員Webポータル：PHP, JavaScript, HTML5, CSS3, Vue.js, PostgreSQL, Heroku, Salesforce, AWS(Cognito, API Gateway, Lambda, S3), Laravel.
+* キャンペーンサイト：PHP, JavaScript, HTML5, CSS3, PostgreSQL, Heroku, Salesforce, Laravel.
+* 業務管理システム：JavaScript, HTML5, CSS3, Salesforce.
 
 ### テスター
 *テンプスタッフ・テクノロジー株式会社：　大阪　2012年2月（派遣）  
@@ -47,17 +38,10 @@ LINEボット開発
 
 業務向けアプリケーションの設計と実装、リリース後の保守を行う。
 
-スポーツ施設予約Webアプリケーション
-: PHP, ActionScript 3, Flex, MySQL, HTML, CSS.
-
-美容系予約Webアプリケーション
-: Perl, MySQL, HTML, CSS.
-
-監視カメラ管理ユニット操作用Windowsアプリケーション
-: C#, .Net Framework, MS Access.
-
-製造機器操作用Windowsアプリケーション
-: C++, Borland C++ Builder.
+* スポーツ施設予約Webアプリケーション：PHP, ActionScript 3, Flex, MySQL, HTML, CSS.
+* 美容系予約Webアプリケーション：Perl, MySQL, HTML, CSS.
+* 監視カメラ管理ユニット操作用Windowsアプリケーション：C#, .Net Framework, MS Access.
+* 製造機器操作用Windowsアプリケーション：C++, Borland C++ Builder.
 
 ## スキル
 言語

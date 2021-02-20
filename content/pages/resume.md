@@ -59,8 +59,8 @@ DB
 ## 資格
 * AWS 認定 ソリューションアーキテクト - プロフェッショナル：2020年7月
 * AWS 認定 DevOps エンジニア - プロフェッショナル：2020年5月
-* AWS 認定 デベロッパー - アソシエイト：2019年10月
 * AWS 認定 SysOps アドミニストレーター - アソシエイト：2019年11月
+* AWS 認定 デベロッパー - アソシエイト：2019年10月
 * AWS 認定 ソリューションアーキテクト - アソシエイト：2019年9月
 * AWS 認定 クラウドプラクティショナー：2017年12月
 * Salesforce 認定 Platform デベロッパー：2019年4月
@@ -87,7 +87,7 @@ DB
 : Webページ上のコンテンツを右クリックメニューからSlackに送るChrome拡張  
 *JavaScript, Chrome拡張, jest.*
 
-[Simple Video Manual Theme](https://github.com/takakd/simple-video-manual-theme)　2018年12月
+[Simple Video Manual Theme](https://github.com/takakd/simple-video-manual-theme)　2018年8月 〜 2018年12月
 : 動画ファイルをもとにマニュアル用サイトを作るWordPressテーマ  
 *Vue.js, JavaScript, PHP, WordPress.*
 

@@ -1,6 +1,13 @@
 /* You can add custom styles here. */
 @import "plugins/scrollbars";
 
+// print
+@media print {
+  .book-menu, .book-toc, .book-header {
+    display: none;
+  }
+}
+
 $font-color: #333;
 $link-color: #1c84da;
 $icon-color: #444;

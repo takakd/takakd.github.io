@@ -57,13 +57,13 @@ DB
 : AWS, Heroku, Salesforce, CentOS, Apache, NGINX, Git, Slack.
 
 ## 資格
-* AWS 認定 ソリューションアーキテクト - プロフェッショナル：2020年7月
-* AWS 認定 DevOps エンジニア - プロフェッショナル：2020年5月
-* AWS 認定 SysOps アドミニストレーター - アソシエイト：2019年11月
-* AWS 認定 デベロッパー - アソシエイト：2019年10月
-* AWS 認定 ソリューションアーキテクト - アソシエイト：2019年9月
-* AWS 認定 クラウドプラクティショナー：2017年12月
-* Salesforce 認定 Platform デベロッパー：2019年4月
+* [AWS 認定 ソリューションアーキテクト - プロフェッショナル](https://www.youracclaim.com/badges/298e48da-aced-4811-b026-2d9bdcc8b989)：2020年7月
+* [AWS 認定 DevOps エンジニア - プロフェッショナル](https://www.youracclaim.com/badges/0e2e46e5-bece-4127-adee-067148c3d39c/linked_in_profile)：2020年5月
+* [AWS 認定 SysOps アドミニストレーター - アソシエイト](https://www.youracclaim.com/badges/5fb1a29c-8347-4c03-9cfa-fac238eeefda/linked_in_profile)：2019年11月
+* [AWS 認定 デベロッパー - アソシエイト](https://www.youracclaim.com/badges/6142e914-f0f6-4a5c-80f5-18edc72246e8/linked_in_profile)：2019年10月
+* [AWS 認定 ソリューションアーキテクト - アソシエイト](https://www.youracclaim.com/badges/f4d5968c-1444-49a8-bc3a-40d3f2e08880/linked_in_profile)：2019年9月
+* [AWS 認定 クラウドプラクティショナー](https://www.youracclaim.com/badges/3205d0a7-e2de-49f4-a1f3-acd5c0e5869d)：2017年12月
+* [Salesforce 認定 Platform デベロッパー](https://trailblazer.me/id/takakd)：2019年4月
 * IPA システムアーキテクト：2020年1月
 * TOEIC 780：2020年11月
 

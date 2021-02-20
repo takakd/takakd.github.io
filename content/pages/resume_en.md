@@ -15,7 +15,7 @@ A backend engineer responsible for technical verification, mock production, desi
 
 ## Experience
 
-### Engineer
+### Backend Engineer
 *TAMSAN inc., Tokyo, 09/2020 - current  
 TAM inc., Tokyo, 04/2013 - 08/2020*
 
@@ -32,7 +32,7 @@ Tempstaff technology Co., Ltd., Osaka, 11/2012 - 01/2013*
 
 Test devices related to media.
 
-### Engineer
+### Software Engineer
 *SOKEN Co., Ltd., Osaka, 04/2006 - 10/2012*
 
 Design and implementation of applications for business use and maintenance.

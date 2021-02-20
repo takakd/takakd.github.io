@@ -1,5 +1,5 @@
 ---
-title: "工藤高浩 - クドウタカヒロ"
+title: "Takahiro Kudo"
 date: 2021-02-03T12:15:00+09:00
 draft: false
 hidden: true

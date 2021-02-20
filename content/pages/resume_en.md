@@ -27,8 +27,8 @@ Design and implementation of web systems and services and maintenance them.
 * Business Management system：JavaScript, HTML5, CSS3, Salesforce.
 
 ### Tester
-*Tempstaff technology Co., Ltd., Osaka, 02/2012  
-Recruit Staffing Co., Ltd., Osaka, 11/2012 - 01/2013*
+*Recruit Staffing Co., Ltd., Osaka, 02/2013  
+Tempstaff technology Co., Ltd., Osaka, 11/2012 - 01/2013*
 
 Test devices related to media.
 

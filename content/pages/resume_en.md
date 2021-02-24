@@ -5,7 +5,7 @@ draft: false
 hidden: true
 type: "doc"
 aliases:
-    - /page/resume
+    - /page/resume_en
 ---
 
 A backend engineer responsible for technical verification, mock production, design and implementation, and maintenance and operations for contracted projects.
